@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Project NOAA &mdash; Induka Rathnayake</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../fonts/icomoon/style.css">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/aos.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/custom.css">
+</head>
+<body>
+<div class="site-wrap">
+
+  <!-- Navbar -->
+  <header class="site-navbar py-4 js-sticky-header" role="banner" style="border-bottom:1px solid #eee;">
+    <div class="container-fluid">
+      <div class="row align-items-center justify-content-between px-3">
+        <a href="../index.html" class="back-link">&larr; Back to Portfolio</a>
+        <h1 class="m-0 site-logo"><a href="../index.html" style="font-size:1.4rem;">IR.</a></h1>
+        <a href="../cv/Induka_Rathnayake_CV.pdf" download class="nav-cv-btn" style="font-size:0.85rem; padding:6px 16px; border-radius:20px; background:#207561; color:#fff; text-decoration:none;">&#8659; CV</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Header -->
+  <div class="project-detail-header noaa-header">
+    <div class="container">
+      <span class="project-detail-badge" style="background:#1565c0;">Signal Processing</span>
+      <h1 class="project-detail-title">Project NOAA</h1>
+      <p class="project-detail-subtitle">
+        Receiving and decoding real-time NOAA weather satellite transmissions 
+        using a Software Defined Radio (SDR) and custom signal processing pipelines.
+      </p>
+      <div class="project-detail-meta">
+        <div class="detail-meta-item">
+          <strong>Domain</strong>SDR / RF Engineering
+        </div>
+        <div class="detail-meta-item">
+          <strong>Signal</strong>137 MHz APT
+        </div>
+        <div class="detail-meta-item">
+          <strong>Tools</strong>SDR#, Python, GNU Radio
+        </div>
+        <div class="detail-meta-item">
+          <strong>Status</strong>Completed
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="site-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+
+          <div class="project-section">
+            <p class="project-section-label">Overview</p>
+            <h3>What is Project NOAA?</h3>
+            <p>
+              NOAA weather satellites (NOAA-15, NOAA-18, NOAA-19) continuously transmit 
+              weather imagery on 137 MHz using the Automatic Picture Transmission (APT) format. 
+              This project involved building a ground station to receive those signals, 
+              decode the audio, and reconstruct the satellite weather images.
+            </p>
+            <p>
+              <em style="color:#999;">[ Add your detailed description, what motivated the project, and your specific contributions. ]</em>
+            </p>
+          </div>
+
+          <div class="project-section">
+            <p class="project-section-label">How It Works</p>
+            <h3>System Architecture</h3>
+            <p>
+              The system pipeline consists of four main stages:
+            </p>
+            <ol style="line-height:2.2; color:#555; font-size:0.95rem;">
+              <li><strong>Antenna &amp; SDR Reception</strong> — A V-dipole or turnstile antenna at 137 MHz feeds into an RTL-SDR dongle</li>
+              <li><strong>Signal Demodulation</strong> — Wide-FM demodulation extracts the APT audio subcarrier using SDR# or GNU Radio</li>
+              <li><strong>APT Decoding</strong> — The 2400 baud APT signal is decoded using WXtoImg or a custom Python decoder</li>
+              <li><strong>Image Reconstruction</strong> — The decoded data is assembled into a visible + infrared weather image</li>
+            </ol>
+            <p>
+              <em style="color:#999;">[ Add your specific implementation details, code snippets, or design decisions. ]</em>
+            </p>
+          </div>
+
+          <div class="project-section">
+            <p class="project-section-label">Results</p>
+            <h3>Captured Images &amp; Findings</h3>
+            <p>
+              <em style="color:#999;">[ Add your decoded satellite images, pass success rate, signal quality notes, and any improvements you made. ]</em>
+            </p>
+          </div>
+
+          <div class="project-section">
+            <p class="project-section-label">Technologies Used</p>
+            <h3>Tech Stack</h3>
+            <div>
+              <span class="tech-chip">RTL-SDR</span>
+              <span class="tech-chip">GNU Radio</span>
+              <span class="tech-chip">Python</span>
+              <span class="tech-chip">SDR#</span>
+              <span class="tech-chip">WXtoImg</span>
+              <span class="tech-chip">137 MHz APT</span>
+              <span class="tech-chip">RF Antenna Design</span>
+              <span class="tech-chip">Signal Processing</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4 mt-5 mt-lg-0">
+          <div style="position:sticky; top:100px;">
+            <div style="background:#e3f2fd; border-radius:14px; padding:1.5rem; border:1px solid #90caf9; margin-bottom:1.5rem;">
+              <h6 style="font-family:'Space Mono',monospace; font-size:0.8rem; color:#1565c0; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1rem;">Project Files</h6>
+              <ul style="list-style:none; padding:0; margin:0; font-size:0.88rem; color:#555;">
+                <li style="padding:5px 0;">&#128196; <a href="#" style="color:#1565c0;">Project Report (PDF)</a></li>
+                <li style="padding:5px 0;">&#128196; <a href="#" style="color:#1565c0;">GNU Radio Flowgraph</a></li>
+                <li style="padding:5px 0;">&#128196; <a href="#" style="color:#1565c0;">Python Decoder Script</a></li>
+                <li style="padding:5px 0;">&#128247; <a href="#" style="color:#1565c0;">Sample Decoded Images</a></li>
+                <li style="padding:5px 0; color:#bbb; font-style:italic;">[ Add your files ]</li>
+              </ul>
+            </div>
+            <div style="background:#f8faf9; border-radius:14px; padding:1.5rem; border:1px solid #e0eee9;">
+              <h6 style="font-family:'Space Mono',monospace; font-size:0.8rem; color:#207561; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.8rem;">Satellite Info</h6>
+              <ul style="list-style:none; padding:0; margin:0; font-size:0.85rem; color:#666; line-height:2;">
+                <li>&#128225; NOAA-15: 137.620 MHz</li>
+                <li>&#128225; NOAA-18: 137.9125 MHz</li>
+                <li>&#128225; NOAA-19: 137.100 MHz</li>
+                <li>&#128197; Passes: ~4 per day per satellite</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-section bg-dark py-4">
+    <div class="container text-center">
+      <p class="text-muted small mb-0">&copy; <script>document.write(new Date().getFullYear());</script> Induka Rathnayake &mdash; <a href="../index.html" style="color:#888;">Back to Portfolio</a></p>
+    </div>
+  </footer>
+
+</div>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/popper.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery.sticky.js"></script>
+</body>
+</html>

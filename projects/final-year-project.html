@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>Final Year Project &mdash; Induka Rathnayake</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../fonts/icomoon/style.css">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/aos.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/custom.css">
+</head>
+<body>
+<div class="site-wrap">
+
+  <!-- Minimal Navbar -->
+  <header class="site-navbar py-4 js-sticky-header" role="banner" style="border-bottom:1px solid #eee;">
+    <div class="container-fluid">
+      <div class="row align-items-center justify-content-between px-3">
+        <div>
+          <a href="../index.html" class="back-link">&larr; Back to Portfolio</a>
+        </div>
+        <div>
+          <h1 class="m-0 site-logo"><a href="../index.html" style="font-size:1.4rem;">IR.</a></h1>
+        </div>
+        <div>
+          <a href="../cv/Induka_Rathnayake_CV.pdf" download class="nav-cv-btn" style="font-size:0.85rem; padding:6px 16px; border-radius:20px; background:#207561; color:#fff; text-decoration:none;">&#8659; CV</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Project Header -->
+  <div class="project-detail-header">
+    <div class="container">
+      <span class="project-detail-badge">Final Year Project — Phase 1</span>
+      <h1 class="project-detail-title">Final Year Research Project</h1>
+      <p class="project-detail-subtitle">
+        A 14-week weekly progress log tracking milestones, experiments, findings, 
+        and deliverables throughout the first phase of my undergraduate research project.
+      </p>
+      <div class="project-detail-meta">
+        <div class="detail-meta-item">
+          <strong>Duration</strong>14 Weeks
+        </div>
+        <div class="detail-meta-item">
+          <strong>Institution</strong>University of Peradeniya
+        </div>
+        <div class="detail-meta-item">
+          <strong>Status</strong>In Progress
+        </div>
+        <div class="detail-meta-item">
+          <strong>Phase</strong>Phase 1 of 2
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="site-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+
+          <!-- Progress Overview -->
+          <div class="fyp-progress-bar-wrap">
+            <div class="fyp-progress-label" id="progressLabel">Weeks Completed: 0 / 14</div>
+            <div class="fyp-progress-bar">
+              <div class="fyp-progress-fill" id="progressFill" style="width: 0%"></div>
+            </div>
+          </div>
+
+          <!-- Project Overview -->
+          <div class="project-section">
+            <p class="project-section-label">Overview</p>
+            <h3>Project Background &amp; Objectives</h3>
+            <p>
+              This section summarises the objectives and research goals established at the 
+              start of Phase 1. Update this with your actual project title and aims once confirmed 
+              with your supervisor.
+            </p>
+            <p>
+              <em style="color:#999;">[ Edit this paragraph with your actual project description — topic, problem statement, and expected outcomes. ]</em>
+            </p>
+          </div>
+
+          <!-- 14-Week Log -->
+          <div class="project-section">
+            <p class="project-section-label">Weekly Progress Log</p>
+            <h3>Phase 1 — Week by Week</h3>
+            <p class="text-muted" style="font-size:0.9rem;">Click any week to expand. Add your notes, findings, and uploaded files each week.</p>
+
+            <div class="weeks-container" id="weeksContainer">
+              <!-- Weeks are rendered by JS below -->
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4 mt-5 mt-lg-0">
+          <div style="position: sticky; top: 100px;">
+
+            <div style="background:#f8faf9; border-radius:14px; padding:1.5rem; border:1px solid #e0eee9; margin-bottom:1.5rem;">
+              <h6 style="font-family:'Space Mono',monospace; font-size:0.8rem; color:#207561; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1rem;">Quick Navigation</h6>
+              <div id="quickNav" style="display:flex; flex-direction:column; gap:6px;">
+                <!-- populated by JS -->
+              </div>
+            </div>
+
+            <div style="background:#fff8e1; border-radius:14px; padding:1.5rem; border:1px solid #ffe082;">
+              <h6 style="font-family:'Space Mono',monospace; font-size:0.8rem; color:#f57f17; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.8rem;">How to Update</h6>
+              <p style="font-size:0.82rem; color:#666; line-height:1.6; margin:0;">
+                Edit the <code>weekData</code> array in this page's <code>&lt;script&gt;</code> section. 
+                Each week has fields for <strong>title</strong>, <strong>summary</strong>, 
+                <strong>activities</strong>, <strong>findings</strong>, and <strong>files</strong>.
+                Upload files to <code>projects/fyp-files/</code> and link them.
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-section bg-dark py-4">
+    <div class="container text-center">
+      <p class="text-muted small mb-0">&copy; <script>document.write(new Date().getFullYear());</script> Induka Rathnayake &mdash; <a href="../index.html" style="color:#888;">Back to Portfolio</a></p>
+    </div>
+  </footer>
+
+</div>
+
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/jquery-ui.js"></script>
+<script src="../js/popper.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/aos.js"></script>
+<script src="../js/jquery.sticky.js"></script>
+
+<script>
+// ============================================================
+//  EDIT YOUR WEEKLY DATA HERE
+//
+//  FIELDS:
+//  week       : week number (1–14)
+//  title      : short title shown in the header
+//  date       : actual date range  e.g. "Jan 15 – Jan 22, 2025"
+//  status     : "completed" | "current" | "upcoming"
+//  summary    : what you achieved this week (plain text, use \n for new lines)
+//  activities : tasks you carried out
+//  findings   : key results or observations
+//
+//  MEDIA ARRAY — add any mix of these item types:
+//
+//  PDF / document download:
+//    { type:"file",    name:"Week 1 Report",      url:"fyp-files/week1-report.pdf" }
+//
+//  Photo, graph, figure (put images in projects/fyp-files/):
+//    { type:"image",   caption:"Circuit diagram",  url:"fyp-files/circuit.jpg" }
+//
+//  YouTube video embed (just the video ID from the URL):
+//    { type:"youtube", title:"Demo video",          id:"dQw4w9WgXcQ" }
+//    (from https://youtube.com/watch?v=dQw4w9WgXcQ  →  id is  dQw4w9WgXcQ)
+//
+//  Audio recording (MP3/WAV in projects/fyp-files/):
+//    { type:"audio",   name:"Signal recording",    url:"fyp-files/signal.mp3" }
+//
+//  Research paper / link:
+//    { type:"paper",   title:"Paper title",        authors:"Smith et al., 2023",  url:"https://..." }
+//
+//  Bar or line chart (data you type directly here, no image needed):
+//    { type:"graph",   title:"Efficiency vs Load", labels:["10%","20%","30%","40%"], values:[72,81,89,85], color:"#207561" }
+//
+//  Highlighted note / callout:
+//    { type:"note",    text:"Supervisor approved methodology on Wed." }
+//
+//  Any external link:
+//    { type:"link",    name:"MATLAB Simulation Files", url:"https://github.com/..." }
+//
+// ============================================================
+var weekData = [
+  {
+    week: 1,
+    title: "Project Initiation & Literature Review",
+    date: "Week 1",
+    status: "upcoming",
+    summary: "",
+    activities: "",
+    findings: "",
+    media: []
+  },
+  {
+    week: 2,
+    title: "Research Gap Analysis",
+    date: "Week 2",
+    status: "upcoming",
+    summary: "",
+    activities: "",
+    findings: "",
+    media: []
+  },
+  {
+    week: 3,
+    title: "Methodology Design",
+    date: "Week 3",
+    status: "upcoming",
+    summary: "",
+    activities: "",
+    findings: "",
+    media: []
+  },
+  {
+    week: 4,
+    title: "Initial Experiments / Simulations",
+    date: "Week 4",
+    status: "upcoming",
+    summary: "",
+    activities: "",
+    findings: "",
+    media: []
+  },
+  {
+    week: 5,
+    title: "Data Collection — Phase A",
+    date: "Week 5",
+    status: "upcoming",
+    summary: "",
+    activities: "",
+    findings: "",
+    media: []
+  },
+  {
+    week: 6,
+    title: "Data Collection — Phase B",
+    date: "Week 6",
+    status: "upcoming",
+    summary: "",
+    activities: "",
+    findings: "",
+    media: []
+  },
+  {
+    week: 7,
+    title: "Mid-Point Review & Analysis",
+    date: "Week 7",
+    status: "upcoming",
+    summary: "",
+    activities: "",
+    findings: "",
+    media: []
+  },
+  {
+    week: 8,
+    title: "Model / Prototype Development",
+    date: "Week 8",
+    status: "upcoming",
+    summary: "",
+    activities: "",
+    findings: "",
+    media: []
+  },
+  {
+    week: 9,
+    title: "Testing & Validation",
+    date: "Week 9",
+    status: "upcoming",
+    summary: "",
+    activities: "",
+    findings: "",
+    media: []
+  },
+  {
+    week: 10,
+    title: "Results Analysis",
+    date: "Week 10",
+    status: "upcoming",
+    summary: "",
+    activities: "",
+    findings: "",
+    media: []
+  },
+  {
+    week: 11,
+    title: "Optimisation & Refinement",
+    date: "Week 11",
+    status: "upcoming",
+    summary: "",
+    activities: "",
+    findings: "",
+    media: []
+  },
+  {
+    week: 12,
+    title: "Discussion & Interpretation",
+    date: "Week 12",
+    status: "upcoming",
+    summary: "",
+    activities: "",
+    findings: "",
+    media: []
+  },
+  {
+    week: 13,
+    title: "Report Writing & Documentation",
+    date: "Week 13",
+    status: "upcoming",
+    summary: "",
+    activities: "",
+    findings: "",
+    media: []
+  },
+  {
+    week: 14,
+    title: "Final Submission & Presentation Prep",
+    date: "Week 14",
+    status: "upcoming",
+    summary: "",
+    activities: "",
+    findings: "",
+    media: []
+  }
+];
+
+// ============================================================
+//  RENDER ENGINE — no need to edit below this line
+// ============================================================
+(function() {
+  var container = document.getElementById('weeksContainer');
+  var quickNav  = document.getElementById('quickNav');
+  var completed = 0;
+
+  weekData.forEach(function(w) {
+    if (w.status === 'completed') completed++;
+
+    // support old "files" field transparently
+    var media = w.media || [];
+    if (w.files && w.files.length) {
+      w.files.forEach(function(f){ media.push({ type:'file', name:f.name, url:f.url }); });
+    }
+
+    var statusLabel = w.status === 'completed' ? 'Completed'
+                    : w.status === 'current'   ? 'In Progress'
+                    : 'Upcoming';
+    var statusClass = w.status === 'completed' ? 'status-done'
+                    : w.status === 'current'   ? 'status-current'
+                    : 'status-upcoming';
+    var cardClass   = 'week-' + w.status;
+
+    var bodyHTML = '';
+    var hasContent = w.summary || w.activities || w.findings || media.length;
+
+    if (w.status === 'upcoming' && !hasContent) {
+      bodyHTML = '<p class="week-empty-msg">Content will be added when this week begins.</p>';
+    } else {
+      if (w.summary)    bodyHTML += '<p class="week-section-title">Summary</p><p class="week-content-text">'    + escHtml(w.summary)    + '</p>';
+      if (w.activities) bodyHTML += '<p class="week-section-title">Activities Carried Out</p><p class="week-content-text">' + escHtml(w.activities) + '</p>';
+      if (w.findings)   bodyHTML += '<p class="week-section-title">Key Findings / Results</p><p class="week-content-text">' + escHtml(w.findings)   + '</p>';
+
+      if (media.length > 0) {
+        media.forEach(function(m, idx) {
+          switch (m.type) {
+
+            case 'file':
+              bodyHTML += '<div class="media-file"><span>&#128196;</span> <a href="' + m.url + '" target="_blank">' + escHtml(m.name) + '</a></div>';
+              break;
+
+            case 'image':
+              bodyHTML += '<div class="media-image-wrap"><img src="' + m.url + '" alt="' + escHtml(m.caption||'') + '" class="media-img" loading="lazy"><p class="media-caption">' + escHtml(m.caption||'') + '</p></div>';
+              break;
+
+            case 'youtube':
+              bodyHTML += '<div class="media-video-wrap"><p class="week-section-title">' + escHtml(m.title||'Video') + '</p>'
+                        + '<div class="media-youtube"><iframe src="https://www.youtube.com/embed/' + m.id + '" frameborder="0" allowfullscreen></iframe></div></div>';
+              break;
+
+            case 'audio':
+              bodyHTML += '<div class="media-audio-wrap"><p class="week-section-title">&#127911; ' + escHtml(m.name||'Audio Recording') + '</p>'
+                        + '<audio controls class="media-audio"><source src="' + m.url + '">Your browser does not support audio.</audio></div>';
+              break;
+
+            case 'paper':
+              bodyHTML += '<div class="media-paper"><div class="media-paper-icon">&#128218;</div><div><a href="' + m.url + '" target="_blank" class="media-paper-title">' + escHtml(m.title) + '</a>'
+                        + (m.authors ? '<div class="media-paper-authors">' + escHtml(m.authors) + '</div>' : '') + '</div></div>';
+              break;
+
+            case 'graph':
+              var chartId = 'chart-w' + w.week + '-' + idx;
+              bodyHTML += '<div class="media-graph-wrap"><p class="week-section-title">' + escHtml(m.title||'Chart') + '</p>'
+                        + '<canvas id="' + chartId + '" height="220"></canvas></div>';
+              // schedule chart render after DOM insert
+              (function(cId, lbl, vals, clr, type){
+                window.__pendingCharts = window.__pendingCharts || [];
+                window.__pendingCharts.push({id:cId, labels:lbl, values:vals, color:clr||'#207561', chartType:type||'bar'});
+              })(chartId, m.labels||[], m.values||[], m.color, m.chartType);
+              break;
+
+            case 'note':
+              bodyHTML += '<div class="media-note"><span>&#128161;</span> ' + escHtml(m.text) + '</div>';
+              break;
+
+            case 'link':
+              bodyHTML += '<div class="media-file"><span>&#128279;</span> <a href="' + m.url + '" target="_blank">' + escHtml(m.name) + '</a></div>';
+              break;
+          }
+        });
+      }
+
+      if (!bodyHTML) bodyHTML = '<p class="week-empty-msg">No content added yet for this week.</p>';
+    }
+
+    var card = document.createElement('div');
+    card.className = 'week-card ' + cardClass;
+    card.id = 'week-' + w.week;
+    card.innerHTML =
+      '<div class="week-header" onclick="toggleWeek(this)">' +
+        '<div class="week-header-left">' +
+          '<span class="week-number">Week ' + w.week + '</span>' +
+          '<div>' +
+            '<div class="week-title-text">' + escHtml(w.title) + '</div>' +
+            '<div class="week-date">' + escHtml(w.date) + '</div>' +
+          '</div>' +
+        '</div>' +
+        '<div style="display:flex; align-items:center; gap:12px;">' +
+          '<span class="week-status-badge ' + statusClass + '">' + statusLabel + '</span>' +
+          '<span class="week-toggle-icon">&#9660;</span>' +
+        '</div>' +
+      '</div>' +
+      '<div class="week-body">' + bodyHTML + '</div>';
+
+    container.appendChild(card);
+
+    var navLink = document.createElement('a');
+    navLink.href = '#week-' + w.week;
+    navLink.textContent = 'Week ' + w.week + ' — ' + w.title.substring(0, 28) + (w.title.length > 28 ? '…' : '');
+    navLink.style.cssText = 'font-size:0.78rem; color:#555; text-decoration:none; padding:4px 8px; border-radius:6px; transition:background 0.15s;';
+    navLink.onmouseover = function(){ this.style.background='#f0f7f5'; this.style.color='#207561'; };
+    navLink.onmouseout  = function(){ this.style.background=''; this.style.color='#555'; };
+    quickNav.appendChild(navLink);
+  });
+
+  var pct = Math.round((completed / 14) * 100);
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = 'Weeks Completed: ' + completed + ' / 14 (' + pct + '%)';
+
+  var currentCard = document.querySelector('.week-card.week-current');
+  if (currentCard) {
+    currentCard.classList.add('open');
+    currentCard.querySelector('.week-body').classList.add('show');
+  }
+
+  // Render any pending Chart.js charts
+  if (window.__pendingCharts && window.__pendingCharts.length) {
+    var script = document.createElement('script');
+    script.src = 'https://cdn.jsdelivr.net/npm/chart.js@4/dist/chart.umd.min.js';
+    script.onload = function() {
+      window.__pendingCharts.forEach(function(c) {
+        var ctx = document.getElementById(c.id);
+        if (!ctx) return;
+        new Chart(ctx, {
+          type: c.chartType,
+          data: {
+            labels: c.labels,
+            datasets: [{ data: c.values, backgroundColor: c.color + 'cc', borderColor: c.color, borderWidth: 2, borderRadius: 6 }]
+          },
+          options: { plugins:{ legend:{ display:false } }, scales:{ y:{ beginAtZero:true } }, responsive:true }
+        });
+      });
+    };
+    document.head.appendChild(script);
+  }
+})();
+
+function toggleWeek(header) {
+  var card = header.closest('.week-card');
+  var body = card.querySelector('.week-body');
+  var isOpen = card.classList.contains('open');
+  card.classList.toggle('open', !isOpen);
+  body.classList.toggle('show', !isOpen);
+}
+
+function escHtml(str) {
+  return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+}
+
+</script>
+</body>
+</html>
