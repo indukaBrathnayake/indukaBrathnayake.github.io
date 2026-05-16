@@ -80,10 +80,10 @@ h1, h2, h3, h4, h5, .site-logo, .footer-brand {
 
 /* --- About --- */
 .about-photo-wrap {
-  background: #f0f7f5;
+  background: transparent;
   border-radius: 16px;
   overflow: visible;
-  padding: 2rem 2rem 0;
+  padding: 0;
   position: relative;
 }
 .about-photo-wrap::after {
@@ -576,8 +576,7 @@ h1, h2, h3, h4, h5, .site-logo, .footer-brand {
 /* ABOUT SLIDER */
 .about-slider {
   position: relative;
-  width: 115%;
-  margin-left: -7.5%;
+  width: 100%;
   aspect-ratio: 1 / 1;
   transition: aspect-ratio 0.9s ease;
   overflow: hidden;
