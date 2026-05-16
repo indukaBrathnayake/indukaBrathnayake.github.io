@@ -74,7 +74,7 @@
                   <span class="hero-highlight">|Innovate|AI|ML|.</span>
                 </p>
                 <div data-aos="fade-up" data-aos-delay="240" class="hero-btns">
-                  <a href="cv/Induka_Rathnayake_CV.pdf" download class="btn btn-primary mr-3">
+                  <a href="#" class="btn btn-primary mr-3" onclick="showCVMsg(event)">
                     &#8659; &nbsp;Download CV
                   </a>
                   <a href="#projects-section" class="btn btn-outline-dark smoothscroll">View Projects</a>
@@ -114,26 +114,28 @@
           <div class="col-lg-8 order-2 order-lg-1" data-aos="fade-right" data-aos-delay="50">
             <p class="about-lead">
               I'm an Electrical and Electronic Engineering undergraduate at the 
-              <strong>University of Peradeniya</strong>, driven by a relentless passion 
-              to build innovations that make a difference.
+              <strong>University of Peradeniya</strong>.  Currently a third-year student, 
+              focused on deepening my technical expertise and taking on the advanced challenges of 
+              my engineering curriculum.
             </p>
             <p>
-              I thrive at the intersection of intelligent systems and hardware engineering. 
-              Whether it's designing embedded circuits, developing ML models or processing 
-              , I bring curiosity and precision to every challenge.
+              I am specializing in power, energy and high-voltage engineering driven by a 
+              strong interest in AI and machine learning. I love the hands-on process of 
+              circuit design, building, innovating and always seeking to develop smart systems.
             </p>
             <p>
-              MORE#####
+              Outside of the lab and lectures, I keep things balanced through my love for 
+              table tennis and hiking. Whether I’m leading my team in a fast-paced match 
+              on the court or heading out for a trek in the hills, these activities give me 
+              the discipline and fresh energy I need to stay sharp for my engineering career.
             </p>
             <div class="skill-tags mt-4 mb-4">
+              <span class="skill-tag">Embedded Systems</span>
               <span class="skill-tag">Python</span>
               <span class="skill-tag">Machine Learning</span>
-              <span class="skill-tag">Embedded Systems</span>
-              <span class="skill-tag">MATLAB</span>
               <span class="skill-tag">Circuit Design</span>
-              <span class="skill-tag">Deep Learning</span>
-              <span class="skill-tag">Signal Processing</span>
-              <span class="skill-tag">SDR / RF</span>
+              <span class="skill-tag">Problem Solving</span>
+              <span class="skill-tag">Power Systems</span>
               <span class="skill-tag">Renewable Energy</span>
             </div>
             <div class="about-social-links">
@@ -143,7 +145,7 @@
               <a href="https://www.linkedin.com/in/induka-rathnayake-b61a35371/" target="_blank" class="social-pill">
                 <span>&#128101;</span> LinkedIn
               </a>
-              <a href="cv/Induka_Rathnayake_CV.pdf" download class="social-pill pill-accent">
+              <a href="#" class="social-pill pill-accent" onclick="showCVMsg(event)">
                 &#8659; Download CV
               </a>
             </div>
@@ -170,7 +172,7 @@
               <div class="project-card">
                 <div class="project-img-wrap">
                   <div class="project-img-placeholder fyp-placeholder">
-                    <div class="placeholder-icon">&#9881;</div>
+                    <img src="images/project-fyp.jpg" alt="Final Year Project" style="width:100%; height:100%; object-fit:cover; display:block;">
                   </div>
                   <div class="project-hover-overlay">
                     <span class="view-label">View Details &rarr;</span>
@@ -195,7 +197,7 @@
               <div class="project-card">
                 <div class="project-img-wrap">
                   <div class="project-img-placeholder solar-placeholder">
-                    <div class="placeholder-icon">&#9728;</div>
+                    <img src="images/project-solar.jpg" alt="Mini Solar Project" style="width:100%; height:100%; object-fit:cover; display:block;">
                   </div>
                   <div class="project-hover-overlay">
                     <span class="view-label">View Details &rarr;</span>
@@ -219,7 +221,7 @@
               <div class="project-card">
                 <div class="project-img-wrap">
                   <div class="project-img-placeholder noaa-placeholder">
-                    <div class="placeholder-icon">&#128225;</div>
+                    <img src="images/project-noaa.jpg" alt="Project NOAA" style="width:100%; height:100%; object-fit:cover; display:block;">
                   </div>
                   <div class="project-hover-overlay">
                     <span class="view-label">View Details &rarr;</span>
@@ -338,92 +340,118 @@
   <script src="js/jquery.sticky.js"></script>
   <script src="js/main.js"></script>
   <script>
-  (function() {
-    var slides   = document.querySelectorAll('.about-slide');
-    var dotsWrap = document.getElementById('sliderDots');
-    var total    = slides.length;
+  function showCVMsg(e) {
+    e.preventDefault();
+    var btn = e.currentTarget;
+    var original = btn.innerHTML;
+    btn.innerHTML = '⏳ CV coming soon!';
+    btn.style.opacity = '0.75';
+    setTimeout(function() {
+      btn.innerHTML = original;
+      btn.style.opacity = '1';
+    }, 2500);
+  }
+  
+  // ── About Slider ──────────────────────────────────────────
+  var Slider = (function() {
+    var slides   = [];
+    var dots     = [];
+    var total    = 0;
     var current  = 0;
     var interval = 3500;
     var timer    = null;
-  
-    if (!total) return;
-  
-    var prog = document.createElement('div');
-    prog.className = 'slider-progress';
-    prog.style.width = '0%';
-    document.getElementById('aboutSlider').appendChild(prog);
-  
-    for (var i = 0; i < total; i++) {
-      var d = document.createElement('button');
-      d.className = 'slider-dot' + (i === 0 ? ' active' : '');
-      d.setAttribute('aria-label', 'Photo ' + (i+1));
-      d.setAttribute('data-idx', i);
-      d.addEventListener('click', function() { goTo(+this.getAttribute('data-idx')); restart(); });
-      dotsWrap.appendChild(d);
-    }
+    var prog     = null;
+    var busy     = false;
   
     function goTo(idx) {
+      if (busy) return;
+      busy = true;
+  
       slides[current].classList.remove('active');
       slides[current].classList.add('leaving');
-      var prev = current;
-      setTimeout(function(){ slides[prev].classList.remove('leaving'); }, 950);
+      var leaving = current;
+      setTimeout(function() {
+        slides[leaving].classList.remove('leaving');
+        busy = false;
+      }, 950);
+  
       current = (idx + total) % total;
       slides[current].classList.add('active');
-      
-      var sliderBox = document.getElementById('aboutSlider');
-      if (current === 4) {
-        sliderBox.classList.add('slide-5-active');
-      } else {
-        sliderBox.classList.remove('slide-5-active');
+  
+      // aspect ratio for photo_5
+      var box = document.getElementById('aboutSlider');
+      if (current === 4) { box.classList.add('slide-5-active'); }
+      else               { box.classList.remove('slide-5-active'); }
+  
+      // update dots
+      dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
+  
+      // reset progress bar
+      if (prog) {
+        prog.style.transition = 'none';
+        prog.style.width = '0%';
+        setTimeout(function() {
+          prog.style.transition = 'width ' + interval + 'ms linear';
+          prog.style.width = '100%';
+        }, 30);
       }
-      dotsWrap.querySelectorAll('.slider-dot').forEach(function(d, i) {
-        d.classList.toggle('active', i === current);
-      });
-      prog.style.transition = 'none';
-      prog.style.width = '0%';
-      setTimeout(function() {
-        prog.style.transition = 'width ' + interval + 'ms linear';
-        prog.style.width = '100%';
-      }, 30);
     }
   
-    function next()    { goTo(current + 1); }
-    function restart() { clearInterval(timer); timer = setInterval(next, interval); }
+    function restart() {
+      clearInterval(timer);
+      timer = setInterval(function() { goTo(current + 1); }, interval);
+    }
   
-    goTo(0);
-    timer = setInterval(next, interval);
+    function move(dir) {
+      goTo(current + dir);
+      restart();          // ← reset timer so it doesn't fire right after click
+    }
   
-    var sliderEl = document.getElementById('aboutSlider');
-    sliderEl.addEventListener('mouseenter', function() { clearInterval(timer); prog.style.transition='none'; });
-    sliderEl.addEventListener('mouseleave', function() { restart(); });
+    function init() {
+      var sliderEl = document.getElementById('aboutSlider');
+      var dotsWrap = document.getElementById('sliderDots');
+      if (!sliderEl) return;
+  
+      slides = Array.prototype.slice.call(sliderEl.querySelectorAll('.about-slide'));
+      total  = slides.length;
+      if (!total) return;
+  
+      // progress bar
+      prog = document.createElement('div');
+      prog.className = 'slider-progress';
+      prog.style.width = '0%';
+      sliderEl.appendChild(prog);
+  
+      // dots
+      slides.forEach(function(_, i) {
+        var d = document.createElement('button');
+        d.className = 'slider-dot' + (i === 0 ? ' active' : '');
+        d.setAttribute('aria-label', 'Photo ' + (i + 1));
+        d.addEventListener('click', function() { goTo(i); restart(); });
+        dotsWrap.appendChild(d);
+        dots.push(d);
+      });
+  
+      // arrow buttons
+      sliderEl.querySelector('.slider-prev').addEventListener('click', function() { move(-1); });
+      sliderEl.querySelector('.slider-next').addEventListener('click', function() { move(1); });
+  
+      // remove inline onclick to avoid double-firing
+      sliderEl.querySelector('.slider-prev').removeAttribute('onclick');
+      sliderEl.querySelector('.slider-next').removeAttribute('onclick');
+  
+      // pause on hover
+      sliderEl.addEventListener('mouseenter', function() { clearInterval(timer); if (prog) prog.style.transition = 'none'; });
+      sliderEl.addEventListener('mouseleave', function() { restart(); });
+  
+      goTo(0);
+      restart();
+    }
+  
+    return { init: init };
   })();
   
-  function sliderMove(dir) {
-    var slides  = document.querySelectorAll('.about-slide');
-    var current = 0;
-    slides.forEach(function(s,i){ if (s.classList.contains('active')) current = i; });
-    var next = ((current + dir) + slides.length) % slides.length;
-    slides[current].classList.remove('active');
-    slides[current].classList.add('leaving');
-    var prev = current;
-    setTimeout(function(){ slides[prev].classList.remove('leaving'); }, 950);
-    slides[next].classList.add('active');
-    var sliderBox = document.getElementById('aboutSlider');
-    if (next === 4) {
-      sliderBox.classList.add('slide-5-active');
-    } else {
-      sliderBox.classList.remove('slide-5-active');
-    }
-    document.querySelectorAll('.slider-dot').forEach(function(d,i){
-      d.classList.toggle('active', i === next);
-    });
-    var prog = document.querySelector('.slider-progress');
-    if (prog) {
-      prog.style.transition='none';
-      prog.style.width='0%';
-      setTimeout(function(){ prog.style.transition='width 3500ms linear'; prog.style.width='100%'; }, 30);
-    }
-  }
+  document.addEventListener('DOMContentLoaded', function() { Slider.init(); });
   </script>
     
   </body>
