@@ -85,16 +85,18 @@ h1, h2, h3, h4, h5, .site-logo, .footer-brand {
   font-size: 0.78rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: var(--blue);
+  color: #207561;
   margin-bottom: 1rem;
 }
 .hero-name {
-  font-size: clamp(2.8rem, 5.5vw, 5rem);
-  line-height: 1.05;
+  font-size: clamp(3.5rem, 7vw, 6.5rem);
+  line-height: 1.0;
   margin-bottom: 0.4rem;
-  font-family: 'Space Mono', monospace;
-  font-weight: 700;
+  font-family: 'Barlow Condensed', 'Franklin Gothic Medium', 'ITC Franklin Gothic', Arial Narrow, sans-serif;
+  font-weight: 800;
   color: var(--ink);
+  letter-spacing: -0.01em;
+
 }
 .hero-title-line {
   font-size: clamp(1.2rem, 2.5vw, 2rem);
@@ -114,6 +116,8 @@ h1, h2, h3, h4, h5, .site-logo, .footer-brand {
 .hero-highlight {
   color: var(--amber);
   font-weight: 600;
+   font-size: 1.15rem;
+  letter-spacing: 0.03em;
 }
 .hero-divider {
   width: 48px;
