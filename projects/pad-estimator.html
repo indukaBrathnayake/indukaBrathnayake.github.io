@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <title>PAD Estimator &mdash; Induka Rathnayake</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../fonts/icomoon/style.css">
+  <link rel="stylesheet" href="../css/bootstrap.min.css">
+  <link rel="stylesheet" href="../css/aos.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/custom.css">
+</head>
+<body>
+<div class="site-wrap">
+
+  <!-- Navbar -->
+  <header class="site-navbar py-4 js-sticky-header" role="banner" style="border-bottom:1px solid #eee;">
+    <div class="container-fluid">
+      <div class="row align-items-center justify-content-between px-3">
+        <a href="../index.html" class="back-link">&larr; Back to Portfolio</a>
+        <h1 class="m-0 site-logo"><a href="../index.html" style="font-size:1.4rem;">IR.</a></h1>
+        <a href="#" onclick="showCVMsg(event)" style="font-size:0.85rem; padding:6px 16px; border-radius:20px; background:#207561; color:#fff; text-decoration:none; font-family:'Space Mono',monospace;">&#8659; CV</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Header -->
+  <div class="project-detail-header" style="background-image: url('../images/project-pad.jpg'); background-size: cover; background-position: center; position: relative; background-color: #ede7f6;">
+    <div class="header-overlay-pad" style="position:absolute; inset:0; backdrop-filter:blur(1px);"></div>
+    <div class="container">
+      <span class="project-detail-badge" style="background:#5e35b1;">Biomedical Engineering</span>
+      <h1 class="project-detail-title">PAD Estimator</h1>
+      <p class="project-detail-subtitle">
+        A non-invasive, low-cost embedded device for early Peripheral Artery Disease 
+        risk estimation using infrared temperature sensing and exercise-based diagnostics.
+      </p>
+      <div class="project-detail-meta">
+        <div class="detail-meta-item">
+          <strong>Module</strong>EE322 — Group 10
+        </div>
+        <div class="detail-meta-item">
+          <strong>Platform</strong>ATmega328P (Assembly)
+        </div>
+        <div class="detail-meta-item">
+          <strong>Domain</strong>Biomedical / Embedded
+        </div>
+        <div class="detail-meta-item">
+          <strong>Status</strong>Completed
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Content -->
+  <div class="site-section">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8">
+
+          <div class="project-section">
+            <p class="project-section-label">Overview</p>
+            <h3>What is the PAD Estimator?</h3>
+            <p>
+              Peripheral Artery Disease (PAD) is a circulatory condition where narrowed arteries 
+              reduce blood flow to the limbs. Early detection is critical but current clinical 
+              methods are expensive and inaccessible. This project developed a portable, 
+              low-cost device that estimates PAD risk non-invasively by measuring foot 
+              temperature changes before and after a 3-minute walk test.
+            </p>
+            <p>
+              The device uses dual infrared (IR) temperature sensors on both feet, computes 
+              an asymmetry-based risk score incorporating age and gender factors, and 
+              displays the result (0–100%) with intuitive LED colour feedback.
+            </p>
+          </div>
+
+          <div class="project-section">
+            <p class="project-section-label">How It Works</p>
+            <h3>Measurement Protocol</h3>
+            <ol style="line-height:2.4; color:#555; font-size:0.95rem;">
+              <li><strong>Enter Age &amp; Gender</strong> — Input patient details via the keypad</li>
+              <li><strong>5-Minute Rest</strong> — Wait for body to reach stable baseline state</li>
+              <li><strong>Baseline Measurement</strong> — Record initial temperature of both feet</li>
+              <li><strong>3-Minute Walk</strong> — Timed exercise to stress peripheral blood flow</li>
+              <li><strong>Post-Walk Measurement</strong> — Record second temperature reading</li>
+              <li><strong>Risk Score Display</strong> — PAD risk (0–100%) shown on LCD with LED indicator</li>
+            </ol>
+            <div style="background:#f3e5f5; border-radius:12px; padding:1.2rem 1.5rem; margin:1.2rem 0; border:1px solid #ce93d8;">
+              <p style="font-family:'Space Mono',monospace; font-size:0.78rem; color:#6a1b9a; margin-bottom:0.5rem; text-transform:uppercase; letter-spacing:0.1em;">Risk Score Formula</p>
+              <p style="font-size:0.95rem; color:#333; margin:0;">
+                Risk Score = (30·S<sub>Asym</sub> + 25·S<sub>Left</sub> + 25·S<sub>Right</sub> + 15·S<sub>Age</sub> + 5·S<sub>Gen</sub>) / 100
+              </p>
+            </div>
+          </div>
+
+          <div class="project-section">
+            <p class="project-section-label">Risk Feedback</p>
+            <h3>LED Indicator System</h3>
+            <div style="display:flex; flex-direction:column; gap:10px; margin-top:1rem;">
+              <div style="display:flex; align-items:center; gap:14px; padding:12px 18px; background:#fce4ec; border-radius:10px; border:1px solid #ef9a9a;">
+                <span style="font-size:1.4rem;">🔴</span>
+                <div><strong style="color:#c62828;">High Risk (&gt; 70%)</strong><br><span style="font-size:0.85rem; color:#666;">Red LED — Immediate clinical referral advised</span></div>
+              </div>
+              <div style="display:flex; align-items:center; gap:14px; padding:12px 18px; background:#fff8e1; border-radius:10px; border:1px solid #ffe082;">
+                <span style="font-size:1.4rem;">🟡</span>
+                <div><strong style="color:#f57f17;">Medium Risk (40–70%)</strong><br><span style="font-size:0.85rem; color:#666;">Both LEDs — Lifestyle monitoring recommended</span></div>
+              </div>
+              <div style="display:flex; align-items:center; gap:14px; padding:12px 18px; background:#e8f5e9; border-radius:10px; border:1px solid #a5d6a7;">
+                <span style="font-size:1.4rem;">🟢</span>
+                <div><strong style="color:#2e7d32;">Low Risk (&lt; 40%)</strong><br><span style="font-size:0.85rem; color:#666;">Green LED — Normal, no immediate concern</span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-section">
+            <p class="project-section-label">Technical Challenges</p>
+            <h3>Key Engineering Solutions</h3>
+            <div style="display:flex; flex-direction:column; gap:14px; margin-top:1rem;">
+              <div style="padding:16px 20px; background:#fafafa; border-radius:10px; border-left:4px solid #5e35b1;">
+                <strong style="color:#5e35b1; font-size:0.88rem; font-family:'Space Mono',monospace;">1-Wire Communication via Assembly</strong>
+                <p style="font-size:0.88rem; color:#555; margin:6px 0 0; line-height:1.6;">The ATmega328P lacks native 1-Wire hardware support. A custom Assembly-level driver was developed with cycle-counted delays — exactly 16 clock cycles per microsecond at 16 MHz — ensuring reliable DS18B20 sensor communication.</p>
+              </div>
+              <div style="padding:16px 20px; background:#fafafa; border-radius:10px; border-left:4px solid #5e35b1;">
+                <strong style="color:#5e35b1; font-size:0.88rem; font-family:'Space Mono',monospace;">Latency &amp; Arithmetic Optimisation</strong>
+                <p style="font-size:0.88rem; color:#555; margin:6px 0 0; line-height:1.6;">Sensor conversion latency (750ms) was handled with staged delays. Risk formula arithmetic was converted to integer-scaled operations to maintain precision within 8-bit Assembly limitations.</p>
+              </div>
+              <div style="padding:16px 20px; background:#fafafa; border-radius:10px; border-left:4px solid #5e35b1;">
+                <strong style="color:#5e35b1; font-size:0.88rem; font-family:'Space Mono',monospace;">IR Foot Presence Detection</strong>
+                <p style="font-size:0.88rem; color:#555; margin:6px 0 0; line-height:1.6;">Dual IR sensors verify both feet are correctly placed before measurement begins. Continuous monitoring detects movement and restarts the process, preventing false readings.</p>
+              </div>
+              <div style="padding:16px 20px; background:#fafafa; border-radius:10px; border-left:4px solid #5e35b1;">
+                <strong style="color:#5e35b1; font-size:0.88rem; font-family:'Space Mono',monospace;">Power Optimisation — Sleep Mode</strong>
+                <p style="font-size:0.88rem; color:#555; margin:6px 0 0; line-height:1.6;">IR sensors are powered via a 2N2222 transistor-based switching circuit, active only during detection phases. This reduces current draw and minimises electrical noise affecting temperature accuracy.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="project-section">
+            <p class="project-section-label">Built-in Self-Test</p>
+            <h3>System Validation</h3>
+            <p>A comprehensive self-test routine can be triggered anytime by holding 'C' on the keypad. It validates temperature sensors, IR sensors, I²C devices (LCD &amp; keypad), LEDs, and the buzzer — with real-time step-by-step feedback on the LCD display.</p>
+          </div>
+
+          <div class="project-section">
+            <p class="project-section-label">Future Developments</p>
+            <h3>Planned Upgrades</h3>
+            <ul style="line-height:2.2; color:#555; font-size:0.95rem;">
+              <li>Expanded storage and time-stamping hardware for longitudinal patient data tracking</li>
+              <li>Personalised risk trend analysis over multiple sessions</li>
+              <li>Compact handheld form factor for improved clinical portability</li>
+            </ul>
+          </div>
+
+          <div class="project-section">
+            <p class="project-section-label">Technologies Used</p>
+            <h3>Tech Stack</h3>
+            <div>
+              <span class="tech-chip">ATmega328P</span>
+              <span class="tech-chip">AVR Assembly</span>
+              <span class="tech-chip">DS18B20 Sensor</span>
+              <span class="tech-chip">IR Sensing</span>
+              <span class="tech-chip">1-Wire Protocol</span>
+              <span class="tech-chip">I²C / LCD</span>
+              <span class="tech-chip">KiCad PCB</span>
+              <span class="tech-chip">Biomedical Signal Processing</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4 mt-5 mt-lg-0">
+          <div style="position:sticky; top:100px;">
+            <div style="background:#f3e5f5; border-radius:14px; padding:1.5rem; border:1px solid #ce93d8; margin-bottom:1.5rem;">
+              <h6 style="font-family:'Space Mono',monospace; font-size:0.8rem; color:#5e35b1; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:1rem;">Project Files</h6>
+              <ul style="list-style:none; padding:0; margin:0; font-size:0.88rem; color:#555;">
+                <li style="padding:5px 0;">&#128196; <a href="pad-files/EE322_G10.pdf" target="_blank" style="color:#5e35b1;">Project Presentation (PDF)</a></li>
+                <li style="padding:5px 0; color:#bbb; font-style:italic;">[ Add more files ]</li>
+              </ul>
+            </div>
+            <div style="background:#f8faf9; border-radius:14px; padding:1.5rem; border:1px solid #e0eee9; margin-bottom:1.5rem;">
+              <h6 style="font-family:'Space Mono',monospace; font-size:0.8rem; color:#207561; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.8rem;">Project Info</h6>
+              <ul style="list-style:none; padding:0; margin:0; font-size:0.85rem; color:#666; line-height:2.2;">
+                <li>&#127979; EE322 Module Project</li>
+                <li>&#128101; Group 10</li>
+                <li>&#127973; University of Peradeniya</li>
+                <li>&#9878; ATmega328P — Pure Assembly</li>
+              </ul>
+            </div>
+            <div style="background:#fafafa; border-radius:14px; padding:1.5rem; border:1px solid #e0e0e0;">
+              <h6 style="font-family:'Space Mono',monospace; font-size:0.8rem; color:#207561; text-transform:uppercase; letter-spacing:0.1em; margin-bottom:0.8rem;">Related Links</h6>
+              <ul style="list-style:none; padding:0; margin:0; font-size:0.88rem;">
+                <li style="padding:5px 0;"><a href="https://github.com/indukaBrathnayake" target="_blank" style="color:#207561;">&#128025; GitHub</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="site-section bg-dark py-4">
+    <div class="container text-center">
+      <p class="text-muted small mb-0">&copy; <script>document.write(new Date().getFullYear());</script> Induka Rathnayake &mdash; <a href="../index.html" style="color:#888;">Back to Portfolio</a></p>
+    </div>
+  </footer>
+
+</div>
+<script src="../js/jquery-3.3.1.min.js"></script>
+<script src="../js/popper.min.js"></script>
+<script src="../js/bootstrap.min.js"></script>
+<script src="../js/jquery.sticky.js"></script>
+<script>
+function showCVMsg(e) {
+  e.preventDefault();
+  var btn = e.currentTarget;
+  var original = btn.innerHTML;
+  btn.innerHTML = '⏳ CV coming soon!';
+  btn.style.opacity = '0.75';
+  setTimeout(function() { btn.innerHTML = original; btn.style.opacity = '1'; }, 2500);
+}
+</script>
+</body>
+</html>
