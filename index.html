@@ -369,6 +369,13 @@
       setTimeout(function(){ slides[prev].classList.remove('leaving'); }, 950);
       current = (idx + total) % total;
       slides[current].classList.add('active');
+      
+      var sliderBox = document.getElementById('aboutSlider');
+      if (current === 4) {
+        sliderBox.classList.add('slide-5-active');
+      } else {
+        sliderBox.classList.remove('slide-5-active');
+      }
       dotsWrap.querySelectorAll('.slider-dot').forEach(function(d, i) {
         d.classList.toggle('active', i === current);
       });
@@ -401,6 +408,12 @@
     var prev = current;
     setTimeout(function(){ slides[prev].classList.remove('leaving'); }, 950);
     slides[next].classList.add('active');
+    var sliderBox = document.getElementById('aboutSlider');
+    if (next === 4) {
+      sliderBox.classList.add('slide-5-active');
+    } else {
+      sliderBox.classList.remove('slide-5-active');
+    }
     document.querySelectorAll('.slider-dot').forEach(function(d,i){
       d.classList.toggle('active', i === next);
     });
