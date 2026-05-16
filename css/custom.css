@@ -576,12 +576,14 @@ h1, h2, h3, h4, h5, .site-logo, .footer-brand {
 /* ABOUT SLIDER */
 .about-slider {
   position: relative;
-  width: 100%;
+  width: 115%;
+  margin-left: -7.5%;
   aspect-ratio: 1 / 1;
   transition: aspect-ratio 0.9s ease;
-   overflow: hidden;
+  overflow: hidden;
   border-radius: 12px;
   background: #e0eee9;
+}
 }
 .about-slide {
   position: absolute;
