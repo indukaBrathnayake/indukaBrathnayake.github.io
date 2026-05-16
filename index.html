@@ -97,7 +97,18 @@
           </div>
           <div class="col-lg-4 order-1 order-lg-2 mb-5 mb-lg-0" data-aos="fade-left" data-aos-delay="100">
             <div class="about-photo-wrap">
-              <img src="images/face.png" alt="Induka Rathnayake" class="img-fluid">
+              <div class="about-slider" id="aboutSlider">
+                <div class="about-slide active" style="background-image:url('images/about-photos/photo_1.jpg')"></div>
+                <div class="about-slide" style="background-image:url('images/about-photos/photo_2.jpg')"></div>
+                <div class="about-slide" style="background-image:url('images/about-photos/photo_3.jpg')"></div>
+                <div class="about-slide" style="background-image:url('images/about-photos/photo_4.jpg')"></div>
+                <div class="about-slide" style="background-image:url('images/about-photos/photo_5.jpg')"></div>
+                <div class="about-slide" style="background-image:url('images/about-photos/photo_6.jpg')"></div>
+                <div class="about-slide" style="background-image:url('images/about-photos/photo_7.jpg')"></div>
+                <div class="slider-dots" id="sliderDots"></div>
+                <button class="slider-arrow slider-prev" onclick="sliderMove(-1)" aria-label="Previous">&#8249;</button>
+                <button class="slider-arrow slider-next" onclick="sliderMove(1)" aria-label="Next">&#8250;</button>
+              </div>
             </div>
           </div>
           <div class="col-lg-8 order-2 order-lg-1" data-aos="fade-right" data-aos-delay="50">
@@ -326,5 +337,81 @@
   <script src="js/aos.js"></script>
   <script src="js/jquery.sticky.js"></script>
   <script src="js/main.js"></script>
+  <script>
+  (function() {
+    var slides   = document.querySelectorAll('.about-slide');
+    var dotsWrap = document.getElementById('sliderDots');
+    var total    = slides.length;
+    var current  = 0;
+    var interval = 3500;
+    var timer    = null;
+  
+    if (!total) return;
+  
+    var prog = document.createElement('div');
+    prog.className = 'slider-progress';
+    prog.style.width = '0%';
+    document.getElementById('aboutSlider').appendChild(prog);
+  
+    for (var i = 0; i < total; i++) {
+      var d = document.createElement('button');
+      d.className = 'slider-dot' + (i === 0 ? ' active' : '');
+      d.setAttribute('aria-label', 'Photo ' + (i+1));
+      d.setAttribute('data-idx', i);
+      d.addEventListener('click', function() { goTo(+this.getAttribute('data-idx')); restart(); });
+      dotsWrap.appendChild(d);
+    }
+  
+    function goTo(idx) {
+      slides[current].classList.remove('active');
+      slides[current].classList.add('leaving');
+      var prev = current;
+      setTimeout(function(){ slides[prev].classList.remove('leaving'); }, 950);
+      current = (idx + total) % total;
+      slides[current].classList.add('active');
+      dotsWrap.querySelectorAll('.slider-dot').forEach(function(d, i) {
+        d.classList.toggle('active', i === current);
+      });
+      prog.style.transition = 'none';
+      prog.style.width = '0%';
+      setTimeout(function() {
+        prog.style.transition = 'width ' + interval + 'ms linear';
+        prog.style.width = '100%';
+      }, 30);
+    }
+  
+    function next()    { goTo(current + 1); }
+    function restart() { clearInterval(timer); timer = setInterval(next, interval); }
+  
+    goTo(0);
+    timer = setInterval(next, interval);
+  
+    var sliderEl = document.getElementById('aboutSlider');
+    sliderEl.addEventListener('mouseenter', function() { clearInterval(timer); prog.style.transition='none'; });
+    sliderEl.addEventListener('mouseleave', function() { restart(); });
+  })();
+  
+  function sliderMove(dir) {
+    var slides  = document.querySelectorAll('.about-slide');
+    var current = 0;
+    slides.forEach(function(s,i){ if (s.classList.contains('active')) current = i; });
+    var next = ((current + dir) + slides.length) % slides.length;
+    slides[current].classList.remove('active');
+    slides[current].classList.add('leaving');
+    var prev = current;
+    setTimeout(function(){ slides[prev].classList.remove('leaving'); }, 950);
+    slides[next].classList.add('active');
+    document.querySelectorAll('.slider-dot').forEach(function(d,i){
+      d.classList.toggle('active', i === next);
+    });
+    var prog = document.querySelector('.slider-progress');
+    if (prog) {
+      prog.style.transition='none';
+      prog.style.width='0%';
+      setTimeout(function(){ prog.style.transition='width 3500ms linear'; prog.style.width='100%'; }, 30);
+    }
+  }
+  </script>
+    
   </body>
 </html>
