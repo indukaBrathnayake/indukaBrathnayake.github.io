@@ -116,7 +116,7 @@ h1, h2, h3, h4, h5, .site-logo, .footer-brand {
 .hero-highlight {
   color: var(--amber);
   font-weight: 600;
-   font-size: 1.2rem;
+   font-size: 0.95rem;
   letter-spacing: 0.03em;
 }
 .hero-divider {
