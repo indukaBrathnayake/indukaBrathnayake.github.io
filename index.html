@@ -14,11 +14,128 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/custom.css">
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+    
+    <style>
+      .mobile-menu-toggle-wrap { position: relative; top: 3px; }
+      .project-card-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+      .contact-textarea { border-radius: 15px; padding: 15px; }
+      .footer-hr { border-color: rgba(255, 255, 255, 0.1); }
+      .footer-link-colorlib { color: #888; text-decoration: none; }
+      .footer-link-colorlib:hover { color: #fff; }
+
+      /* Box Button Styles for About Section */
+      .about-social-links {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .social-box {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 20px;
+        border-radius: 4px; /* Box shape instead of pill */
+        border: 1px solid #ccc;
+        background: #fff;
+        color: #333;
+        text-decoration: none;
+        font-size: 0.95rem;
+        font-weight: 500;
+        transition: all 0.2s ease-in-out;
+      }
+      .social-box:hover {
+        background: #f8f9fa;
+        border-color: #999;
+        color: #000;
+        text-decoration: none;
+      }
+      .social-box.box-accent {
+        background: #1976d2;
+        color: #fff;
+        border-color: #1976d2;
+      }
+      .social-box.box-accent:hover {
+        background: #1565c0;
+        border-color: #1565c0;
+      }
+
+      /* FYP embedded styles */
+      .active-chip { background:#fff8e1 !important; color:#f57f17 !important; font-weight:600; }
+      .week-card.week-current { border-left:4px solid #f9a825; }
+      .status-current { background:#fff8e1; color:#f57f17; }
+      .media-paper-view { display:flex; align-items:flex-start; gap:12px; padding:12px 16px; background:#fff8e1; border:1px solid #ffe082; border-radius:10px; margin:10px 0; }
+      .media-paper-view .mpv-icon { font-size:1.3rem; margin-top:2px; flex-shrink:0; }
+      .media-paper-view .mpv-title { font-weight:600; color:#333; font-size:0.9rem; line-height:1.5; }
+      .media-paper-view .mpv-label { font-size:0.72rem; color:#aaa; font-style:italic; margin-top:3px; font-family:'Space Mono',monospace; }
+
+      /* Blinking Active Badge */
+      @keyframes blink-pulse {
+        0% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 200, 83, 0.5); }
+        50% { opacity: 0.9; transform: scale(1.02); box-shadow: 0 0 0 14px rgba(0, 200, 83, 0); }
+        100% { opacity: 1; transform: scale(1); box-shadow: 0 0 0 0 rgba(0, 200, 83, 0); }
+      }
+      .active-badge {
+        position: absolute;
+        top: 0px;
+        right: 15px; /* aligns with bootstrap container padding */
+        background-color: #e8f5e9;
+        color: #1b5e20;
+        border: 1px solid #4caf50;
+        padding: 8px 18px;
+        border-radius: 24px; 
+        font-family: 'Space Mono', monospace;
+        font-size: 0.9rem;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        animation: blink-pulse 2s infinite;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      }
+      .active-badge::before {
+        content: '';
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        background-color: #4caf50;
+        border-radius: 50%;
+      }
+
+      /* Mobile Fix for Hero Image */
+      @media (max-width: 991.98px) {
+        .img-face {
+          right: -50% !important;  /* Pushes it to the right side without resizing */
+          opacity: 0.35;           /* Fades it slightly so text remains readable */
+          z-index: 0 !important;
+        }
+        .text-intro {
+          position: relative;
+          z-index: 2;
+        }
+      }
+
+      /* In-card content styling (Activities, References, Challenges) */
+      .week-section-title { font-family: 'Space Mono', monospace; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; color: #1976d2; margin: 1.2rem 0 0.5rem 0; font-weight: 700; }
+      .week-section-title:first-child { margin-top: 0; }
+      .week-content-text { font-size: 0.95rem; line-height: 1.6; color: #444; margin-bottom: 1rem; }
+      
+      .activity-list { list-style: none; padding: 0; margin: 0 0 1rem 0; }
+      .activity-list li { padding: 8px 0 8px 18px; border-bottom: 1px solid #f0f0f0; position: relative; font-size: 0.95rem; line-height: 1.6; color: #444; }
+      .activity-list li:last-child { border-bottom: none; }
+      .activity-list li::before { content: ''; position: absolute; left: 0; top: 16px; width: 6px; height: 6px; border-radius: 50%; background: #1976d2; }
+      
+      .ref-list { list-style: decimal inside; padding: 0; margin: 0 0 1rem 0; font-size: 0.92rem; line-height: 1.6; color: #444; }
+      .ref-list li { padding: 8px 0; border-bottom: 1px solid #f0f0f0; }
+      .ref-list li:last-child { border-bottom: none; }
+      .ref-doi { display: inline-flex; align-items: center; gap: 5px; font-family: 'Space Mono', monospace; font-size: 0.72rem; color: #1976d2; text-decoration: none; border: 1px solid #90caf9; background: #e3f2fd; border-radius: 4px; padding: 2px 8px; margin-left: 8px; transition: all 0.2s; }
+      .ref-doi:hover { background: #1976d2; color: #fff; border-color: #1976d2; text-decoration: none; }
+      
+      .challenge-block { background: #fff8e1; border: 1px solid #ffe082; border-radius: 8px; padding: 1rem 1.2rem; font-size: 0.95rem; color: #444; line-height: 1.6; margin-bottom: 1rem; }
+    </style>
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   <div class="site-wrap">
 
-    <!-- Mobile Menu -->
     <div class="site-mobile-menu site-navbar-target">
       <div class="site-mobile-menu-header">
         <div class="site-mobile-menu-close mt-3">
@@ -28,7 +145,6 @@
       <div class="site-mobile-menu-body"></div>
     </div>
 
-    <!-- Navbar -->
     <header class="site-navbar py-4 js-sticky-header site-navbar-target" role="banner">
       <div class="container-fluid">
         <div class="row align-items-center justify-content-center">
@@ -47,10 +163,10 @@
           <div class="text-left">
             <nav class="site-navigation position-relative" role="navigation">
               <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                <li><a href="#contact-section" class="nav-link">Contact</a></li>
+                <li style="display: none;"><a href="#contact-section" class="nav-link">Contact</a></li>
               </ul>
             </nav>
-            <div class="d-inline-block d-lg-none" style="position: relative; top: 3px;">
+            <div class="d-inline-block d-lg-none mobile-menu-toggle-wrap">
               <a href="#" class="site-menu-toggle js-menu-toggle float-right"><span class="icon-menu h3"></span></a>
             </div>
           </div>
@@ -58,268 +174,321 @@
       </div>
     </header>
 
-    <!-- ===== HERO ===== -->
-    <div class="site-blocks-cover overlay bg-light" id="home-section">
-      <div class="hero-grid-bg"></div>
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-md-12 mt-lg-5 text-left align-self-center text-intro">
-            <div class="row">
-              <div class="col-lg-7">
-                <p class="hero-eyebrow" data-aos="fade-up" data-aos-delay="0">Electrical &amp; Electronic Engineering</p>
-                <h1 class="hero-name" data-aos="fade-up" data-aos-delay="80">
-                  Induka<br>Rathnayake
-                </h1>
-                <p class="lead hero-sub" data-aos="fade-up" data-aos-delay="160">
-                  Undergraduate · University of Peradeniya<br>
-                  <span class="hero-highlight">| Designing | Building | Exploring | Innovating |</span>
-                </p>
-                <div data-aos="fade-up" data-aos-delay="260" class="hero-btns">
-                  <a href="#" onclick="showCVMsg(event)" class="btn btn-primary mr-3">
-                    &#8659; &nbsp;Download CV
-                  </a>
-                  <a href="#projects-section" class="btn btn-outline-dark smoothscroll">View Projects</a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <img src="images/face.png" alt="Induka Rathnayake" class="img-face" data-aos="fade">
-    </div>
-
-    <!-- ===== ABOUT ===== -->
-    <div class="site-section" id="about-section">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 mb-5 position-relative" data-aos="fade-up">
-            <h2 class="section-title">About Me</h2>
-            <div class="section-underline"></div>
-          </div>
-          <div class="col-lg-4 order-1 order-lg-2 mb-5 mb-lg-0" data-aos="fade-left" data-aos-delay="100">
-            <div class="about-photo-wrap">
-              <div class="about-slider" id="aboutSlider">
-                <div class="about-slide active" style="background-image:url('images/about-photos/photo_1.jpg')"></div>
-                <div class="about-slide" style="background-image:url('images/about-photos/photo_2.jpg')"></div>
-                <div class="about-slide" style="background-image:url('images/about-photos/photo_3.jpg')"></div>
-                <div class="about-slide" style="background-image:url('images/about-photos/photo_4.jpg')"></div>
-                <div class="about-slide" style="background-image:url('images/about-photos/photo_5.jpg')"></div>
-                <div class="about-slide" style="background-image:url('images/about-photos/photo_6.jpg')"></div>
-                <div class="about-slide" style="background-image:url('images/about-photos/photo_7.jpg')"></div>
-                <div class="slider-dots" id="sliderDots"></div>
-                <button class="slider-arrow slider-prev" onclick="sliderMove(-1)" aria-label="Previous">&#8249;</button>
-                <button class="slider-arrow slider-next" onclick="sliderMove(1)" aria-label="Next">&#8250;</button>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-8 order-2 order-lg-1" data-aos="fade-right" data-aos-delay="50">
-            <p class="about-lead">
-              I'm an Electrical and Electronic Engineering undergraduate at the 
-              <strong>University of Peradeniya</strong>.  Currently a third-year student, 
-              focused on deepening my technical expertise and taking on the advanced challenges of 
-              my engineering curriculum.
-            </p>
-            <p>
-              I am specializing in power, energy and high-voltage engineering driven by a 
-              strong interest in AI and machine learning. I love the hands-on process of 
-              circuit design, building, innovating and always seeking to develop smart systems.
-            </p>
-            <p>
-              Outside of the lab and lectures, I keep things balanced through my love for 
-              table tennis and hiking. Whether I’m leading my team in a fast-paced match 
-              on the court or heading out for a trek in the hills, these activities give me 
-              the discipline and fresh energy I need to stay sharp for my engineering career.
-            </p>
-            <div class="skill-tags mt-4 mb-4">
-              <span class="skill-tag">Embedded Systems</span>
-              <span class="skill-tag">Python</span>
-              <span class="skill-tag">Machine Learning</span>
-              <span class="skill-tag">Circuit Design</span>
-              <span class="skill-tag">Problem Solving</span>
-              <span class="skill-tag">Power Systems</span>
-              <span class="skill-tag">Renewable Energy</span>
-            </div>
-            <div class="about-social-links">
-              <a href="https://github.com/indukaBrathnayake" target="_blank" class="social-pill">
-                <span>&#128025;</span> GitHub
-              </a>
-              <a href="https://www.linkedin.com/in/induka-rathnayake-b61a35371/" target="_blank" class="social-pill">
-                <span>&#128101;</span> LinkedIn
-              </a>
-              <a href="#" class="social-pill pill-accent" onclick="showCVMsg(event)">
-                &#8659; Download CV
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- ===== PROJECTS ===== -->
-    <section class="site-section projects-bg" id="projects-section">
-      <div class="container">
-        <div class="row mb-5">
-          <div class="col-12 text-center" data-aos="fade-up">
-            <h2 class="section-title">My Projects</h2>
-            <div class="section-underline centered"></div>
-            <p class="text-muted mt-3">Engineering problems worth solving.</p>
-          </div>
-        </div>
-        <div class="row">
-
-          <!-- FYP Card -->
-          <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="0">
-            <a href="projects/final-year-project.html" class="project-card-link">
-              <div class="project-card">
-                <div class="project-img-wrap">
-                  <div class="project-img-placeholder fyp-placeholder">
-                    <img src="images/project-fyp.jpg" alt="Final Year Project" style="width:100%; height:100%; object-fit:cover; display:block;">
-                  </div>
-                  <div class="project-hover-overlay">
-                    <span class="view-label">View Details &rarr;</span>
-                  </div>
-                </div>
-                <div class="project-card-body">
-                  <span class="project-badge badge-fyp">Final Year Project</span>
-                  <h3 class="project-card-title">Phase 1- Final Year Project</h3>
-                  <p class="project-card-desc">14-week progress log tracking milestones, experiments and results week by week.</p>
-                  <div class="project-meta-row">
-                    <span class="meta-chip">&#128197; 14-Week Log</span>
-                    <span class="meta-chip active-chip">&#9679; Active</span>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <!-- Mini Solar Card -->
-          <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
-            <a href="projects/mini-solar.html" class="project-card-link">
-              <div class="project-card">
-                <div class="project-img-wrap">
-                  <div class="project-img-placeholder solar-placeholder">
-                    <img src="images/project-solar.jpg" alt="Mini Solar Project" style="width:100%; height:100%; object-fit:cover; display:block;">
-                  </div>
-                  <div class="project-hover-overlay">
-                    <span class="view-label">View Details &rarr;</span>
-                  </div>
-                </div>
-                <div class="project-card-body">
-                  <span class="project-badge badge-solar">Renewable Energy</span>
-                  <h3 class="project-card-title">Mini Solar Project</h3>
-                  <p class="project-card-desc">Got hands-on experience of a hybrid solar energy harvesting system with smart power management.</p>
-                  <div class="project-meta-row">
-                    <span class="meta-chip">&#9889; Power Systems</span>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-
-          <!-- PAD Estimator Card -->
-          <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
-            <a href="projects/pad-estimator.html" class="project-card-link">
-              <div class="project-card">
-                <div class="project-img-wrap">
-                  <div class="project-img-placeholder pad-placeholder">
-                    <img src="images/project-pad.jpg" alt="PAD Estimator" style="width:100%; height:100%; object-fit:cover; display:block;">
-                  </div>
-                  <div class="project-hover-overlay">
-                    <span class="view-label">View Details &rarr;</span>
-                  </div>
-                </div>
-                <div class="project-card-body">
-                  <span class="project-badge badge-pad">Biomedical Engineering</span>
-                  <h3 class="project-card-title">PAD Estimator</h3>
-                  <p class="project-card-desc">Non-invasive early Peripheral Artery Disease risk estimation device using IR temperature sensing and AVR Assembly.</p>
-                  <div class="project-meta-row">
-                    <span class="meta-chip">&#9878; ATmega328P</span>
-                    <span class="meta-chip">&#128137; Biomedical</span>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-          
-
-          <!-- NOAA Card -->
-          <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
-            <a href="projects/noaa.html" class="project-card-link">
-              <div class="project-card">
-                <div class="project-img-wrap">
-                  <div class="project-img-placeholder noaa-placeholder">
-                    <img src="images/project-noaa.jpg" alt="Project NOAA" style="width:100%; height:100%; object-fit:cover; display:block;">
-                  </div>
-                  <div class="project-hover-overlay">
-                    <span class="view-label">View Details &rarr;</span>
-                  </div>
-                </div>
-                <div class="project-card-body">
-                  <span class="project-badge badge-noaa">Signal Processing</span>
-                  <h3 class="project-card-title">Project NOAA</h3>
-                  <p class="project-card-desc">Receiving and decoding NOAA weather satellite signals using SDR and custom signal processing pipelines.</p>
-                  <div class="project-meta-row">
-                    <span class="meta-chip">&#128225; SDR / RF</span>
-                  </div>
-                </div>
-              </div>
-            </a>
-          </div>
-
-   
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ===== CONTACT ===== -->
-    <section class="site-section" id="contact-section">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 mb-5 text-center" data-aos="fade-up">
-            <h2 class="section-title">Get In Touch</h2>
-            <div class="section-underline centered"></div>
-            <p class="text-muted mt-3">Have a project idea, research collaboration, or just want to connect?</p>
-          </div>
-        </div>
-        <div class="row justify-content-center">
-          <div class="col-lg-7" data-aos="fade-up" data-aos-delay="100">
-            <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="form contact-form">
-              <div class="row mb-3">
-                <div class="form-group col-6">
-                  <input type="text" name="first_name" class="form-control" placeholder="First name" required>
-                </div>
-                <div class="form-group col-6">
-                  <input type="text" name="last_name" class="form-control" placeholder="Last name" required>
-                </div>
-              </div>
-              <div class="row mb-3">
-                <div class="form-group col-12">
-                  <input type="email" name="email" class="form-control" placeholder="Email address" required>
-                </div>
-              </div>
-              <div class="row mb-3">
-                <div class="form-group col-12">
-                  <input type="text" name="subject" class="form-control" placeholder="Subject">
-                </div>
-              </div>
-              <div class="row mb-3">
-                <div class="form-group col-12">
-                  <textarea name="message" rows="8" class="form-control" style="border-radius:15px; padding:15px;" placeholder="Your message..." required></textarea>
-                </div>
-              </div>
+    <main>
+      <div class="site-blocks-cover overlay bg-light" id="home-section">
+        <div class="hero-grid-bg"></div>
+        <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-md-12 mt-lg-5 text-left align-self-center text-intro">
               <div class="row">
-                <div class="col-12 text-center">
-                  <input type="submit" class="btn btn-primary px-5" value="Send Message">
+                <div class="col-lg-7">
+                  <p class="hero-eyebrow" data-aos="fade-up" data-aos-delay="0">Electrical &amp; Electronic Engineering</p>
+                  <h1 class="hero-name" data-aos="fade-up" data-aos-delay="80">
+                    Induka<br>Rathnayake
+                  </h1>
+                  <p class="lead hero-sub" data-aos="fade-up" data-aos-delay="160">
+                    Undergraduate · University of Peradeniya<br>
+                    <span class="hero-highlight">| Exploring | Designing | Building | Innovating |</span>
+                  </p>
+                  <div data-aos="fade-up" data-aos-delay="260" class="hero-btns">
+                    <a href="#" onclick="showCVMsg(event)" class="btn btn-primary mr-3">
+                      &#8659; &nbsp;Download CV
+                    </a>
+                    <a href="#projects-section" class="btn btn-outline-dark smoothscroll">View Projects</a>
+                  </div>
                 </div>
               </div>
-            </form>
+            </div>
+          </div>
+        </div>
+        <img src="images/face.png" alt="Induka Rathnayake" class="img-face" data-aos="fade">
+      </div>
+
+      <div class="site-section" id="about-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 mb-5 position-relative" data-aos="fade-up">
+              <h2 class="section-title">About Me</h2>
+              <div class="section-underline"></div>
+            </div>
+            <div class="col-lg-4 order-1 order-lg-2 mb-5 mb-lg-0" data-aos="fade-left" data-aos-delay="100">
+              <div class="about-photo-wrap">
+                <div class="about-slider" id="aboutSlider">
+                  <div class="about-slide active" style="background-image:url('images/about-photos/photo_1.jpg')"></div>
+                  <div class="about-slide" style="background-image:url('images/about-photos/photo_2.jpg')"></div>
+                  <div class="about-slide" style="background-image:url('images/about-photos/photo_3.jpg')"></div>
+                  <div class="about-slide" style="background-image:url('images/about-photos/photo_4.jpg')"></div>
+                  <div class="about-slide" style="background-image:url('images/about-photos/photo_5.jpg')"></div>
+                  <div class="about-slide" style="background-image:url('images/about-photos/photo_6.jpg')"></div>
+                  <div class="about-slide" style="background-image:url('images/about-photos/photo_7.jpg')"></div>
+                  <div class="slider-dots" id="sliderDots"></div>
+                  <button class="slider-arrow slider-prev" aria-label="Previous">&#8249;</button>
+                  <button class="slider-arrow slider-next" aria-label="Next">&#8250;</button>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-8 order-2 order-lg-1" data-aos="fade-right" data-aos-delay="50">
+              <p class="about-lead">
+                I'm an Electrical and Electronic Engineering undergraduate at the 
+                <strong>University of Peradeniya</strong>.  Currently a third-year 
+             student focused on building deep technical expertise and mastering advanced engineering studies.
+              </p>
+              <p>
+                I am specializing in power, energy and high voltage engineering driven by a 
+                strong interest in AI and machine learning. I love the hands-on process of 
+                building, innovating and always seeking to find new smart ways to solve problems.
+              </p>
+              <p>
+                To stay balanced outside of my coursework, I enjoy table tennis and hiking. Whether I’m tackling
+            the challenges of the court as a captain or pushing myself on a long hike help me stay sharp and energized for my career..
+              </p>
+              <div class="skill-tags mt-4 mb-4">
+                <span class="skill-tag">Embedded Systems</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Machine Learning</span>
+                <span class="skill-tag">Circuit Design</span>
+                <span class="skill-tag">Problem Solving</span>
+                <span class="skill-tag">Power</span>
+                <span class="skill-tag">Renewable Energy</span>
+              </div>
+              <div class="about-social-links">
+                <a href="https://github.com/indukaBrathnayake" target="_blank" class="social-box">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+                  GitHub
+                </a>
+                <a href="https://www.linkedin.com/in/induka-rathnayake-b61a35371/" target="_blank" class="social-box">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="#0A66C2"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
+                  LinkedIn
+                </a>
+                <a href="https://www.facebook.com/profile.php?id=100093257942436" target="_blank" class="social-box">
+                  <svg viewBox="0 0 24 24" width="18" height="18" fill="#1877F2"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                  Facebook
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- ===== FOOTER ===== -->
+      <section id="projects-section">
+        <div class="project-detail-header" style="position:relative; background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.35)), url('images/fyp_back.png') no-repeat center center; background-size: cover; padding: 5rem 0; border-bottom: 1px solid #eee;">
+          <div class="container" style="position:relative;z-index:2;">
+            
+            <div class="active-badge">ACTIVE</div>
+            
+            <span style="display:inline-block; padding:4px 12px; background:#1976d2; color:#fff; font-family:'Space Mono',monospace; font-size:0.75rem; border-radius:20px; margin-bottom:1rem;">Final Year Project</span>
+            <h2 style="font-family:'Barlow Condensed',sans-serif; font-weight:700; font-size:clamp(2rem,4vw,3.2rem); letter-spacing:0.01em; line-height:1.2; color:#111;">Relay-Embedded Fault Classification in Power Distribution Networks Using Deep Learning Methods</h2>
+            <p style="color:#444; font-size:1.1rem; margin-top:1rem;">A 14-week weekly progress log tracking milestones, experiments, findings, and deliverables throughout Phase 1.</p>
+            
+            <div style="background:rgba(255,255,255,0.92); backdrop-filter:blur(8px); border-radius:14px; padding:1.8rem; margin-top:2.5rem; display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:2rem; border:1px solid rgba(0,0,0,0.08); box-shadow:0 8px 30px rgba(0,0,0,0.06); width:100%; box-sizing:border-box;">
+              
+              <div>
+                <strong style="display:block; font-size:0.85rem; color:#1565c0; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:0.6rem; font-weight:700;">Main Supervisor</strong>
+                <span style="font-size:1rem; color:#37474f; font-weight:500;">Prof. Janaka Ekanayake</span>
+              </div>
+
+              <div>
+                <strong style="display:block; font-size:0.85rem; color:#1565c0; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:0.6rem; font-weight:700;">Co-Supervisors</strong>
+                <span style="display:block; font-size:0.95rem; color:#37474f; font-weight:500; line-height:1.8;">
+                  Prof. Roshan Godaliyadda<br>
+                  Prof. Parakrama Ekanayake<br>
+                  Dr. Nuwan Hearth
+                </span>
+              </div>
+
+              <div>
+                <strong style="display:block; font-size:0.85rem; color:#1565c0; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:0.6rem; font-weight:700;">Team</strong>
+                <div style="display: grid; grid-template-columns: auto auto; gap: 6px 14px; align-items: center; justify-content: start;">
+                  <span style="font-size:0.95rem; color:#37474f; font-weight:500;">Induka Rathnayake</span>
+                  <span style="font-family:'Space Mono',monospace; font-size:0.75rem; background:#e3f2fd; color:#1565c0; padding:2px 8px; border-radius:6px; font-weight:700;">E/21/327</span>
+                  
+                  <span style="font-size:0.95rem; color:#37474f; font-weight:500;">Kavishka Galagoda</span>
+                  <span style="font-family:'Space Mono',monospace; font-size:0.75rem; background:#e3f2fd; color:#1565c0; padding:2px 8px; border-radius:6px; font-weight:700;">E/21/143</span>
+                  
+                  <span style="font-size:0.95rem; color:#37474f; font-weight:500;">Shakya Gamage</span>
+                  <span style="font-family:'Space Mono',monospace; font-size:0.75rem; background:#e3f2fd; color:#1565c0; padding:2px 8px; border-radius:6px; font-weight:700;">E/21/145</span>
+                </div>
+              </div>
+
+              <div>
+                <strong style="display:block; font-size:0.85rem; color:#1565c0; text-transform:uppercase; letter-spacing:0.05em; margin-bottom:0.6rem; font-weight:700;">Phase</strong>
+                <span style="font-size:1rem; color:#37474f; font-weight:500;">Phase 1 of 2</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+        <div class="site-section bg-light" style="padding-top: 4rem;">
+          <div class="container">
+            <div class="row">
+              <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
+                <div class="fyp-progress-bar-wrap">
+                  <div class="fyp-progress-label" id="progressLabel">Weeks Completed: 0 / 14</div>
+                  <div class="fyp-progress-bar"><div class="fyp-progress-fill" id="progressFill" style="width:0%"></div></div>
+                </div>
+                
+                <div class="project-section">
+                  <p class="project-section-label">Overview</p>
+                  <h3>Project Background &amp; Objectives</h3>
+                  <p>This final year project focuses on developing an intelligent protection system for modern power distribution networks that integrate distributed generation. In Phase 1, work is centered on <strong>software and simulation</strong> to model standard IEEE test feeders. By simulating diverse fault conditions, we collect comprehensive voltage and current time-series data to train advanced deep learning model of <strong>Hybrid CNN-LSTM</strong> aiming for over 98% accuracy in fault classification.</p>
+                </div>
+                
+                <div class="project-section">
+                  <p class="project-section-label">Weekly Progress Log</p>
+                  <h3>Phase 1 — Week by Week</h3>
+                  <p class="text-muted" style="font-size:0.9rem;">Click any week to expand.</p>
+                  <div class="weeks-container" id="weeksContainer"></div>
+                </div>
+              </div>
+
+              <div class="col-lg-4 mt-5 mt-lg-0" data-aos="fade-up" data-aos-delay="200">
+                <div style="position:sticky;top:100px;">
+                  <div style="background:#e3f2fd;border-radius:14px;padding:1.5rem;border:1px solid #90caf9;">
+                    <h6 style="font-family:'Space Mono',monospace;font-size:0.8rem;color:#1976d2;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem;">Quick Navigation</h6>
+                    <div id="quickNav" style="display:flex;flex-direction:column;gap:6px;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="site-section bg-white" id="other-projects-section" style="display: none;">
+        <div class="container">
+          <div class="row mb-5">
+            <div class="col-12 text-center" data-aos="fade-up">
+              <h2 class="section-title">Other Projects</h2>
+              <div class="section-underline centered"></div>
+              <p class="text-muted mt-3">Hardware builds, integrations, and additional research.</p>
+            </div>
+          </div>
+          <div class="row">
+
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+              <a href="projects/mini-solar.html" class="project-card-link">
+                <div class="project-card">
+                  <div class="project-img-wrap">
+                    <div class="project-img-placeholder solar-placeholder">
+                      <img src="images/project-solar.jpg" alt="Mini Solar Project" class="project-card-img" loading="lazy">
+                    </div>
+                    <div class="project-hover-overlay">
+                      <span class="view-label">View Details &rarr;</span>
+                    </div>
+                  </div>
+                  <div class="project-card-body">
+                    <span class="project-badge badge-solar">Renewable Energy</span>
+                    <h3 class="project-card-title">Hybrid Solar Project</h3>
+                    <p class="project-card-desc">Got hands-on experience of installing a solar energy harvesting system with smart power management.</p>
+                    <div class="project-meta-row">
+                      <span class="meta-chip">&#9889; Power and Energy</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+              <a href="projects/pad-estimator.html" class="project-card-link">
+                <div class="project-card">
+                  <div class="project-img-wrap">
+                    <div class="project-img-placeholder pad-placeholder">
+                      <img src="images/project-pad.jpg" alt="PAD Estimator" class="project-card-img" loading="lazy">
+                    </div>
+                    <div class="project-hover-overlay">
+                      <span class="view-label">View Details &rarr;</span>
+                    </div>
+                  </div>
+                  <div class="project-card-body">
+                    <span class="project-badge badge-pad">Biomedical Engineering</span>
+                    <h3 class="project-card-title">PAD Estimator</h3>
+                    <p class="project-card-desc">Non-invasive early Peripheral Artery Disease risk estimation device using IR temperature sensing and AVR Assembly.</p>
+                    <div class="project-meta-row">
+                      <span class="meta-chip">&#9878; Embedded</span>
+                      <span class="meta-chip">&#128137; Biomedical</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+            
+            <div class="col-md-6 col-lg-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+              <a href="projects/noaa.html" class="project-card-link">
+                <div class="project-card">
+                  <div class="project-img-wrap">
+                    <div class="project-img-placeholder noaa-placeholder">
+                      <img src="images/project-noaa.jpg" alt="Project NOAA" class="project-card-img" loading="lazy">
+                    </div>
+                    <div class="project-hover-overlay">
+                      <span class="view-label">View Details &rarr;</span>
+                    </div>
+                  </div>
+                  <div class="project-card-body">
+                    <span class="project-badge badge-noaa">Signal Processing</span>
+                    <h3 class="project-card-title">Project NOAA</h3>
+                    <p class="project-card-desc">Receiving and decoding NOAA weather satellite signals using SDR and custom signal processing pipelines.</p>
+                    <div class="project-meta-row">
+                      <span class="meta-chip">&#128225; SDR / RF</span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <section class="site-section bg-light" id="contact-section" style="display: none;">
+        <div class="container">
+          <div class="row">
+            <div class="col-12 mb-5 text-center" data-aos="fade-up">
+              <h2 class="section-title">Get In Touch</h2>
+              <div class="section-underline centered"></div>
+              <p class="text-muted mt-3">Have a project idea, research collaboration, or just want to connect?</p>
+            </div>
+          </div>
+          <div class="row justify-content-center">
+            <div class="col-lg-7" data-aos="fade-up" data-aos-delay="100">
+              <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST" class="form contact-form">
+                <input type="text" name="_gotcha" style="display:none" />
+                
+                <div class="row mb-3">
+                  <div class="form-group col-6">
+                    <input type="text" name="first_name" class="form-control" placeholder="First name" required>
+                  </div>
+                  <div class="form-group col-6">
+                    <input type="text" name="last_name" class="form-control" placeholder="Last name" required>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="form-group col-12">
+                    <input type="email" name="email" class="form-control" placeholder="Email address" required>
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="form-group col-12">
+                    <input type="text" name="subject" class="form-control" placeholder="Subject">
+                  </div>
+                </div>
+                <div class="row mb-3">
+                  <div class="form-group col-12">
+                    <textarea name="message" rows="8" class="form-control contact-textarea" placeholder="Your message..." required></textarea>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-12 text-center">
+                    <input type="submit" class="btn btn-primary px-5" value="Send Message">
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
     <footer class="site-section bg-dark footer pt-5 pb-4">
       <div class="container">
         <div class="row align-items-start mb-4">
@@ -334,24 +503,24 @@
               <li><a href="#home-section" class="smoothscroll">Home</a></li>
               <li><a href="#about-section" class="smoothscroll">About</a></li>
               <li><a href="#projects-section" class="smoothscroll">Projects</a></li>
-              <li><a href="#contact-section" class="smoothscroll">Contact</a></li>
+              <li style="display: none;"><a href="#contact-section" class="smoothscroll">Contact</a></li>
             </ul>
           </div>
           <div class="col-md-4 text-md-right">
             <h6 class="text-white mb-3">Connect</h6>
-            <a href="https://github.com/indukaBrathnayake" target="_blank" class="social-circle mr-2">
-              <span class="icon-github"></span>
+            <a href="https://github.com/indukaBrathnayake" target="_blank" class="social-circle mr-2" style="display:inline-flex; align-items:center; justify-content:center;">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
             </a>
-            <a href="https://www.linkedin.com/in/induka-rathnayake-b61a35371/" target="_blank" class="social-circle">
-              <span class="icon-linkedin2"></span>
+            <a href="https://www.linkedin.com/in/induka-rathnayake-b61a35371/" target="_blank" class="social-circle" style="display:inline-flex; align-items:center; justify-content:center;">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.225 0z"/></svg>
             </a>
           </div>
         </div>
-        <hr style="border-color: rgba(255,255,255,0.1);">
+        <hr class="footer-hr">
         <div class="text-center">
           <p class="text-muted small mb-0">
             &copy; <script>document.write(new Date().getFullYear());</script> Induka Rathnayake.
-            Template by <a href="https://colorlib.com" target="_blank" style="color:#888;">Colorlib</a>.
+            Template by <a href="https://colorlib.com" target="_blank" class="footer-link-colorlib">Colorlib</a>.
           </p>
         </div>
       </div>
@@ -359,15 +528,16 @@
 
   </div>
 
-  <script src="js/jquery-3.3.1.min.js"></script>
-  <script src="js/jquery-ui.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/jquery.sticky.js"></script>
-  <script src="js/main.js"></script>
+  <script src="js/jquery-3.3.1.min.js" defer></script>
+  <script src="js/jquery-ui.js" defer></script>
+  <script src="js/popper.min.js" defer></script>
+  <script src="js/bootstrap.min.js" defer></script>
+  <script src="js/owl.carousel.min.js" defer></script>
+  <script src="js/jquery.easing.1.3.js" defer></script>
+  <script src="js/aos.js" defer></script>
+  <script src="js/jquery.sticky.js" defer></script>
+  <script src="js/main.js" defer></script>
+  
   <script>
   function showCVMsg(e) {
     e.preventDefault();
@@ -381,7 +551,7 @@
     }, 2500);
   }
   
-  // ── About Slider ──────────────────────────────────────────
+  // ── About Slider ──
   var Slider = (function() {
     var slides   = [];
     var dots     = [];
@@ -391,6 +561,7 @@
     var timer    = null;
     var prog     = null;
     var busy     = false;
+    var inView   = false;
   
     function goTo(idx) {
       if (busy) return;
@@ -407,33 +578,34 @@
       current = (idx + total) % total;
       slides[current].classList.add('active');
   
-      // aspect ratio for photo_5
       var box = document.getElementById('aboutSlider');
       if (current === 4) { box.classList.add('slide-5-active'); }
       else               { box.classList.remove('slide-5-active'); }
   
-      // update dots
       dots.forEach(function(d, i) { d.classList.toggle('active', i === current); });
   
-      // reset progress bar
       if (prog) {
         prog.style.transition = 'none';
         prog.style.width = '0%';
         setTimeout(function() {
-          prog.style.transition = 'width ' + interval + 'ms linear';
-          prog.style.width = '100%';
+          if (inView) {
+            prog.style.transition = 'width ' + interval + 'ms linear';
+            prog.style.width = '100%';
+          }
         }, 30);
       }
     }
   
     function restart() {
       clearInterval(timer);
-      timer = setInterval(function() { goTo(current + 1); }, interval);
+      if (inView) {
+        timer = setInterval(function() { goTo(current + 1); }, interval);
+      }
     }
   
     function move(dir) {
       goTo(current + dir);
-      restart();          // ← reset timer so it doesn't fire right after click
+      restart(); 
     }
   
     function init() {
@@ -445,13 +617,11 @@
       total  = slides.length;
       if (!total) return;
   
-      // progress bar
       prog = document.createElement('div');
       prog.className = 'slider-progress';
       prog.style.width = '0%';
       sliderEl.appendChild(prog);
   
-      // dots
       slides.forEach(function(_, i) {
         var d = document.createElement('button');
         d.className = 'slider-dot' + (i === 0 ? ' active' : '');
@@ -461,26 +631,263 @@
         dots.push(d);
       });
   
-      // arrow buttons
       sliderEl.querySelector('.slider-prev').addEventListener('click', function() { move(-1); });
       sliderEl.querySelector('.slider-next').addEventListener('click', function() { move(1); });
   
-      // remove inline onclick to avoid double-firing
-      sliderEl.querySelector('.slider-prev').removeAttribute('onclick');
-      sliderEl.querySelector('.slider-next').removeAttribute('onclick');
-  
-      // pause on hover
-      sliderEl.addEventListener('mouseenter', function() { clearInterval(timer); if (prog) prog.style.transition = 'none'; });
+      sliderEl.addEventListener('mouseenter', function() { 
+        clearInterval(timer); 
+        if (prog) prog.style.transition = 'none'; 
+      });
       sliderEl.addEventListener('mouseleave', function() { restart(); });
-  
+
+      document.addEventListener('keydown', function(e) {
+        if (!inView) return; 
+        if (e.key === 'ArrowLeft') {
+          move(-1);
+        } else if (e.key === 'ArrowRight') {
+          move(1);
+        }
+      });
+
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          inView = entry.isIntersecting;
+          if (inView) {
+            if (prog) {
+              prog.style.transition = 'width ' + interval + 'ms linear';
+              prog.style.width = '100%';
+            }
+            restart();
+          } else {
+            clearInterval(timer);
+            if (prog) {
+              prog.style.transition = 'none';
+              prog.style.width = '0%';
+            }
+          }
+        });
+      }, { threshold: 0.3 });
+
+      observer.observe(sliderEl);
+      
       goTo(0);
-      restart();
     }
   
     return { init: init };
   })();
   
   document.addEventListener('DOMContentLoaded', function() { Slider.init(); });
+
+  function toggleWeek(header) {
+    var card = header.closest('.week-card');
+    var body = card.querySelector('.week-body');
+    var isOpen = card.classList.contains('open');
+    card.classList.toggle('open', !isOpen);
+    body.classList.toggle('show', !isOpen);
+  }
+
+  var weekData = [
+    {
+      week: 1,
+      title: "Literature Review & Power System Faults Survey",
+      status: "completed",
+      deliverables: "Literature Survey Notes",
+      activities: [
+        "Conducted a comprehensive survey on standard power system faults, analysing short-circuit fault types, system protection behaviours, and calculation of voltage and reactive power under fault conditions.",
+        "Reviewed foundational academic materials with heavy reference to EE354: Power Engineering lecture notes covering fault analysis and system modelling.",
+        "Extensively referenced Electric Power Systems by J.B. Ekanayake and G. Strbac to understand core principles of system analysis and fault calculations.",
+        "Surveyed the landscape of existing fault classification approaches — from traditional impedance-based relay methods to emerging machine learning techniques.",
+        "Identified key research gap: traditional protection schemes fail under high distributed energy resource (DER) penetration, motivating the deep learning approach.",
+        "Reviewed the paper \"Machine Learning Embedded in Distribution Network Relays to Classify and Locate Faults\" as the primary reference framing the project scope."
+      ],
+      references: [
+        { text: "J. B. Ekanayake and G. Strbac, Electric Power Systems. Wiley-IEEE Press, 2013." },
+        { text: "EE354: Power Engineering Lecture Notes, Department of Electrical & Electronic Engineering, University of Peradeniya, 2024." },
+        { text: "A. Saber, A. Emam, and E. Reham, \"Machine Learning Embedded in Distribution Network Relays to Classify and Locate Faults,\" 2022 IEEE IAS Annual Meeting, Detroit, MI, USA, 2022.", doi: "10.1109/IAS54023.2022.9940000" }
+      ],
+      challenges: "The breadth of fault types (LG, LL, LLG, LLL) and their interaction with distributed generation sources made initial scoping difficult. Resolved by focusing the survey on distribution-level networks with DER penetration, matching the project's defined scope, and using the Ekanayake & Strbac textbook as a grounding reference before branching into research papers."
+    },
+    {
+      week: 2,
+      title: "Research Gap Analysis & Deep Learning Foundations",
+      status: "completed",
+      deliverables: "14-Week Project Timeline, DL Survey Notes",
+      activities: [
+        "Finalised the comprehensive 14-week project plan, dividing workload across network modelling, fault injection, data preprocessing, and model training for the three group members.",
+        "Reviewed Power System Analysis by Hadi Saadat to deepen understanding of fault analysis mechanisms including symmetrical components and sequence networks.",
+        "Studied foundational deep learning architectures for time-series data — including Convolutional Neural Networks (CNN), Recurrent Neural Networks (RNN), and Long Short-Term Memory (LSTM) networks.",
+        "Identified the Hybrid CNN-LSTM architecture as the most promising approach: CNN for spatial feature extraction from waveforms, LSTM for temporal sequence modelling."
+      ],
+      media: [
+        { type: "image", title: "Project Timeline", url: "projects/fyp-files/week2-timeline.jpg" },
+        { type: "youtube", title: "StatQuest — Recurrent Neural Networks (RNNs)", id: "jmmW0F0biz0" },
+        { type: "youtube", title: "What are Convolutional Neural Networks (CNNs)?", id: "QzY57FaENXg" },
+        { type: "youtube", title: "What is LSTM (Long Short Term Memory)?", id: "b61DPVFX03I" },
+
+      ],
+      references: [
+        { text: "H. Saadat, Power System Analysis, 3rd ed. PSA Publishing, 2010." },
+        { text: "Y. LeCun, Y. Bengio, and G. Hinton, \"Deep learning,\" Nature, vol. 521, no. 7553, pp. 436–444, May 2015.", doi: "10.1038/nature14539" }
+      ],
+      challenges: "Determining which deep learning architecture was most appropriate for multi-class fault classification on three-phase waveform data required comparing several candidate models. Resolved by systematically reviewing performance benchmarks in related literature and settling on the CNN-LSTM hybrid — which consistently outperformed pure CNN or pure LSTM approaches on similar time-series classification tasks."
+    },
+    {
+      week: 3,
+      title: "Methodology Design & CNN-LSTM Architecture",
+      status: "completed",
+      deliverables: "Finalised Methodology, Simulation Strategy",
+      activities: [
+        "Methodology Finalised: Concluded to implement a CNN-LSTM hybrid architecture. The CNN acts as a spatial encoder extracting local waveform patterns; the LSTM handles temporal decoding of fault evolution sequences.",
+        "Simulation Strategy: Decided to use MATLAB Simulink to create the test feeder network model. Three-phase balanced and unbalanced faults will be injected to generate the training dataset.",
+        "Held a methodology discussion with research assistants at the Smart Grid Lab to validate the simulation approach and data extraction pipeline design."
+      ],
+      media: [
+        { type: "audio", title: "Smart Grid Lab RA Discussion Recording", url: "projects/fyp-files/week3-lab-discussion.mp3" }
+      ],
+      references: [
+        { text: "H. Nguyen, T. T. Nguyen, T. Van Tran, and H. Van Nguyen, \"New data-driven approach to bridging power system protection gaps with deep learning,\" IET Generation, Transmission & Distribution, 2022.", doi: "10.1049/gtd2.12567" }
+      ],
+      challenges: "Deciding on the exact CNN-LSTM architecture configuration (number of CNN layers, kernel sizes, LSTM hidden units) required careful study of the referenced papers. The lack of consensus across literature on ideal hyperparameters for distribution-level fault data was addressed by documenting a structured baseline configuration to be tuned empirically once training data is generated in later weeks."
+    },
+    {
+      week: 4,
+      title: "Independent Network Modelling",
+      status: "current",
+      deliverables: "Simulink Test Feeder (Model 3)",
+      activities: [
+        "Set up the power distribution network topology in MATLAB Simulink — implementing Model 3 as the primary test feeder.",
+        "Configure bus parameters, line impedances, and load models for the IEEE test feeder structure."
+      ]
+    },
+    { week: 5, title: "Independent Network Modelling", status: "upcoming" },
+    { week: 6, title: "Independent Network Modelling", status: "upcoming" },
+    { week: 7, title: "Fault Injection and Dataset Generation", status: "upcoming" },
+    { week: 8, title: "Fault Injection and Dataset Generation", status: "upcoming" },
+    { week: 9, title: "Data Preprocessing & Conventional Logic", status: "upcoming" },
+    { week: 10, title: "Data Preprocessing & Conventional Logic", status: "upcoming" },
+    { week: 11, title: "ML/DL Model Training and Testing", status: "upcoming" },
+    { week: 12, title: "ML/DL Model Training and Testing", status: "upcoming" },
+    { week: 13, title: "Milestone One Preparation", status: "upcoming" },
+    { week: 14, title: "Milestone One Preparation", status: "upcoming" }
+  ];
+
+  function escHtml(str) {
+    return (str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+  }
+
+  (function() {
+    var container = document.getElementById('weeksContainer');
+    var quickNav  = document.getElementById('quickNav');
+    if(!container || !quickNav) return; 
+    
+    var completed = 0;
+
+    weekData.forEach(function(w) {
+      if (w.status === 'completed') completed++;
+
+      var statusLabel = w.status === 'completed' ? 'Completed' : w.status === 'current' ? 'In Progress' : 'Upcoming';
+      var statusClass = w.status === 'completed' ? 'status-done' : w.status === 'current' ? 'status-current' : 'status-upcoming';
+      var cardClass   = 'week-' + w.status;
+
+      // Build the interior content for the accordion
+      var bodyHTML = '';
+      
+      if (w.status === 'upcoming' && !w.deliverables && (!w.activities || w.activities.length === 0)) {
+        bodyHTML = '<p class="week-empty-msg">Content will be added when this week begins.</p>';
+      } else {
+        if (w.deliverables) {
+          bodyHTML += '<p class="week-section-title">Deliverables</p><p class="week-content-text">' + escHtml(w.deliverables) + '</p>';
+        }
+        
+        if (w.activities && w.activities.length > 0) {
+          bodyHTML += '<p class="week-section-title">What We Did This Week</p><ul class="activity-list">';
+          w.activities.forEach(function(act) {
+            bodyHTML += '<li>' + escHtml(act) + '</li>';
+          });
+          bodyHTML += '</ul>';
+        }
+
+        // --- MEDIA RENDERING LOGIC ---
+        if (w.media && w.media.length > 0) {
+          w.media.forEach(function(m) {
+            if (m.type === 'image') {
+              bodyHTML += '<div style="margin-bottom:1.5rem;"><p class="week-section-title">🖼️ ' + escHtml(m.title) + '</p><img src="' + escHtml(m.url) + '" alt="' + escHtml(m.title) + '" style="max-width:100%; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>';
+            } else if (m.type === 'youtube') {
+              bodyHTML += '<div style="margin-bottom:1.5rem;"><p class="week-section-title">▶️ ' + escHtml(m.title) + '</p><div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; background:#000;"><iframe src="https://www.youtube.com/embed/' + escHtml(m.id) + '" style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;" allowfullscreen loading="lazy"></iframe></div></div>';
+            } else if (m.type === 'audio') {
+              bodyHTML += '<div style="margin-bottom:1.5rem; background:#f5f5f5; padding:12px; border-radius:8px; border:1px solid #e0e0e0;"><p class="week-section-title" style="margin-top:0;">🎙️ ' + escHtml(m.title) + '</p><audio controls style="width:100%;"><source src="' + escHtml(m.url) + '">Your browser does not support audio.</audio></div>';
+            }
+          });
+        }
+        // -----------------------------
+        
+        if (w.references && w.references.length > 0) {
+          bodyHTML += '<p class="week-section-title">📚 References & Resources</p><ol class="ref-list">';
+          w.references.forEach(function(ref) {
+            bodyHTML += '<li>' + escHtml(ref.text);
+            if (ref.doi) {
+              bodyHTML += ' <a href="https://doi.org/' + escHtml(ref.doi) + '" target="_blank" class="ref-doi">🔗 DOI</a>';
+            } else if (ref.url) {
+              bodyHTML += ' <a href="' + escHtml(ref.url) + '" target="_blank" class="ref-doi">🔗 Link</a>';
+            }
+            bodyHTML += '</li>';
+          });
+          bodyHTML += '</ol>';
+        }
+
+        if (w.challenges) {
+          bodyHTML += '<p class="week-section-title">Challenges & Solutions</p><div class="challenge-block">' + escHtml(w.challenges) + '</div>';
+        }
+      }
+
+      // Construct the card
+      var card = document.createElement('div');
+      card.className = 'week-card ' + cardClass;
+      card.id = 'week-' + w.week;
+      
+      card.innerHTML =
+        '<div class="week-header" onclick="toggleWeek(this)" style="cursor:pointer;">' +
+          '<div class="week-header-left">' +
+            '<span class="week-number">Week ' + w.week + '</span>' +
+            '<div><div class="week-title-text">' + escHtml(w.title) + '</div></div>' +
+          '</div>' +
+          '<div style="display:flex;align-items:center;gap:12px;">' +
+            '<span class="week-status-badge ' + statusClass + '">' + statusLabel + '</span>' +
+            '<span class="week-toggle-icon">&#9660;</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="week-body">' + bodyHTML + '</div>';
+        
+      container.appendChild(card);
+
+      // Quick Nav Setup
+      var navLink = document.createElement('a');
+      navLink.href = '#week-' + w.week;
+      navLink.textContent = 'Week ' + w.week + ' — ' + w.title.substring(0, 28) + (w.title.length > 28 ? '…' : '');
+      navLink.style.cssText = 'font-size:0.78rem;color:#555;text-decoration:none;padding:4px 8px;border-radius:6px;transition:background 0.15s; display:block;';
+      
+      navLink.onmouseover = function(){ this.style.background='#e3f2fd'; this.style.color='#1976d2'; };
+      navLink.onmouseout  = function(){ this.style.background=''; this.style.color='#555'; };
+      navLink.onclick = function(e) {
+          var targetCard = document.getElementById('week-' + w.week);
+          if(targetCard && !targetCard.classList.contains('open')) {
+              toggleWeek(targetCard.querySelector('.week-header'));
+          }
+      };
+      quickNav.appendChild(navLink);
+    });
+
+    var pct = Math.round((completed / 14) * 100);
+    document.getElementById('progressFill').style.width = pct + '%';
+    document.getElementById('progressLabel').textContent = 'Weeks Completed: ' + completed + ' / 14 (' + pct + '%)';
+
+    // Auto-open current week
+    var currentCard = document.querySelector('.week-card.week-current');
+    if (currentCard) { 
+        currentCard.classList.add('open'); 
+        currentCard.querySelector('.week-body').classList.add('show'); 
+    }
+  })();
   </script>
     
   </body>
