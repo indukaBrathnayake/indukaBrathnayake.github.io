@@ -89,7 +89,7 @@ h1, h2, h3, h4, h5, .site-logo, .footer-brand {
   margin-bottom: 1rem;
 }
 .hero-name {
-  font-size: clamp(3.5rem, 7vw, 6.5rem);
+  font-size: clamp(4.5rem, 9vw, 8rem);
   line-height: 1.0;
   margin-bottom: 0.4rem;
   font-family: 'Barlow Condensed', 'Franklin Gothic Medium', 'ITC Franklin Gothic', Arial Narrow, sans-serif;
@@ -116,7 +116,7 @@ h1, h2, h3, h4, h5, .site-logo, .footer-brand {
 .hero-highlight {
   color: var(--amber);
   font-weight: 600;
-   font-size: 2.4rem;
+   font-size: 1.2rem;
   letter-spacing: 0.03em;
 }
 .hero-divider {
@@ -270,6 +270,7 @@ h1, h2, h3, h4, h5, .site-logo, .footer-brand {
   background: linear-gradient(135deg, var(--blue-light) 0%, #bbdefb 100%);
   border-bottom: 1px solid var(--blue-mid);
   position: relative;
+
 }
 .project-detail-header .container { position: relative; z-index: 2; }
 .project-detail-header .project-detail-title {
@@ -315,9 +316,10 @@ h1, h2, h3, h4, h5, .site-logo, .footer-brand {
   font-family: 'Space Mono', monospace;
   color: #111; line-height: 1.2; margin-bottom: 1rem;
 }
-.project-detail-subtitle { font-size: 1.1rem; color: #555; max-width: 600px; }
-.project-detail-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 2rem; }
-.detail-meta-item { font-size: 0.85rem; color: #555; }
+.project-detail-subtitle { font-size: 1.1rem; color: #555; max-width: 100%; }
+.project-detail-meta { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-top: 2rem; width: 100%; }
+.detail-meta-item { font-size: 0.85rem; color: #555; padding-right: 1.2rem; border-right: 1px solid rgba(25,118,210,0.15); min-width: 0; flex: 1 1 auto; }
+.detail-meta-item:last-child { border-right: none; padding-right: 0; }
 .detail-meta-item strong {
   display: block; font-family: 'Space Mono', monospace;
   font-size: 0.75rem; color: var(--blue);
@@ -465,7 +467,21 @@ h1, h2, h3, h4, h5, .site-logo, .footer-brand {
   .hero-photo-col { padding-top: 80px; justify-content: center; }
   .hero-photo-col .img-face { max-width: 260px; }
   .hero-text-col { padding: 30px 24px 60px; }
-  .hero-name { font-size: 2.2rem; }
+  .hero-name { font-size: 3.5rem; }
   .project-detail-title { font-size: 1.6rem; }
   .project-detail-meta { gap: 1rem; }
+}
+
+
+/* Project header meta box — responsive */
+@media (max-width: 992px) {
+  .project-detail-meta { gap: 1rem; padding: 1rem !important; }
+  .detail-meta-item { border-right: none !important; padding-right: 0 !important; width: 100%; flex: 1 1 45%; }
+}
+@media (max-width: 576px) {
+  .project-detail-meta { gap: 0.8rem; }
+  .detail-meta-item { flex: 1 1 100%; }
+  .project-detail-title { font-size: 1.3rem !important; }
+  .project-detail-subtitle { font-size: 0.95rem !important; }
+  .project-detail-header { padding: 90px 0 40px; }
 }
