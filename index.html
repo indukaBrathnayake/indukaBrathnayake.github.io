@@ -703,7 +703,7 @@
       references: [
         { text: "J. B. Ekanayake and G. Strbac, Electric Power Systems. Wiley-IEEE Press, 2013." },
         { text: "EE354: Power Engineering Lecture Notes, Department of Electrical & Electronic Engineering, University of Peradeniya, 2024." },
-        { text: "A. Saber, A. Emam, and E. Reham, \"Machine Learning Embedded in Distribution Network Relays to Classify and Locate Faults,\" 2022 IEEE IAS Annual Meeting, Detroit, MI, USA, 2022.", doi: "10.1109/IAS54023.2022.9940000" }
+        { text: "A. Saber, A. Emam, and E. Reham, \"Machine Learning Embedded in Distribution Network Relays to Classify and Locate Faults,\" 2022 IEEE IAS Annual Meeting, Detroit, MI, USA, 2022   [Attached bellow in week 4 'Research Papers Collection']" }
       ],
       challenges: "The breadth of fault types (LG, LL, LLG, LLL) and their interaction with distributed generation sources made initial scoping difficult. Resolved by focusing the survey on distribution-level networks with DER penetration, matching the project's defined scope, and using the Ekanayake & Strbac textbook as a grounding reference before branching into research papers."
     },
@@ -722,12 +722,11 @@
         { type: "image", title: "Project Timeline", url: "projects/fyp-files/week2-timeline.jpg" },
         { type: "youtube", title: "StatQuest — Recurrent Neural Networks (RNNs)", id: "jmmW0F0biz0" },
         { type: "youtube", title: "What are Convolutional Neural Networks (CNNs)?", id: "QzY57FaENXg" },
-        { type: "youtube", title: "What is LSTM (Long Short Term Memory)?", id: "b61DPVFX03I" },
-
+        { type: "youtube", title: "What is LSTM (Long Short Term Memory)?", id: "b61DPVFX03I" }
       ],
       references: [
         { text: "H. Saadat, Power System Analysis, 3rd ed. PSA Publishing, 2010." },
-        { text: "Y. LeCun, Y. Bengio, and G. Hinton, \"Deep learning,\" Nature, vol. 521, no. 7553, pp. 436–444, May 2015.", doi: "10.1038/nature14539" }
+        { text: "Y. LeCun, Y. Bengio, and G. Hinton, \"Deep learning,\" Nature, vol. 521, no. 7553, pp. 436–444, May 2015   [Attached bellow in week 4 'Research Papers Collection']" }
       ],
       challenges: "Determining which deep learning architecture was most appropriate for multi-class fault classification on three-phase waveform data required comparing several candidate models. Resolved by systematically reviewing performance benchmarks in related literature and settling on the CNN-LSTM hybrid — which consistently outperformed pure CNN or pure LSTM approaches on similar time-series classification tasks."
     },
@@ -737,39 +736,73 @@
       status: "completed",
       deliverables: "Finalised Methodology, Simulation Strategy",
       activities: [
-        "Methodology Finalised: Concluded to implement a CNN-LSTM hybrid architecture. The CNN acts as a spatial encoder extracting local waveform patterns; the LSTM handles temporal decoding of fault evolution sequences.",
+        "Held a methodology discussion with research assistants at the Smart Grid Lab to validate the simulation approach and data extraction pipeline design.",
+        "Did a Data Export Methods Research: Investigated and compared data export methods across simulation platforms. Found that MATLAB offers the most efficient and flexible data export pipeline when used with Python for post-processing. PSCAD was also identified as a viable alternative for data export workflows.",
+        "Did a survey on Data Extraction Reliability & Data Integrity: Evaluated reliability of data extraction across tools. PSCAD was found to produce a standardised output file type, ensuring consistency across extractions. MATLAB was also confirmed to support reliable data extraction workflows compatible with the project's data pipeline.",
         "Simulation Strategy: Decided to use MATLAB Simulink to create the test feeder network model. Three-phase balanced and unbalanced faults will be injected to generate the training dataset.",
-        "Held a methodology discussion with research assistants at the Smart Grid Lab to validate the simulation approach and data extraction pipeline design."
+        "Methodology Finalised: Concluded to implement a CNN-LSTM hybrid architecture. The CNN acts as a spatial encoder extracting local waveform patterns; the LSTM handles temporal decoding of fault evolution sequences."
       ],
       media: [
-        { type: "audio", title: "Smart Grid Lab RA Discussion Recording", url: "projects/fyp-files/week3-lab-discussion.mp3" }
+        { type: "audio", title: "Smart Grid Lab RA Discussion Recording", url: "projects/fyp-files/week3-lab-discussion.mp3" },
+        { type: "pdf", title: "Data Export Methods Research", url: "projects/fyp-files/E21327_Data_Export_Methods_Research.pdf" },
+        { type: "pdf", title: "Time-series Extraction Reliability Research", url: "projects/fyp-files/E21327_Data_Extraction_Reliability_Research.pdf" }
       ],
-      references: [
-        { text: "H. Nguyen, T. T. Nguyen, T. Van Tran, and H. Van Nguyen, \"New data-driven approach to bridging power system protection gaps with deep learning,\" IET Generation, Transmission & Distribution, 2022.", doi: "10.1049/gtd2.12567" }
-      ],
-      challenges: "Deciding on the exact CNN-LSTM architecture configuration (number of CNN layers, kernel sizes, LSTM hidden units) required careful study of the referenced papers. The lack of consensus across literature on ideal hyperparameters for distribution-level fault data was addressed by documenting a structured baseline configuration to be tuned empirically once training data is generated in later weeks."
+      challenges: "After collecting all findings from myself and my project mates, we finalised MATLAB Simulink as the tool for modelling the test feeder network, with MATLAB and Python handling the data export pipeline. PSCAD was also confirmed as a viable option, offering a standardised output format that fits well into the extraction workflow. Based on all these findings, we concluded that a CNN-LSTM hybrid architecture was the best fit for our approach, where the CNN handles spatial feature extraction and the LSTM takes care of the temporal sequences."
     },
     {
       week: 4,
-      title: "Independent Network Modelling",
-      status: "current",
-      deliverables: "Simulink Test Feeder (Model 3)",
+      title: "Literature Review Finalization & Simulink Onboarding",
+      status: "completed",
+      deliverables: "Individual Literature Review Document, Simulink Onramp Completion",
       activities: [
-        "Set up the power distribution network topology in MATLAB Simulink — implementing Model 3 as the primary test feeder.",
-        "Configure bus parameters, line impedances, and load models for the IEEE test feeder structure."
-      ]
+        "Finalized and compiled the individual literature review document (E21327_Literature_Review.pdf) covering 5 key research papers on deep learning-based fault classification in power distribution networks.",
+        "Review covered 5 major topic areas covering, \n (1) Evolution of Power System Fault Detection — traditional impedance relays to data-driven DL paradigms\n (2) Time-Series Data Generation and Preprocessing — simulation engines, data windowing, dimensionality transformation, normalization and noise injection\n (3) Evaluated DL Architectures — SVM/RF baseline, CNN, LSTM, CNN-LSTM hybrid, GNN and DRL\n (4) Edge Deployment Constraints — inference latency limits (10–20ms relay tripping deadline), hardware memory limitations, preprocessing penalties\n (5) Research Gaps — lack of standardized latency/memory reporting for physically constrained edge microcontrollers.",
+        "Key finding is that 1D-CNN with direct IEEE COMTRADE binary stream ingestion identified as the most viable lightweight architecture for real-time relay deployment — avoiding 2D transformation overhead that violates the 10–20ms tripping deadline.",
+        "Installed MATLAB 2026a trial version in preparation for the Simulink network modelling phase.",
+        "Completed the official MathWorks Simulink Onramp training course to build foundational Simulink skills prior to network model construction."
+      ],
+      media: [
+        { type: "pdf",   title: "E21327 — Individual Literature Review",          url: "projects/fyp-files/E21327_Literature_Review.pdf" },
+        { type: "zip",   title: "Research Papers Collection — Papers [1]–[5]",    url: "projects/fyp-files/E21327_Papers_read.zip" },
+        { type: "image", title: "Simulink Onramp — Completion", url: "projects/fyp-files/Simulink_onramp_1.png" },
+        { type: "image", url: "projects/fyp-files/Simulink_onramp_2.png" }
+      ],
+      challenges: "The literature review revealed a critical tension between model accuracy and edge deployment feasibility. CNN-LSTM hybrids achieve near-perfect accuracy (98.9–99.3%) but are computationally impractical for edge relays. Resolved the scoping question by identifying 1D-CNN with direct COMTRADE ingestion as the target architecture — it achieves >99% accuracy at sub-millisecond inference on low-sampled data, satisfying the 10–20ms relay tripping deadline without prohibitive preprocessing overhead."
     },
-    { week: 5, title: "Independent Network Modelling", status: "upcoming" },
-    { week: 6, title: "Independent Network Modelling", status: "upcoming" },
-    { week: 7, title: "Fault Injection and Dataset Generation", status: "upcoming" },
-    { week: 8, title: "Fault Injection and Dataset Generation", status: "upcoming" },
-    { week: 9, title: "Data Preprocessing & Conventional Logic", status: "upcoming" },
-    { week: 10, title: "Data Preprocessing & Conventional Logic", status: "upcoming" },
-    { week: 11, title: "ML/DL Model Training and Testing", status: "upcoming" },
-    { week: 12, title: "ML/DL Model Training and Testing", status: "upcoming" },
-    { week: 13, title: "Milestone One Preparation", status: "upcoming" },
-    { week: 14, title: "Milestone One Preparation", status: "upcoming" }
+    {
+      week: 5,
+      title: "IEEE 9-Bus Model Exploration & Library Compatibility Issue",
+      status: "current",
+      deliverables: "IEEE 9-Bus Model Exploration, Compatibility Issue Identified",
+      activities: [
+        "Downloaded the standard IEEE 9-bus power system model from the official MathWorks File Exchange, originally created for MATLAB/Simulink circa 2014.",
+        "Planned initial fault injection experiment: a three-phase fault on transmission line 3–5 to generate a time-series voltage/current dataset as the first proof-of-concept data extraction.",
+        "Identified a critical compatibility issue, that model was built using legacy Simscape Electrical library blocks — specifically 'powerlib' (SimPowerSystems) and 'powergui' — which have been deprecated and significantly restructured in MATLAB 2026a.",
+        "In MATLAB 2026a, 'powerlib' has been replaced by the reorganised 'Simscape > Electrical > Specialized Power Systems' library. The 'powergui' block behaviour and solver settings have also changed, causing the legacy model to fail on load with multiple unresolved library reference errors.",
+        "Investigated the compatibility error messages and confirmed the root cause: block library paths embedded in the .slx model file reference old library locations that no longer exist in the 2026a library browser.",
+        "Researched two potential resolution paths: (1) Manually re-linking each broken block to its new library location in Simscape Electrical — feasible but time-consuming for a large multi-bus model; (2) Rebuilding the IEEE 9-bus model from scratch using current 2026a Simscape Electrical components — more robust and ensures full compatibility going forward."
+      ],
+      media: [
+        { type: "image", title: "IEEE 9-Bus System — Model Overview in Simulink", url: "projects/fyp-files/ieee_9bus.jpg" },
+        { type: "image", title: "IEEE 9-Bus System — Library Compatibility Error", url: "projects/fyp-files/ieee_9bus2.jpg" }
+      ],
+      references: [
+        { text: "MathWorks File Exchange — IEEE 9-Bus Power System Model.", url: "https://in.mathworks.com/matlabcentral/fileexchange/45936-ieee-9-bus" },
+        { text: "MathWorks Documentation — Upgrade Specialized Power Systems Models to use Simscape Electrical Blocks.", url: "https://in.mathworks.com/help/sps/ug/upgrade-sps-models-to-use-simscape-blocks.html" }
+      ],
+      challenges: "The IEEE 9-bus model sourced from MathWorks File Exchange (created in 2014) uses legacy 'powerlib' and 'powergui' library blocks that are no longer compatible with MATLAB 2026a. When opened, multiple blocks show broken library links because 'SimPowerSystems' has been reorganised under 'Simscape > Electrical > Specialized Power Systems' in modern MATLAB versions. The next step is to either re-link the broken blocks manually or make a different network model on one of above research papers I had go through to makesure full compatibility and reliable fault injection data extraction."
+    },
+    { week: 6,  title: "Independent Network Modelling",         status: "upcoming" },
+    { week: 7,  title: "Fault Injection and Dataset Generation", status: "upcoming" },
+    { week: 8,  title: "Upcomming", status: "upcoming" },
+    { week: 9,  title: "Upcomming", status: "upcoming" },
+    { week: 10, title: "Upcomming", status: "upcoming" },
+    { week: 11, title: "Upcomming",       status: "upcoming" },
+    { week: 12, title: "Upcomming",       status: "upcoming" },
+    { week: 13, title: "Upcomming",              status: "upcoming" },
+    { week: 14, title: "Upcomming",              status: "upcoming" }
   ];
+
 
   function escHtml(str) {
     return (str||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
@@ -800,7 +833,7 @@
         }
         
         if (w.activities && w.activities.length > 0) {
-          bodyHTML += '<p class="week-section-title">What We Did This Week</p><ul class="activity-list">';
+          bodyHTML += '<p class="week-section-title">What I Did This Week</p><ul class="activity-list">';
           w.activities.forEach(function(act) {
             bodyHTML += '<li>' + escHtml(act) + '</li>';
           });
@@ -816,6 +849,26 @@
               bodyHTML += '<div style="margin-bottom:1.5rem;"><p class="week-section-title">▶️ ' + escHtml(m.title) + '</p><div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; background:#000;"><iframe src="https://www.youtube.com/embed/' + escHtml(m.id) + '" style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;" allowfullscreen loading="lazy"></iframe></div></div>';
             } else if (m.type === 'audio') {
               bodyHTML += '<div style="margin-bottom:1.5rem; background:#f5f5f5; padding:12px; border-radius:8px; border:1px solid #e0e0e0;"><p class="week-section-title" style="margin-top:0;">🎙️ ' + escHtml(m.title) + '</p><audio controls style="width:100%;"><source src="' + escHtml(m.url) + '">Your browser does not support audio.</audio></div>';
+            } else if (m.type === 'pdf') {
+              bodyHTML += '<div style="margin-bottom:1.5rem;">'
+                + '<div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:8px;">'
+                +   '<p class="week-section-title" style="margin:0;">📄 ' + escHtml(m.title) + '</p>'
+                +   '<a href="' + escHtml(m.url) + '" target="_blank" class="ref-doi" style="font-size:0.8rem; padding:5px 14px; text-decoration:none; border-radius:20px; background:#2e7d32; color:#fff; border-color:#2e7d32; ">Download PDF</a>'
+                + '</div>'
+                + '<iframe src="' + escHtml(m.url) + '" style="width:100%; height:520px; border:1px solid #e0e0e0; border-radius:8px; background:#fafafa;" loading="lazy">'
+                +   '<p style="padding:12px; font-size:0.9rem; color:#666;">Your browser does not support embedded PDFs. '
+                +   '<a href="' + escHtml(m.url) + '" download>Click here to download the PDF</a>.</p>'
+                + '</iframe>'
+                + '</div>';
+            } else if (m.type === 'zip') {
+              bodyHTML += '<div style="margin-bottom:1rem; display:flex; align-items:center; gap:12px; padding:12px 16px; background:#f3e5f5; border:1px solid #ce93d8; border-radius:10px;">'
+                + '<span style="font-size:1.4rem;"></span>'
+                + '<div style="flex:1;">'
+                +   '<div style="font-weight:600; color:#333; font-size:0.9rem;">' + escHtml(m.title) + '</div>'
+                +   '<div style="font-size:0.75rem; color:#888; font-style:italic; margin-top:2px;">ZIP File</div>'
+                + '</div>'
+                + '<a href="' + escHtml(m.url) + '" download style="font-size:0.8rem; padding:6px 16px; text-decoration:none; border-radius:20px; background:#6a1b9a; color:#fff; white-space:nowrap;">Download</a>'
+                + '</div>';
             }
           });
         }
