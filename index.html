@@ -60,9 +60,9 @@
       }
 
       /* FYP embedded styles */
-      .active-chip { background:#fff8e1 !important; color:#f57f17 !important; font-weight:600; }
-      .week-card.week-current { border-left:4px solid #f9a825; }
-      .status-current { background:#fff8e1; color:#f57f17; }
+      .active-chip { background:#e8f5e9 !important; color:#2e7d32 !important; font-weight:600; }
+      .week-card.week-current { border-left:4px solid #81f702; } /* Green left border */
+      .status-current { background:#c9f2cc; color:#2e7d32; }     /* Light green background, dark green text */
       .media-paper-view { display:flex; align-items:flex-start; gap:12px; padding:12px 16px; background:#fff8e1; border:1px solid #ffe082; border-radius:10px; margin:10px 0; }
       .media-paper-view .mpv-icon { font-size:1.3rem; margin-top:2px; flex-shrink:0; }
       .media-paper-view .mpv-title { font-weight:600; color:#333; font-size:0.9rem; line-height:1.5; }
@@ -756,7 +756,7 @@
       deliverables: "Individual Literature Review Document, Simulink Onramp Completion",
       activities: [
         "Finalized and compiled the individual literature review document (E21327_Literature_Review.pdf) covering 5 key research papers on deep learning-based fault classification in power distribution networks.",
-        "Review covered 5 major topic areas covering, \n (1) Evolution of Power System Fault Detection — traditional impedance relays to data-driven DL paradigms\n (2) Time-Series Data Generation and Preprocessing — simulation engines, data windowing, dimensionality transformation, normalization and noise injection\n (3) Evaluated DL Architectures — SVM/RF baseline, CNN, LSTM, CNN-LSTM hybrid, GNN and DRL\n (4) Edge Deployment Constraints — inference latency limits (10–20ms relay tripping deadline), hardware memory limitations, preprocessing penalties\n (5) Research Gaps — lack of standardized latency/memory reporting for physically constrained edge microcontrollers.",
+        "Review covered 5 major topic areas covering, \n\n 1. Evolution of Power System Fault Detection — traditional impedance relays to data-driven DL paradigms\n 2. Time-Series Data Generation and Preprocessing — simulation engines, data windowing, dimensionality transformation, normalization and noise injection\n 3. Evaluated DL Architectures — SVM/RF baseline, CNN, LSTM, CNN-LSTM hybrid, GNN and DRL\n 4. Edge Deployment Constraints — inference latency limits (10–20ms relay tripping deadline), hardware memory limitations and preprocessing penalties\n 5. Research Gaps — lack of standardized latency/memory reporting for physically constrained edge microcontrollers.",
         "Key finding is that 1D-CNN with direct IEEE COMTRADE binary stream ingestion identified as the most viable lightweight architecture for real-time relay deployment — avoiding 2D transformation overhead that violates the 10–20ms tripping deadline.",
         "Installed MATLAB 2026a trial version in preparation for the Simulink network modelling phase.",
         "Completed the official MathWorks Simulink Onramp training course to build foundational Simulink skills prior to network model construction."
@@ -780,7 +780,7 @@
         "Identified a critical compatibility issue, that model was built using legacy Simscape Electrical library blocks — specifically 'powerlib' (SimPowerSystems) and 'powergui' — which have been deprecated and significantly restructured in MATLAB 2026a.",
         "In MATLAB 2026a, 'powerlib' has been replaced by the reorganised 'Simscape > Electrical > Specialized Power Systems' library. The 'powergui' block behaviour and solver settings have also changed, causing the legacy model to fail on load with multiple unresolved library reference errors.",
         "Investigated the compatibility error messages and confirmed the root cause: block library paths embedded in the .slx model file reference old library locations that no longer exist in the 2026a library browser.",
-        "Researched two potential resolution paths: (1) Manually re-linking each broken block to its new library location in Simscape Electrical — feasible but time-consuming for a large multi-bus model; (2) Rebuilding the IEEE 9-bus model from scratch using current 2026a Simscape Electrical components — more robust and ensures full compatibility going forward."
+        "Found three potential resolution paths, \n (1) Manually relinking each broken block to its new library location in Simscape Electrical — feasible but time consuming for a large multi-bus model\n (2) Rebuilding the IEEE 9-bus model from scratch using current 2026a Simscape Electrical components — more robust and ensures full compatibility going forward.\n (3) Go to a fresh, new model improvement from basic level to advanced complex level."
       ],
       media: [
         { type: "image", title: "IEEE 9-Bus System — Model Overview in Simulink", url: "projects/fyp-files/ieee_9bus.jpg" },
@@ -792,12 +792,38 @@
       ],
       challenges: "The IEEE 9-bus model sourced from MathWorks File Exchange (created in 2014) uses legacy 'powerlib' and 'powergui' library blocks that are no longer compatible with MATLAB 2026a. When opened, multiple blocks show broken library links because 'SimPowerSystems' has been reorganised under 'Simscape > Electrical > Specialized Power Systems' in modern MATLAB versions. The next step is to either re-link the broken blocks manually or make a different network model on one of above research papers I had go through to makesure full compatibility and reliable fault injection data extraction."
     },
-    { week: 6,  title: "Independent Network Modelling",         status: "upcoming" },
-    { week: 7,  title: "Fault Injection and Dataset Generation", status: "upcoming" },
+    {
+      week: 6,
+      title: "Custom Test Feeder Build & CNN-LSTM Model Implementation",
+      status: "current",
+      deliverables: "Simulink Test Feeder V1, CNN-LSTM Trained Model V2, V2 Results",
+      activities: [
+        "Abandoned the legacy IEEE 9-bus model due to MATLAB 2026a library incompatibilities. Built a custom distribution test feeder (E21327_FYP_Test_Feeder_v1) from scratch in MATLAB Simulink 2026a using fully compatible Simscape Electrical components.",
+        "Instrumented the model with three-phase voltages and current measurement blocks at the relay measurement points with dedicated fault blocks (Fault LYNX, Fault WASP) controlled by step triggers for programmatic fault injection.",
+        "Generated a dataset of 6,000 fault samples covering 11 fault types (ag, bg, cg, ab, bc, ca, abg, bcg, cag, abc, abcg) on both LYNX and WASP lines with varying fault resistance, inception angle and fault location.",
+        "Designed and implemented the CNN-LSTM V2 deep learning pipeline in Google Colab (Python/TensorFlow/Keras). Architecture: CNN(64→64→128→128→256) + BiLSTM(128) + LSTM(128) — a multi-output model with three simultaneous output branches. \n\n> Branch 1: Fault Line Identification (LYNX vs WASP),\n> Branch 2: Fault Type Classification (11 classes),\n> Branch 3: Fault Distance Estimation (regression, km).",
+        "Input: 120 timesteps × 23 channels. Window: 0.295 s → 0.415 s with 5 ms pre-fault context. Physics-derived features added: P_inst, V0 (zero-seq voltage), I0 (zero-seq current), I2 (negative-sequence current), dIa/dt.",
+        "Devided data set into 68% train / 17% validation / 15% test sets. Z-Score standardization applied. Sample weights set to 1/Rf clipped [0.05, 1.0] to reduce fault resistance bias. Loss weights tuned to line=0.3, type=1.5, dist=3.5. Hyperparameter tuning with early stopping.",
+        "V1 baseline model was built with simpler architecture, no physics features and uniform loss weights achieved 64.25% fault type accuracy confirms the V1 architecture was underpowered for 11-class multi-output classification.",
+        "V2 improvements over V1 --> Added deeper CNN stack (5 layers vs 3), introduced BiLSTM layer for bidirectional temporal context, applied per-line distance scaling (LYNX and WASP separately), introduced Fault Resistance Weighted sampling and retuned loss weights resulting in a +17.75% improvement in fault type accuracy (64.25% → 82.00%)."
+      ],
+      media: [
+        { type: "image", title: "Test Feeder — Original Source Schematic", url: "projects/fyp-files/Model_v1.jpg" },
+        { type: "image", title: "Simulink Built of above Test Feeder", url: "projects/fyp-files/E21327_test_feeder_v1.jpg" },
+        { type: "image", title: "Deep Learning Pipeline — V2 Logic Flow Chart", url: "projects/fyp-files/Flow_chart_v1.jpg" },
+        { type: "image", title: "CNN-LSTM V2 — Summary Metrics", url: "projects/fyp-files/final_summary_v1.jpg" },
+        { type: "image", title: "CNN-LSTM V2 — Individual Fault Accuracy Breakdown", url: "projects/fyp-files/Individual_faults_accuracy_v1.jpg" },
+        { type: "image", title: "CNN-LSTM V2 — Training History & Loss Curves", url: "projects/fyp-files/training_history_v2.png" },
+        { type: "image", title: "CNN-LSTM V2 — Results got for Test set & Confusion Matrix", url: "projects/fyp-files/results_test_v2.png" }
+      ],
+      references: [
+        { text: "TensorFlow / Keras Documentation", url: "https://www.tensorflow.org/guide/keras/functional" },
+        { text: "Keras Documentation — Functional API for Multi-Output Models", url: "https://keras.io/guides/functional_api/" }
+      ],
+      challenges: "I faced Three major challenges this week and all three were conquered.\n\n 1. Most Simscape Electrical block names, configurations and connection interfaces have changed in MATLAB after 2025b version. Finding the exact correct replacement components, understanding their new parameter structures and wiring them correctly to produce valid three-phase fault waveforms required a trial and error method against the updated MathWorks documentation. Getting the measurement instrumentation and fault trigger logic to work reliably together was the final hurdle before data generation could begin.\n\n 2. Dataset Generation took 10 hours 24 minutes. Once the model was validated, generating the full 6,000 sample dataset was a serious compute challenge. MATLAB ran the parametric fault sweep for approximately 10 hours and 24 minutes to completion. Based on the Data Export Methods research done in Week 3, Parquet file format was chosenbfor data extraction to make reliable, structured and efficient storage of the time series waveform data compared to CSV or MAT formats. \n\n 3. I Had implemented ML models before. But, built a deep learning model was a new interesting challange for me. V1 achieved only 64.25% fault type accuracy, which was clearly insufficient for a real protection system. As in the resource paper #[5], V2 was redesigned from the ground up deeper CNN layers, a BiLSTM for bidirectional temporal context, physics-derived sequence component features, per-line distance scaling and fault-resistance-weighted sampling. Finaly it gave 82.00% accuracy and perfect 100% line identification  is a genuine achievement. But this is not the ceiling. The model will keep improving and every iteration is building real engineering instinct that no lecture could teach."
+    },
+    { week: 7,  title: "Upgrade and wide the simulation", status: "upcoming" },
     { week: 8,  title: "Upcomming", status: "upcoming" },
-    { week: 9,  title: "Upcomming", status: "upcoming" },
-    { week: 10, title: "Upcomming", status: "upcoming" },
-    { week: 11, title: "Upcomming",       status: "upcoming" },
     { week: 12, title: "Upcomming",       status: "upcoming" },
     { week: 13, title: "Upcomming",              status: "upcoming" },
     { week: 14, title: "Upcomming",              status: "upcoming" }
