@@ -795,7 +795,7 @@
     {
       week: 6,
       title: "Custom Test Feeder Build & CNN-LSTM Model Implementation",
-      status: "current",
+      status: "completed",
       deliverables: "Simulink Test Feeder V1, CNN-LSTM Trained Model V2, V2 Results",
       activities: [
         "Abandoned the legacy IEEE 9-bus model due to MATLAB 2026a library incompatibilities. Built a custom distribution test feeder (E21327_FYP_Test_Feeder_v1) from scratch in MATLAB Simulink 2026a using fully compatible Simscape Electrical components.",
@@ -822,7 +822,29 @@
       ],
       challenges: "I faced Three major challenges this week and all three were conquered.\n\n 1. Most Simscape Electrical block names, configurations and connection interfaces have changed in MATLAB after 2025b version. Finding the exact correct replacement components, understanding their new parameter structures and wiring them correctly to produce valid three-phase fault waveforms required a trial and error method against the updated MathWorks documentation. Getting the measurement instrumentation and fault trigger logic to work reliably together was the final hurdle before data generation could begin.\n\n 2. Dataset Generation took 10 hours 24 minutes. Once the model was validated, generating the full 6,000 sample dataset was a serious compute challenge. MATLAB ran the parametric fault sweep for approximately 10 hours and 24 minutes to completion. Based on the Data Export Methods research done in Week 3, Parquet file format was chosenbfor data extraction to make reliable, structured and efficient storage of the time series waveform data compared to CSV or MAT formats. \n\n 3. I Had implemented ML models before. But, built a deep learning model was a new interesting challange for me. V1 achieved only 64.25% fault type accuracy, which was clearly insufficient for a real protection system. As in the resource paper #[5], V2 was redesigned from the ground up deeper CNN layers, a BiLSTM for bidirectional temporal context, physics-derived sequence component features, per-line distance scaling and fault-resistance-weighted sampling. Finaly it gave 82.00% accuracy and perfect 100% line identification  is a genuine achievement. But this is not the ceiling. The model will keep improving and every iteration is building real engineering instinct that no lecture could teach."
     },
-    { week: 7,  title: "Upgrade and wide the simulation", status: "upcoming" },
+    { 
+      week: 7,  
+      title: "DL model Optimization (82% to 99.59% Accuracy) & IEEE 39-Bus Expansion", 
+      status: "current",
+      deliverables: "8,600 Sample Dataset, CNN-BiLSTM-Attention Model, IEEE 39-Bus Simulink Model",
+      activities: [
+        "Generated a significantly larger and more comprehensive dataset of 8,600 fault samples to feed the neural network, replacing the previous 6,000 sample dataset.",
+        "Evaluated the previous model on the new dataset, achieving an initial 85.59% accuracy. Conducted a bottleneck analysis and identified that symmetrical 3-phase faults ('abc' and 'abcg') were confusing the classifier, and 'negative transfer' was occurring between the multi-task dense layers.",
+        "Engineered a massive deep learning architecture upgrade: swapped linear convolutions for a multi-scale 'Inception' architecture (k=5 and k=21 kernels) to capture both high-frequency transients and full 50 Hz power cycles simultaneously.",
+        "Integrated a 4-head Multi-Head Attention mechanism to explicitly force the network to focus on fault inception moments, and separated the output branches to completely isolate Classification from Distance/Resistance Regression.",
+        "Retrained using the AdamW optimizer with asymmetric loss weighting, driving classification accuracy up step-by-step to a final 99.59%, while dropping location Mean Absolute Error (MAE) from 262m to just 116m.",
+        "Pivoted from the radial distribution network to the highly meshed IEEE 39-Bus transmission system in MATLAB 2026a.",
+        "Edited and instrumented the transmission lines between buses 21-16 and 21-22 with programmable fault triggers and V-I sensors, preparing the environment for the next phase of data extraction."
+      ],
+      media: [
+	{ type: "image", title: "Fault Location Regression — 116.2m MAE", url: "projects/fyp-files/week7_location_regression.png" },
+        { type: "image", title: "Final Optimized Model — Training Curves & Loss", url: "projects/fyp-files/week7_training_curves.png" },
+        { type: "image", title: "Final Optimized Model — 99.59% Confusion Matrix", url: "projects/fyp-files/week7_confusion_matrix.png" },
+        { type: "image", title: "IEEE 39-Bus System — Reference Schematic", url: "projects/fyp-files/week7_ieee39_schematic.jpg" },
+        { type: "image", title: "IEEE 39-Bus System — Data Genration Area (Buses 21-16 & 21-22)", url: "projects/fyp-files/week7_ieee39_simulink.jpg" }
+      ],
+      challenges: "Overcoming 'negative transfer' in the multi-task neural network was the primary challenge this week. Because predicting a categorical fault type requires different mathematical features than predicting a continuous distance, sharing dense layers degraded both tasks simultaneously. Isolating the branches and switching to AdamW fixed this entirely. On the simulation side, scaling from a simple radial feeder to the heavily meshed IEEE 39-Bus system required careful tuning. Accurately instrumenting the target lines at 21-16 and 21-22 was critical to ensure the new dataset perfectly matches the exact input shapes expected by our highly tuned Python pipeline."
+    },
     { week: 8,  title: "Upcomming", status: "upcoming" },
     { week: 12, title: "Upcomming",       status: "upcoming" },
     { week: 13, title: "Upcomming",              status: "upcoming" },
