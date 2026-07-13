@@ -160,10 +160,85 @@
       @media (max-width: 575.98px) {
         .active-badge { padding:5px 12px; font-size:0.72rem; right:10px; }
       }
+
+      /* Quick Nav slide-out drawer, opened from the header Weeks button */
+      .weeks-menu-btn { position:fixed; top:18px; left:16px; z-index:2005; display:inline-flex; align-items:center; gap:9px; background:#1976d2; color:#fff; border:none; border-radius:24px; padding:9px 18px; font-family:'Space Mono',monospace; font-size:0.78rem; font-weight:700; letter-spacing:0.03em; cursor:pointer; box-shadow:0 3px 12px rgba(0,0,0,0.22); transition:background 0.2s, transform 0.15s; }
+      .weeks-menu-btn:hover { background:#0d47a1; transform:translateY(-1px); }
+      .weeks-menu-btn .wmb-bars { display:inline-flex; flex-direction:column; gap:3px; }
+      .weeks-menu-btn .wmb-bars span { display:block; width:16px; height:2px; background:#fff; border-radius:2px; }
+      .qnav-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.45); opacity:0; pointer-events:none; transition:opacity 0.25s; z-index:1000; }
+      .qnav-overlay.open { opacity:1; pointer-events:auto; }
+      .qnav-panel { position:fixed; top:0; left:0; height:100vh; width:300px; max-width:85vw; background:#fff; z-index:1001; box-shadow:4px 0 26px rgba(0,0,0,0.2); transform:translateX(-100%); transition:transform 0.3s ease; overflow-y:auto; padding:1.6rem 1.3rem; }
+      .qnav-panel.open { transform:translateX(0); }
+      .qnav-panel-header { display:flex; align-items:center; justify-content:space-between; margin-bottom:1.2rem; padding-bottom:0.8rem; border-bottom:1px solid #eee; }
+      .qnav-panel-title { font-family:'Space Mono',monospace; font-size:0.85rem; color:#1976d2; text-transform:uppercase; letter-spacing:0.08em; font-weight:700; }
+      .qnav-close-btn { background:none; border:none; font-size:1.5rem; line-height:1; color:#999; cursor:pointer; padding:2px 8px; }
+      .qnav-close-btn:hover { color:#333; }
+
+
+      /* Architecture flow chart */
+      .arch-flow { display:flex; flex-direction:column; align-items:center; margin:0 0 1.5rem 0; }
+      .af-inputs, .af-outputs { display:flex; gap:14px; width:100%; justify-content:center; flex-wrap:wrap; }
+      .af-col { flex:1; min-width:240px; max-width:360px; display:flex; flex-direction:column; align-items:center; }
+      .af-node { width:100%; border-radius:10px; padding:10px 14px; text-align:center; font-size:0.84rem; line-height:1.45; border:1.6px solid; box-sizing:border-box; }
+      .af-node .afn-t { font-family:'Space Mono',monospace; font-size:0.68rem; text-transform:uppercase; letter-spacing:0.04em; font-weight:700; display:block; margin-bottom:3px; opacity:0.85; }
+      .af-arrow { font-size:1.15rem; color:#90a4ae; line-height:1; padding:5px 0; text-align:center; }
+      .af-blue  { background:#e3f2fd; border-color:#1976d2; color:#0d47a1; }
+      .af-teal  { background:#e0f2f1; border-color:#00897b; color:#00695c; }
+      .af-navy  { background:#12355b; border-color:#12355b; color:#fff; }
+      .af-navy .afn-t { color:#90caf9; }
+      .af-green { background:#e8f5e9; border-color:#43a047; color:#1b5e20; }
+      .af-orange{ background:#fff3e0; border-color:#fb8c00; color:#e65100; }
+      .af-outputs .af-node { flex:1; min-width:200px; max-width:290px; }
+
+      /* Training configuration chips */
+      .cfg-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(175px,1fr)); gap:10px; margin:0 0 1.4rem 0; }
+      .cfg-chip { background:#f7fafd; border:1px solid #dbe5f0; border-radius:10px; padding:10px 13px; }
+      .cfg-chip .cc-l { font-family:'Space Mono',monospace; font-size:0.64rem; text-transform:uppercase; letter-spacing:0.05em; color:#607d8b; display:block; }
+      .cfg-chip .cc-v { font-size:0.85rem; font-weight:600; color:#12355b; margin-top:3px; line-height:1.45; display:block; }
+      .cfg-chip.cfg-hi { background:#e8f5e9; border-color:#66bb6a; }
+      .cfg-chip.cfg-hi .cc-v { color:#1b5e20; }
+
+      /* Week deliverable files, rounded-corner squares, no icons */
+      .file-row { display:flex; gap:10px; flex-wrap:wrap; margin:0.6rem 0 1.3rem 0; }
+      .file-card { display:inline-flex; align-items:center; gap:10px; background:#f1f8f2; border:1px solid #a5d6a7; color:#1b5e20 !important; border-radius:8px; padding:10px 16px; font-size:0.8rem; font-weight:600; text-decoration:none; transition:background 0.2s, border-color 0.2s; }
+      .file-card:hover { background:#dcedc8; border-color:#66bb6a; text-decoration:none; }
+      .file-card .fc-label { font-size:0.6rem; font-family:'Space Mono',monospace; text-transform:uppercase; letter-spacing:0.04em; background:#2e7d32; color:#fff; padding:2px 9px; border-radius:5px; }
+      .file-note { font-size:0.78rem; color:#888; font-style:italic; margin:-0.6rem 0 1.2rem 0; }
+
+      /* ILO mapping, plain red text, no tile */
+      .ilo-line { color:#c62828; font-family:'Space Mono',monospace; font-size:0.72rem; font-weight:700; letter-spacing:0.02em; margin:0.9rem 0 0.9rem 0; display:block; }
+
+      @media (max-width: 991.98px) { .weeks-menu-btn { top:14px; left:10px; padding:8px 14px; font-size:0.7rem; } }
+      .qnav-overlay { z-index:3000; }
+      .qnav-panel { z-index:3001; }
+
+      /* Drive card inside the drawer, green pulse */
+      @keyframes drive-glow { 0% { box-shadow:0 0 0 0 rgba(46,125,50,0.45); } 70% { box-shadow:0 0 0 12px rgba(46,125,50,0); } 100% { box-shadow:0 0 0 0 rgba(46,125,50,0); } }
+      .drive-drawer-card { display:block; margin-top:1.4rem; background:linear-gradient(135deg,#e8f5e9,#dcedc8); border:1.5px solid #4caf50; border-radius:12px; padding:1rem 0.9rem; text-decoration:none; text-align:center; animation:drive-glow 2s infinite; }
+      .drive-drawer-card:hover { text-decoration:none; }
+      .drive-drawer-card .ddc-title { display:block; font-weight:700; color:#1b5e20; font-size:0.85rem; margin-bottom:5px; }
+      .drive-drawer-card .ddc-sub { display:block; font-size:0.7rem; color:#33691e; line-height:1.5; margin-bottom:9px; }
+      .drive-drawer-card .ddc-btn { display:inline-block; background:#2e7d32; color:#fff; padding:6px 16px; border-radius:16px; font-size:0.72rem; font-weight:700; }
     </style>
   </head>
   <body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
   <div class="site-wrap">
+
+    <button class="weeks-menu-btn" onclick="toggleQuickNavPanel(true)" aria-label="Open week navigation"><span class="wmb-bars"><span></span><span></span><span></span></span> Weeks</button>
+    <div class="qnav-overlay" id="qnavOverlay" onclick="toggleQuickNavPanel(false)"></div>
+    <div class="qnav-panel" id="qnavPanel">
+      <div class="qnav-panel-header">
+        <span class="qnav-panel-title">Quick Navigation</span>
+        <button class="qnav-close-btn" onclick="toggleQuickNavPanel(false)" aria-label="Close">&times;</button>
+      </div>
+      <div id="quickNav" style="display:flex;flex-direction:column;gap:6px;"></div>
+      <a href="https://drive.google.com/drive/folders/1PPN9njR1QOhjsoNi31UdRPwU6RB0Fksv?usp=drive_link" target="_blank" rel="noopener" class="drive-drawer-card">
+        <span class="ddc-title">&#128193; Weekly Files Google Drive</span>
+        <span class="ddc-sub">All datasets &middot; Python codes &middot; Simulink models (R2026a compatible) &middot; documents &amp; reports</span>
+        <span class="ddc-btn">Open Folder &#8599;</span>
+      </a>
+    </div>
 
     <div class="site-mobile-menu site-navbar-target">
       <div class="site-mobile-menu-header">
@@ -221,8 +296,6 @@
                   </p>
                   <div data-aos="fade-up" data-aos-delay="260" class="hero-btns">
                     <a href="#projects-section" class="btn btn-outline-dark smoothscroll">View Project</a>
-                    </a>
-		    
                   </div>
                 </div>
               </div>
@@ -350,43 +423,24 @@
         <div class="site-section bg-light" style="padding-top: 4rem;">
           <div class="container">
             <div class="row">
-              <div class="col-lg-8" data-aos="fade-up" data-aos-delay="100">
+              <div class="col-12" data-aos="fade-up" data-aos-delay="100">
                 <div class="fyp-progress-bar-wrap">
                   <div class="fyp-progress-label" id="progressLabel">Weeks Completed: 0 / 14</div>
                   <div class="fyp-progress-bar"><div class="fyp-progress-fill" id="progressFill" style="width:0%"></div></div>
                 </div>
-                
+
                 <div class="project-section">
                   <p class="project-section-label">Overview</p>
                   <h3>Project Background &amp; Objectives</h3>
-                  <p>This final year project focuses on developing an intelligent protection system for modern power distribution networks that integrate distributed generation. In Phase 1, work is centered on <strong>software and simulation</strong> to model standard IEEE test feeders. By simulating diverse fault conditions, we collect comprehensive voltage and current time-series data to train advanced deep learning model of <strong>Hybrid CNN-LSTM</strong> aiming for over 98% accuracy in fault classification.</p>
+                  <p>This final year project focuses on developing an intelligent protection system for modern power networks that integrate distributed generation. In Phase 1, work is centered on <strong>software and simulation</strong> to model standard IEEE test systems. By simulating diverse fault conditions, we collect comprehensive voltage and current time-series data to train an advanced <strong>Hybrid CNN-LSTM</strong> deep learning model. In Phase 2, that trained model is deployed on embedded hardware to build a physical relay.</p>
                 </div>
-                
-                <a href="https://drive.google.com/drive/folders/1PPN9njR1QOhjsoNi31UdRPwU6RB0Fksv?usp=drive_link" target="_blank" rel="noopener" class="drive-banner" style="text-decoration:none;">
-                  <span class="db-icon">&#128193;</span>
-                  <span class="db-text">
-                    <span class="db-title" style="display:block;">Weekly Files Google Drive &dash; All Weekly Files &amp; Reports </span>
-                    <span class="db-sub" style="display:block;">Every week's documents images and findings in one Google Drive folder.</span>
-                  </span>
-                  <span class="drive-btn">Open Files Folder &#8599;</span>
-                </a>
 
                 <div class="project-section">
                   <p class="project-section-label">Weekly Progress Log</p>
-                  <h3>Phase 1 — Week by Week</h3>
+                  <h3>Phase 1 &mdash; Week by Week</h3>
                   <p class="text-muted" style="font-size:0.9rem;">Click any week to expand.</p>
                   <div class="weeks-container" id="weeksContainer"></div>
                   <p class="text-muted" style="font-size:0.85rem; margin-top:1rem; font-family:'Space Mono',monospace;">Weeks 11 &ndash; 14 will appear here as they begin.</p>
-                </div>
-              </div>
-
-              <div class="col-lg-4 mt-5 mt-lg-0" data-aos="fade-up" data-aos-delay="200">
-                <div style="position:sticky;top:100px;">
-                  <a href="https://drive.google.com/drive/folders/1PPN9njR1QOhjsoNi31UdRPwU6RB0Fksv?usp=drive_link" target="_blank" rel="noopener" class="drive-btn" style="display:block;text-align:center;margin-bottom:12px;padding:12px 20px;">&#128193; &nbsp;Weekly Files Google Drive &#8599;</a>
-                  <div style="background:#e3f2fd;border-radius:14px;padding:1.5rem;border:1px solid #90caf9;">
-                    <h6 style="font-family:'Space Mono',monospace;font-size:0.8rem;color:#1976d2;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:1rem;">Quick Navigation</h6>
-                    <div id="quickNav" style="display:flex;flex-direction:column;gap:6px;"></div>
-                  </div>
                 </div>
               </div>
             </div>
@@ -705,6 +759,11 @@
   
   document.addEventListener('DOMContentLoaded', function() { Slider.init(); });
 
+  function toggleQuickNavPanel(open) {
+    document.getElementById('qnavPanel').classList.toggle('open', open);
+    document.getElementById('qnavOverlay').classList.toggle('open', open);
+  }
+
   function toggleWeek(header) {
     var card = header.closest('.week-card');
     var body = card.querySelector('.week-body');
@@ -714,23 +773,149 @@
   }
 
 
-  // ---------- Week 8 : full custom layout ----------
-  var week8Html = `
+  // ---------- Week 7 ----------
+  var week7Html = `
+    <span class="ilo-line">ILO1 &middot; Scientific Principles &nbsp;&nbsp; ILO2 &middot; Execution &amp; Planning</span>
     <p class="week-section-title">Deliverables</p>
-    <p class="week-content-text">Comparative Survey of 14 Standard IEEE Test Systems, Mid Semester Evaluation Presentation, Panel Feedback Record &amp; Revised Plan</p>
+    <p class="week-content-text">8,600 Sample Dataset (v2), Optimized Dual-Input CNN-BiLSTM Model, Full Training Configuration Record, Code Pipeline Flow Chart</p>
 
     <p class="week-section-title">What I Did This Week</p>
-    <p class="week-content-text">Before choosing a network to build, I surveyed the standard IEEE test systems used in power system research, so that the final choice would rest on stated criteria rather than convenience.</p>
+    <p class="week-content-text">During Week 07 I took the Week 6 model, which was sitting at 82.00% accuracy, then upgraded it step by step rather than starting over. The 6,000 sample dataset I generated in Week 6 stayed in service as the group's shared training data, so both of my project mates trained their model experiments on it. On my own pipeline I replaced it with a new, larger <strong>8,600 sample dataset</strong>, then rebuilt the network around a dual-input design with three simultaneous outputs: fault type, fault distance, and fault resistance. The final model reached <strong>99.59% classification accuracy</strong> with a location error of <strong>116.2 m MAE</strong>.</p>
+
+    <ul class="activity-list">
+      <li>Generated the new 8,600 sample fault dataset for my own pipeline, sweeping fault type, distance, resistance and inception angle.</li>
+      <li>Kept the 6,000 sample dataset I generated in Week 6 in service for the group, so my project mates could train and compare their models on common data.</li>
+      <li>Took the Week 6 CNN-LSTM code forward rather than rewriting it. Evaluated it first on the new dataset, where it scored 85.59%, then ran a bottleneck analysis on the errors.</li>
+      <li>Found two failure modes. Symmetrical faults (abc and abcg) were confusing the classifier, then negative transfer was pulling both tasks down through the shared dense layers.</li>
+      <li>Expanded the 12 raw signals into 50 engineered sequence channels, then added a separate scalar feature vector as a second input.</li>
+      <li>Rebuilt the front end as a multi-scale convolution stack, then fully isolated the classification and regression output branches.</li>
+      <li>Switched the optimizer to <strong>AdamW</strong> with decoupled weight decay, then retuned the loss weights across the three heads.</li>
+      <li>Evaluated with a confusion matrix, per class precision, recall and F1, plus regression MAE and R&sup2;.</li>
+      <li>Documented the complete end to end pipeline as a one page flow chart.</li>
+    </ul>
+
+    <p class="week-section-title">Dataset</p>
+    <p class="week-content-text">Each fault event is one Parquet file. The waveforms hold 12 measured signals sampled at 1 kHz on a 50 Hz grid, so one power cycle spans 20 samples. Those signals are the three phase voltages and currents recorded at both ends of the line, local and remote. Fault type, fault distance, fault resistance and inception angle are all swept across the 8,600 events. This dataset was generated on Network Model 2, built in MATLAB Simulink.</p>
+    <p class="file-note">Files for this section, in the Google Drive folder:</p>
+    <div class="file-row">
+      <a href="https://drive.google.com/file/d/1E7RorKoI4MZXgoCOnGn24MSZxicnsQ1A/view?usp=sharing" target="_blank" rel="noopener" class="file-card">Network Model 2 &mdash; Simulink Model (.slx, R2026a) <span class="fc-label">DRIVE</span></a>
+      <a href="https://drive.google.com/file/d/1THvRrfTeYDqz18lPiYkMiLnjuWwxYI09/view?usp=drive_link" target="_blank" rel="noopener" class="file-card">Network Model 2 &mdash; MATLAB Code <span class="fc-label">DRIVE</span></a>
+      <a href="https://drive.google.com/drive/folders/1JdjFIyHYkchqP3IGOfnSHYqZ7L7iQLgm?usp=drive_link" target="_blank" rel="noopener" class="file-card">8,600 Fault Dataset &mdash; shared with the group <span class="fc-label">DRIVE</span></a>
+    </div>
+
+    <p class="week-section-title">Feature Engineering</p>
+    <p class="week-content-text">The 12 raw signals were expanded into <strong>50 sequence channels</strong>:</p>
+    <ul class="activity-list">
+      <li>Clarke alpha-beta and Park d-q transforms</li>
+      <li>Symmetrical component magnitudes, positive, negative and zero sequence, for both voltage and current</li>
+      <li>Voltage and current unbalance ratios</li>
+      <li>Interphase differences across all three phase pairs</li>
+      <li>One cycle superimposed (delta) components</li>
+      <li>Instantaneous active and reactive power</li>
+      <li>Space vector magnitudes, sliding RMS envelopes, rate of change signals, Hilbert envelopes</li>
+    </ul>
+    <p class="week-content-text">A <strong>separate scalar input vector</strong> was built alongside it, carrying one value per fault event rather than a time series: db4 wavelet band energies across 3 decomposition levels, FFT harmonic magnitudes, skewness and kurtosis statistics, then impedance-based distance estimates computed the way a conventional relay computes them.</p>
+    <p class="week-content-text">That last group matters. The network receives the same quantities a distance relay would calculate, so it has to earn its accuracy by beating them, not by seeing something the relay never had.</p>
+
+    <p class="week-section-title">Model Architecture</p>
+    <div class="arch-flow">
+      <div class="af-inputs">
+        <div class="af-col">
+          <div class="af-node af-blue"><span class="afn-t">Sequence Input</span>361 timesteps &times; 50 engineered channels</div>
+          <div class="af-arrow">&#8595;</div>
+          <div class="af-node af-blue"><span class="afn-t">Multi-Scale Conv1D</span>k=5 &#8741; k=21 in parallel &middot; 64 filters each</div>
+          <div class="af-arrow">&#8595;</div>
+          <div class="af-node af-blue"><span class="afn-t">Conv1D</span>128 filters &middot; k=9 &middot; swish</div>
+          <div class="af-arrow">&#8595;</div>
+          <div class="af-node af-blue"><span class="afn-t">Bidirectional LSTM</span>96 units &middot; dropout 0.1</div>
+        </div>
+        <div class="af-col">
+          <div class="af-node af-teal"><span class="afn-t">Scalar Input</span>wavelet energies &middot; FFT harmonics &middot; statistics &middot; impedance estimates</div>
+          <div class="af-arrow">&#8595;</div>
+          <div class="af-node af-teal"><span class="afn-t">Dense</span>64 units &middot; swish</div>
+        </div>
+      </div>
+      <div class="af-arrow">&#8600; &nbsp;&nbsp; &#8601;</div>
+      <div class="af-node af-navy" style="max-width:340px;"><span class="afn-t">Fusion</span>Concatenate both branches</div>
+      <div class="af-arrow">&#8595;</div>
+      <div class="af-outputs">
+        <div class="af-node af-green"><span class="afn-t">Output 1 &middot; Fault Type</span>Dense 128 &rarr; Dropout 0.3 &rarr; Softmax &middot; 11 classes</div>
+        <div class="af-node af-orange"><span class="afn-t">Output 2 &middot; Distance (km)</span>Dense 128 &rarr; Dropout 0.2 &rarr; Linear</div>
+        <div class="af-node af-orange"><span class="afn-t">Output 3 &middot; Resistance (&Omega;)</span>Linear &middot; regression branch</div>
+      </div>
+    </div>
+    <p class="week-content-text">The k=5 kernel captures the high frequency transient at fault inception. The k=21 kernel spans a full 50 Hz cycle. Running both in parallel is what separated abc from abcg, since those two faults differ in the slow zero sequence behaviour rather than in the fast transient.</p>
+
+    <p class="week-section-title">Training Configuration</p>
+    <div class="cfg-grid">
+      <div class="cfg-chip cfg-hi"><span class="cc-l">Optimizer</span><span class="cc-v">AdamW &middot; lr 3e-4 &middot; weight decay 1e-4</span></div>
+      <div class="cfg-chip"><span class="cc-l">Loss Weights</span><span class="cc-v">type 1.0 &middot; distance 0.5 &middot; Rf 0.1</span></div>
+      <div class="cfg-chip"><span class="cc-l">Batch Size</span><span class="cc-v">32</span></div>
+      <div class="cfg-chip"><span class="cc-l">Epochs</span><span class="cc-v">up to 80 &middot; early stop at patience 12 &middot; best weights restored</span></div>
+      <div class="cfg-chip"><span class="cc-l">LR Schedule</span><span class="cc-v">ReduceLROnPlateau &times;0.5 &middot; patience 5 &middot; floor 1e-6</span></div>
+      <div class="cfg-chip"><span class="cc-l">Data Split</span><span class="cc-v">70 / 15 / 15 &middot; stratified by fault type</span></div>
+      <div class="cfg-chip"><span class="cc-l">Scaling</span><span class="cc-v">StandardScaler &middot; fitted on train split only</span></div>
+    </div>
+    <p class="week-content-text">The move to <strong>AdamW</strong> was the single change that unlocked the last stretch of accuracy. Plain Adam folds weight decay into the gradient, so the decay gets scaled by the adaptive learning rate, then it stops behaving like real regularisation. AdamW decouples the two. On a three output network where one head does classification and two do regression, that decoupling is what let all three heads settle at once instead of trading against each other.</p>
+
+    <p class="file-note">Files for this section, in the Google Drive folder:</p>
+    <div class="file-row">
+      <a href="https://drive.google.com/file/d/12yMQDN_T8Y8eellPN3VLE4JiJtuthKIX/view?usp=drive_link" target="_blank" rel="noopener" class="file-card">DL Model Code &mdash; 99.59% Accuracy <span class="fc-label">DRIVE</span></a>
+      <a href="https://drive.google.com/drive/folders/1PUUiFa8gAG9L8CKO19_OiibpwY2wBVnf?usp=drive_link" target="_blank" rel="noopener" class="file-card">Full Week 7 Folder <span class="fc-label">DRIVE</span></a>
+    </div>
+
+    <p class="week-section-title">Model Results</p>
+    <ul class="activity-list">
+      <li><strong>Fault type: 99.59%</strong> test accuracy across 11 classes. The multi-scale kernels cleared the abc against abcg confusion.</li>
+      <li><strong>Fault location: 116.2 m</strong> mean absolute error, down from 262 m, with an R&sup2; of about 0.9967.</li>
+      <li><strong>Fault resistance:</strong> a third output head, so the relay also gets an arc resistance estimate that no conventional distance element produces.</li>
+    </ul>
+
+    <p class="week-section-title">Observations</p>
+    <p class="week-content-text">The gain did not come from one trick. Isolating the output branches removed the negative transfer. The multi-scale kernels resolved the symmetrical fault confusion. AdamW stabilised the multi-output training. Then the scalar branch put conventional relay quantities directly in front of the network.</p>
+
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Full Code Pipeline &mdash; Flow Chart</p><img src="projects/fyp-files/week7_flowchart_code_pipeline.png" alt="Code pipeline flow chart" style="max-width:100%; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Model Architecture &mdash; Layer Summary</p><img src="projects/fyp-files/week7_model_architecture_summary.png" alt="Model architecture summary" style="max-width:100%; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Optimized Model &mdash; 99.59% Confusion Matrix</p><img src="projects/fyp-files/week7_confusion_matrix.png" alt="Confusion matrix" style="max-width:100%; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Per-Class Precision, Recall &amp; F1</p><img src="projects/fyp-files/week7_classification_report.png" alt="Classification report" style="max-width:100%; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Fault Location Regression &mdash; 116.2 m MAE</p><img src="projects/fyp-files/week7_location_regression.png" alt="Location regression" style="max-width:100%; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Training Curves &amp; Loss</p><img src="projects/fyp-files/week7_training_curves.png" alt="Training curves" style="max-width:100%; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+
+    <p class="week-section-title">&#128218; References &amp; Resources</p>
+    <ol class="ref-list">
+      <li>Full Python source for this model is in the Weekly Files Google Drive folder (week7_New_DL_over_99.py).</li>
+      <li>I. Loshchilov and F. Hutter, "Decoupled Weight Decay Regularization" (AdamW), ICLR 2019. <a href="https://arxiv.org/abs/1711.05101" target="_blank" rel="noopener" class="ref-doi">&#128279; Link</a></li>
+    </ol>
+
+    <p class="week-section-title">Challenges &amp; Solutions</p>
+    <div class="challenge-block">Negative transfer in the multi-task network was the main problem this week. Predicting a categorical fault type needs different features than predicting a continuous distance, so sharing dense layers pulled both tasks down at the same time. Isolating the branches, then moving to AdamW, fixed it completely. The 99.59% looked like a finish line. It is not. A high score on a simple radial feeder says more about the test system than about the model, so the real question is whether the number survives a harder, meshed network. That question sets the direction for the weeks ahead.</div>
+  `;
+
+  // ---------- Week 8 ----------
+  var week8Html = `
+    <span class="ilo-line">ILO1 &middot; Scientific Principles &nbsp;&nbsp; ILO2 &middot; Execution &amp; Planning &nbsp;&nbsp; ILO3 &middot; Technical Reporting</span>
+    <p class="week-section-title">Deliverables</p>
+    <p class="week-content-text">Comparative Survey of 12 Standard IEEE Test Systems, Conventional Relay Survey &amp; Baseline Selection Document, Mid-Evaluation Materials Prepared, Jetson AGX Xavier Requested by Official Mail</p>
+
+    <p class="week-section-title">What I Did This Week</p>
+    <p class="week-content-text">This week the focus moved from model development onto the research that grounds everything ahead. Four tasks were chosen, because each one removes a blocker from a later week: a structured survey of the standard IEEE test systems for the next network choice, a full survey of conventional relays to fix the baseline before the hardware path opens, the organisation of every result so far for the upcoming mid evaluation, then the hardware request that the relay survey justified.</p>
+    <ul class="activity-list">
+      <li>Surveyed 12 standard IEEE test systems, 7 transmission and 5 distribution, against fixed criteria.</li>
+      <li>Ran a full survey of conventional relays and relay logic, then produced the baseline selection document.</li>
+      <li>Consolidated the Week 6 and Week 7 experiments into one comparable record covering dataset version, input shape, feature count, architecture and accuracy.</li>
+      <li>Selected the figures for my presentation sections on methodology, network models, DL models and results, then coordinated the presentation structure with both group members.</li>
+      <li>Sent an official mail to <strong>Dr. Tharindu Weerakoon</strong> requesting a Jetson AGX Xavier board for the Phase 2 hardware implementation.</li>
+    </ul>
 
     <p class="week-section-title">Transmission Test Systems (Meshed)</p>
     <ul class="activity-list">
-      <li><strong>IEEE 5-Bus</strong> &mdash; A minimal benchmark model representing basic generator and load buses. Useful for teaching, too small for fault studies.</li>
-      <li><strong>IEEE 9-Bus</strong> &mdash; A simple 3-generator, 9-bus system widely used for transient stability studies.</li>
-      <li><strong>IEEE 14-Bus</strong> &mdash; An approximation of the American Electric Power system (circa 1962), featuring 5 generators and 11 loads.</li>
-      <li><strong>IEEE 30-Bus</strong> &mdash; A standard model featuring 6 generators and multiple reactive power support elements.</li>
-      <li><strong>IEEE 39-Bus</strong> &mdash; The New England Test System (NETS) containing 10 generators, frequently used in dynamic and transient stability analyses.</li>
-      <li><strong>IEEE 57-Bus</strong> &mdash; A classic system representing a larger portion of a standard transmission network.</li>
-      <li><strong>IEEE 118-Bus</strong> &mdash; A simplified approximation of the American Electric Power (AEP) Midwest system with 19 generators and 91 loads.</li>
+      <li><strong>IEEE 5-Bus.</strong> A minimal benchmark model representing basic generator and load buses. Useful for teaching, too small for fault studies.</li>
+      <li><strong>IEEE 9-Bus.</strong> A simple 3-generator, 9-bus system widely used for transient stability studies.</li>
+      <li><strong>IEEE 14-Bus.</strong> An approximation of the American Electric Power system, circa 1962, featuring 5 generators and 11 loads.</li>
+      <li><strong>IEEE 30-Bus.</strong> A standard model featuring 6 generators plus multiple reactive power support elements.</li>
+      <li><strong>IEEE 39-Bus.</strong> The New England Test System (NETS), containing 10 generators. Used frequently in dynamic and transient stability analyses.</li>
+      <li><strong>IEEE 57-Bus.</strong> A classic system representing a larger portion of a standard transmission network.</li>
+      <li><strong>IEEE 118-Bus.</strong> A simplified approximation of the American Electric Power Midwest system, with 19 generators and 91 loads.</li>
     </ul>
     <div class="bus-gallery">
       <a class="bus-tile" href="projects/fyp-files/week8_ieee_5bus.png" target="_blank" rel="noopener"><img src="projects/fyp-files/week8_ieee_5bus.png" alt="IEEE 5-Bus" loading="lazy"><span class="bt-cap">IEEE 5-Bus</span></a>
@@ -740,17 +925,15 @@
       <a class="bus-tile" href="projects/fyp-files/week8_ieee_39bus.png" target="_blank" rel="noopener"><img src="projects/fyp-files/week8_ieee_39bus.png" alt="IEEE 39-Bus" loading="lazy"><span class="bt-cap">IEEE 39-Bus (NETS)</span></a>
       <a class="bus-tile" href="projects/fyp-files/week8_ieee_57bus.png" target="_blank" rel="noopener"><img src="projects/fyp-files/week8_ieee_57bus.png" alt="IEEE 57-Bus" loading="lazy"><span class="bt-cap">IEEE 57-Bus</span></a>
       <a class="bus-tile" href="projects/fyp-files/week8_ieee_118bus.png" target="_blank" rel="noopener"><img src="projects/fyp-files/week8_ieee_118bus.png" alt="IEEE 118-Bus" loading="lazy"><span class="bt-cap">IEEE 118-Bus</span></a>
-      
     </div>
 
     <p class="week-section-title">Distribution Test Systems (Radial &amp; Unbalanced)</p>
     <ul class="activity-list">
-      <li><strong>IEEE 13-Node</strong> &mdash; A small, highly unbalanced radial distribution test feeder designed to test regulator and switch operations.</li>
-      <li><strong>IEEE 33-Bus</strong> &mdash; A highly popular, radial balanced distribution system used for distributed generation and reconfiguration studies.</li>
-      <li><strong>IEEE 34-Node</strong> &mdash; A long, rural radial test feeder with significant voltage drops and multi-grounded configurations.</li>
-      <li><strong>IEEE 69-Bus</strong> &mdash; A radial distribution test system commonly used for loss reduction and capacitor placement studies.</li>
-      <li><strong>IEEE 123-Node</strong> &mdash; A realistic, highly unbalanced urban feeder that includes multiple voltage regulators, capacitors, and switches.</li>
-      
+      <li><strong>IEEE 13-Node.</strong> A small, highly unbalanced radial distribution test feeder designed to test regulator and switch operations.</li>
+      <li><strong>IEEE 33-Bus.</strong> A popular radial balanced distribution system used for distributed generation and reconfiguration studies.</li>
+      <li><strong>IEEE 34-Node.</strong> A long, rural radial test feeder with significant voltage drops plus multi-grounded configurations.</li>
+      <li><strong>IEEE 69-Bus.</strong> A radial distribution test system used commonly for loss reduction and capacitor placement studies.</li>
+      <li><strong>IEEE 123-Node.</strong> A realistic, highly unbalanced urban feeder that includes multiple voltage regulators, capacitors and switches.</li>
     </ul>
     <div class="bus-gallery">
       <a class="bus-tile" href="projects/fyp-files/week8_ieee_13node.png" target="_blank" rel="noopener"><img src="projects/fyp-files/week8_ieee_13node.png" alt="IEEE 13-Node" loading="lazy"><span class="bt-cap">IEEE 13-Node</span></a>
@@ -761,114 +944,129 @@
     </div>
 
     <p class="week-section-title">What the Survey Showed</p>
-    <p class="week-content-text">The distribution feeders are radial: there is one path from source to fault, so the fault current has nowhere else to come from. That is the easy case, and it is also the case most published deep learning fault studies use. The transmission systems are meshed, and a meshed network is where conventional distance protection actually struggles, because fault current arrives at a relay through several paths at once. If the aim is to show that a learned model does something a conventional relay cannot, the test system has to be one where the conventional relay has a hard time.</p>
+    <p class="week-content-text">The distribution feeders are radial. There is one path from source to fault, so the fault current has nowhere else to come from. That is the easy case, then it is also the case most published deep learning fault studies use. The transmission systems are meshed. A meshed network is where conventional distance protection actually struggles, because fault current arrives at a relay through several paths at once. If the aim is to show a learned model doing something a conventional relay cannot, then the test system has to be one where the conventional relay has a hard time.</p>
 
-    <p class="week-section-title">Mid Semester Evaluation</p>
-    <p class="week-content-text">The mid semester evaluation was held this week. I presented the methodology and the scientific approach behind the project, walked through the network models developed so far, and explained the deep learning models developed and the results achieved to date.</p>
+    <p class="week-section-title">Conventional Relay Survey &mdash; Fixing the Baseline before Hardware</p>
+    <p class="week-content-text">Phase 2 turns the trained model into a physical relay, so two questions had to be answered before that path opens. What exactly must the deep learning relay beat, then what constraints must the deployment board respect? A physical relay cannot be benchmarked against nothing. So I ran a full survey of conventional relays and relay logic, to get the baseline idea fixed before the hardware implementation initiates.</p>
+    <p class="week-content-text">The findings document covers relay taxonomy by technology generation, then by operating principle with ANSI/IEEE C37.2 device numbers. It narrows down to the three families that do the same job as my model, so distance protection, impedance-based fault location, and overcurrent. It scores them in a selection matrix, then fixes the benchmark metrics before any comparison gets run. It also records the hardware constraints the Phase 2 relay must respect, so sampling rates, latency budgets and the protection functions running beside the model.</p>
+    <p class="week-content-text">One conclusion is worth stating plainly. A numerical relay already samples voltage and current, then runs an algorithm on that data. Embedding a deep learning model changes the algorithm, not the class of hardware. This project is the next step in an existing line of development, so it is not a departure from it.</p>
+    <div style="margin-bottom:1.5rem;">
+      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:8px;">
+        <p class="week-section-title" style="margin:0;">&#128196; Survey on Relays, Conventional Logic &amp; Baseline Selection</p>
+        <a href="projects/fyp-files/week8_relay_survey_findings.pdf" target="_blank" rel="noopener" class="ref-doi" style="font-size:0.8rem; padding:5px 14px; text-decoration:none; border-radius:20px; background:#2e7d32; color:#fff; border-color:#2e7d32;">Open PDF &#8599;</a>
+      </div>
+      <iframe src="projects/fyp-files/week8_relay_survey_findings.pdf" style="width:100%; height:520px; border:1px solid #e0e0e0; border-radius:8px; background:#fafafa;" loading="lazy"></iframe>
+    </div>
+
+    <p class="week-section-title">Hardware Request for Phase 2</p>
+    <p class="week-content-text">The relay survey's hardware section fixed what the deployment board must support, so sampling rates, latency budgets and the protection logic running beside the model. On that basis I sent an official mail to <strong>Dr. Tharindu Weerakoon</strong> requesting a <strong>Jetson AGX Xavier</strong> board from the Department. Sending the request this early meant the board could reach us before the semester ended, so Phase 2 does not begin by waiting.</p>
+
+    <p class="week-section-title">Challenges &amp; Solutions</p>
+    <div class="challenge-block">Running two surveys in one week demanded discipline. On the relay side, the temptation was to pick distance protection immediately, since everyone uses it. Surveying the whole field first was slower, but the choice can now be defended against the obvious viva question. Why compare against that and not something else? Each task this week removes a blocker from a later week: the test system survey feeds the network selection, the relay survey feeds the baseline and the hardware request, then the consolidated record feeds the evaluation.</div>
+  `;
+
+  // ---------- Week 9 ----------
+  var week9Html = `
+    <span class="ilo-line">ILO4 &middot; Communication &nbsp;&nbsp; ILO1 &middot; Scientific Principles</span>
+    <p class="week-section-title">Deliverables</p>
+    <p class="week-content-text">Mid-Project Evaluation Delivered, IEEE 39-Bus New England System Selected with Reasoning, 39-Bus Model Construction Started</p>
+
+    <p class="week-section-title">What I Did This Week</p>
+    <p class="week-content-text">The mid-project evaluation was held this week. I presented the methodology and the scientific approach behind the project, walked through the network models developed so far, then explained the deep learning models with their results. That included the 99.59% classifier plus the 116.2 m location error, both trained on datasets I generated. After the evaluation I selected the <strong>IEEE 39-Bus New England Test System</strong> as my target network, then began building it.</p>
 
     <div style="margin-bottom:1.5rem;">
       <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:8px;">
-        <p class="week-section-title" style="margin:0;">&#128196; Mid Semester Evaluation &mdash; Presentation Slides</p>
-        <a href="projects/fyp-files/week8_mid_evaluation_slides.pdf" target="_blank" rel="noopener" class="ref-doi" style="font-size:0.8rem; padding:5px 14px; text-decoration:none; border-radius:20px; background:#2e7d32; color:#fff; border-color:#2e7d32;">Open PDF &#8599;</a>
+        <p class="week-section-title" style="margin:0;">&#128196; Mid-Project Evaluation &mdash; Presentation Slides</p>
+        <a href="projects/fyp-files/week9_mid_evaluation_slides.pdf" target="_blank" rel="noopener" class="ref-doi" style="font-size:0.8rem; padding:5px 14px; text-decoration:none; border-radius:20px; background:#2e7d32; color:#fff; border-color:#2e7d32;">Open PDF &#8599;</a>
       </div>
-      <iframe src="projects/fyp-files/week8_mid_evaluation_slides.pdf" style="width:100%; height:520px; border:1px solid #e0e0e0; border-radius:8px; background:#fafafa;" loading="lazy"></iframe>
+      <iframe src="projects/fyp-files/week9_mid_evaluation_slides.pdf" style="width:100%; height:520px; border:1px solid #e0e0e0; border-radius:8px; background:#fafafa;" loading="lazy"></iframe>
     </div>
 
     <p class="week-section-title">Panel Q &amp; A</p>
     <div class="qa-block">
       <div class="qa-q">Q: What is the value of this project?</div>
-      <div class="qa-a">Every existing study we reviewed stops at software: the model is trained, evaluated and reported, and the work ends there. We go further &mdash; in Phase 2 the trained model is deployed on embedded hardware to build an actual, physical relay. That step from trained model to working protection device is the value of the project.</div>
+      <div class="qa-a">Every existing study we reviewed stops at software. The model gets trained, evaluated and reported, then the work ends there. We go further. In Phase 2 the trained model is deployed on embedded hardware to build an actual, physical relay. That step, from trained model to working protection device, is the value of the project.</div>
     </div>
     <div class="qa-block">
       <div class="qa-q">Q: How was the hybrid CNN-LSTM chosen so directly?</div>
-      <div class="qa-a">I answered with evidence rather than preference: the architecture comparison spider chart from my literature review, scoring the candidate architectures (CNN, LSTM, CNN-LSTM hybrid, and others) against the criteria that matter for an embedded relay. The chart shows where the hybrid wins and where it costs, so the choice is traceable to the literature.</div>
+      <div class="qa-a">I answered with evidence rather than preference. The architecture comparison spider chart from my literature review scores the candidate architectures against the criteria that matter for an embedded relay, so it shows where the hybrid wins and where it costs. The choice is traceable back to the literature.</div>
     </div>
-    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Architecture Comparison &mdash; Literature Review Spider Chart</p><img src="projects/fyp-files/week8_architecture_spider_chart.png" alt="Architecture comparison spider chart" style="max-width:100%; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Architecture Comparison &mdash; Literature Review Spider Chart</p><img src="projects/fyp-files/week9_architecture_spider_chart.png" alt="Architecture comparison spider chart" style="max-width:100%; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
 
     <p class="week-section-title">Panel Directives</p>
     <ul class="activity-list">
-      <li><strong>Prove the conventional relay actually fails.</strong> Systematically document and present explicit evidence of conventional relay logic failing to detect specific complex faults, high-impedance faults in particular, so the necessity of the deep learning approach is demonstrated rather than claimed.</li>
-      <li><strong>Show the hyperparameter tuning properly.</strong> Provide a deeper analysis of how the model parameters (learning rates, epochs, layer sizes) are tuned, and how that tuning addresses the overfitting behaviour observed during optimization.</li>
+      <li><strong>Prove the conventional relay actually fails.</strong> Document and present explicit evidence of conventional relay logic failing to detect specific complex faults, high impedance faults in particular, so the necessity of the deep learning approach gets demonstrated rather than claimed.</li>
+      <li><strong>Show the hyperparameter tuning properly.</strong> Provide a deeper analysis of how the model parameters get tuned, learning rate, epochs, layer sizes, then how that tuning addresses the overfitting behaviour seen during optimization.</li>
     </ul>
 
     <p class="week-section-title">What Changed Because Of It</p>
-    <p class="week-content-text">Both directives reshaped the plan. The relay study in Week 9 became a much larger piece of work, because it now has to produce documented failure cases and not just a literature summary. A structured hyperparameter analysis was added to the remaining weeks.</p>
+    <p class="week-content-text">Both directives reshaped the plan. The relay survey I completed in Week 8 must now grow into documented failure cases, so conventional relay logic gets tested against hard faults rather than summarised from the literature. A structured hyperparameter analysis was then added to the remaining weeks.</p>
 
-    <p class="week-section-title">Challenges &amp; Solutions</p>
-    <div class="challenge-block">Facing the Mid Evaluation panel was its own challenge. The value question and the architecture question both demanded evidence on the spot, and the spider chart from the literature review is what carried the architecture answer.</div>
-  `;
-
-  // ---------- Week 9 : full custom layout ----------
-  var week9Html = `
-    <p class="week-section-title">Deliverables</p>
-    <p class="week-content-text">IEEE 39-Bus New England System Selected (with reasoning), 39-Bus Simulink Model Under Construction, Conventional Relay Survey &amp; Baseline Selection Document</p>
-
-    <p class="week-section-title">What I Did This Week</p>
-    <p class="week-content-text">I selected the <strong>IEEE 39-Bus New England Test System</strong> as my target network. The reasoning:</p>
+    <p class="week-section-title">IEEE 39-Bus New England System &mdash; Selection &amp; Reasoning</p>
+    <p class="week-content-text">I selected the <strong>IEEE 39-Bus New England Test System (NETS)</strong> as my target network. The reasoning:</p>
     <ul class="activity-list">
-      <li><strong>It is meshed.</strong> Multiple infeed paths make fault location genuinely difficult. Current fed in at an intermediate bus inflates the impedance a distance relay sees, so the relay under-reaches. This is the exact weakness the project is trying to address, and a radial feeder cannot expose it.</li>
-      <li><strong>It is the standard benchmark</strong> for dynamic and transient stability studies, so results are comparable with published work rather than sitting in isolation.</li>
+      <li><strong>It is meshed.</strong> Multiple infeed paths make fault location genuinely difficult. Current fed in at an intermediate bus inflates the impedance a distance relay sees, so the relay under-reaches. That is the exact weakness this project attacks, then a radial feeder cannot expose it at all.</li>
+      <li><strong>It is the standard benchmark</strong> for dynamic and transient stability studies, so the results stay comparable with published work rather than sitting in isolation.</li>
       <li><strong>It has 10 generators</strong>, so fault current behaviour is realistic rather than idealised.</li>
       <li><strong>Validated model data is available</strong>, so the network parameters are not invented.</li>
-      <li><strong>The size is right</strong> &mdash; large enough to be meshed and hard, small enough to simulate thousands of faults on the hardware available.</li>
+      <li><strong>The size is right.</strong> Large enough to be meshed and hard, small enough to simulate thousands of faults on the hardware available.</li>
     </ul>
-    <p class="week-content-text">The group is covering three systems in parallel so results can be compared across network complexity: <strong>E/21/143</strong> is building the <strong>IEEE 9-Bus</strong> system, <strong>E/21/145</strong> the <strong>IEEE 14-Bus</strong>, and I am building the <strong>IEEE 39-Bus</strong>. Model construction began this week.</p>
+    <p class="week-content-text">The group is covering three systems in parallel, so the results will span the full complexity range. E/21/143 is building the IEEE 9-Bus. E/21/145 is building the IEEE 14-Bus. I took the <strong>IEEE 39-Bus New England system, the largest of the three and the only heavily meshed one</strong>. Model construction began this week.</p>
 
-    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Reference Schematic &dash; IEEE 39-Bus System </p><img src="projects/fyp-files/week9_ieee39_schematic.jpg" alt="IEEE 39-Bus reference schematic" style="max-width:100%; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Reference Schematic &mdash; IEEE 39-Bus New England System</p><img src="projects/fyp-files/week9_ieee39_schematic.jpg" alt="IEEE 39-Bus New England reference schematic" style="max-width:100%; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
     <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; My 39-Bus Model &mdash; Under Construction in MATLAB Simulink</p><img src="projects/fyp-files/week9_39bus_building.png" alt="39-Bus model under construction" style="max-width:100%; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
 
-    <p class="week-section-title">Conventional Relay Survey</p>
-    <p class="week-content-text">In parallel, I ran a full survey of conventional relays and relay logic, following the mid evaluation panel's directive. The findings document covers relay taxonomy by technology generation and by operating principle with ANSI/IEEE C37.2 device numbers, narrows to the three families that do the same job as the model (distance protection, impedance-based fault location, and overcurrent), scores them in a selection matrix, and fixes the benchmark metrics before any comparison is run.</p>
-    <p class="week-content-text">One conclusion is worth stating plainly: a numerical relay already samples voltage and current and runs an algorithm on that data. Embedding a deep learning model changes the algorithm, not the class of hardware. This project is the next step in an existing line of development, not a departure from it.</p>
-
-    <div style="margin-bottom:1.5rem;">
-      <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:10px; margin-bottom:8px;">
-        <p class="week-section-title" style="margin:0;">&#128196; Survay on Relays, Conventional Logics &amp; Baseline Selection</p>
-        <a href="projects/fyp-files/week9_relay_survey_findings.pdf" target="_blank" rel="noopener" class="ref-doi" style="font-size:0.8rem; padding:5px 14px; text-decoration:none; border-radius:20px; background:#2e7d32; color:#fff; border-color:#2e7d32;">Open PDF &#8599;</a>
-      </div>
-      <iframe src="projects/fyp-files/week9_relay_survey_findings.pdf" style="width:100%; height:520px; border:1px solid #e0e0e0; border-radius:8px; background:#fafafa;" loading="lazy"></iframe>
-    </div>
-
     <p class="week-section-title">Challenges &amp; Solutions</p>
-    <div class="challenge-block">The temptation was to pick distance protection as the baseline immediately since everyone uses it. Surveying the whole field first was slower. But the choice can now be defended against the obvious viva question. Why compare against that and not something else? On the modelling side, the 39-bus system is an order of magnitude more complex than the radial feeder ten machines, thirty-four lines. So, the build is deliberately incremental, validated section by section rather than assembled all at once.</div>
+    <div class="challenge-block">Facing the panel was its own challenge. The value question and the architecture question both demanded evidence on the spot, so the spider chart from my literature review is what carried the architecture answer. On the modelling side, the 39-bus system is an order of magnitude more complex than the radial feeder, ten machines and thirty-four lines, so the build is deliberately incremental. It gets validated section by section rather than assembled all at once.</div>
   `;
 
-  // ---------- Week 10 : full custom layout ----------
+  // ---------- Week 10 ----------
   var week10Html = `
+    <span class="ilo-line">ILO1 &middot; Scientific Principles &nbsp;&nbsp; ILO2 &middot; Execution &amp; Planning</span>
     <p class="week-section-title">Deliverables</p>
-    <p class="week-content-text">IEEE 39-Bus Model Completed in Simulink, Target Lines Selected &amp; Instrumented, First 450 Fault Samples Generated, Jetson AGX Board Secured for Phase 2</p>
+    <p class="week-content-text">IEEE 39-Bus New England Model Completed in Simulink, Target Lines Selected &amp; Instrumented, First 450 Fault Samples Generated, Jetson AGX Xavier Board Received</p>
 
     <p class="week-section-title">What I Did This Week</p>
-    <p class="week-content-text">The 39-bus model build is complete and running in Simulink.</p>
+    <p class="week-content-text">The IEEE 39-Bus New England model is built and running in Simulink. With the model, the dataset pipeline and now the hardware all in place, every component the Phase 2 relay needs exists. What remains is scale: more data, then the conventional baseline comparison, then deployment.</p>
 
-    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; My IEEE 39-Bus Model &mdash; Completed Build in Simulink</p><img src="projects/fyp-files/week10_39bus_complete.png" alt="Completed 39-Bus model in Simulink" style="max-width:100%; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; My IEEE 39-Bus New England Model &mdash; Completed Build in Simulink</p><img src="projects/fyp-files/week10_39bus_complete.png" alt="Completed 39-Bus model in Simulink" style="max-width:100%; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+    <p class="file-note">File for this model, in the Google Drive folder:</p>
+    <div class="file-row">
+      <a href="https://drive.google.com/file/d/1NtgwBPNasrF9QoIujyaK44cpzsaoeyHz/view?usp=drive_link" target="_blank" rel="noopener" class="file-card">Completed 39-Bus Network Model (Simulink, R2026a) <span class="fc-label">DRIVE</span></a>
+    </div>
 
     <p class="week-section-title">Target Line Selection: Lines 21&ndash;16 and 21&ndash;22</p>
-    <p class="week-content-text">I selected <strong>Line 21&ndash;16</strong> and <strong>Line 21&ndash;22</strong> as the target lines for fault data generation. Both share <strong>Bus 21</strong> as a common sending end, and that is precisely what makes them special:</p>
+    <p class="week-content-text">I selected <strong>Line 21&ndash;16</strong> and <strong>Line 21&ndash;22</strong> as the target lines for fault data generation. Both share <strong>Bus 21</strong> as a common sending end, so that is precisely what makes them special:</p>
     <ul class="activity-list">
-      <li>A relay sitting at Bus 21 can observe both lines at once. This mirrors the two-line arrangement used on the radial network (LYNX and WASP), so the trained model's two-channel input structure carries across directly.</li>
-      <li>Because the two lines leave the same bus, the model must tell them apart by waveform signature rather than by magnitude alone &mdash; something the two-bus radial network could never test.</li>
-      <li>Bus 21 sits inside the meshed core of the network, with infeed arriving from several directions. That is the hardest case for a conventional distance relay, and therefore the most interesting case for the model.</li>
+      <li>A relay sitting at Bus 21 can observe both lines at once. That mirrors the two-line arrangement used on the radial network (LYNX and WASP), so the trained model's two-channel input structure carries across directly.</li>
+      <li>Because the two lines leave the same bus, the model has to tell them apart by waveform signature rather than by magnitude alone. The two-bus radial network could never test that.</li>
+      <li>Bus 21 sits inside the meshed core of the network, with infeed arriving from several directions. That is the hardest case for a conventional distance relay, so it is the most interesting case for the model.</li>
     </ul>
-    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Data Generation Area &mdash; Lines 21&ndash;16 &amp; 21&ndash;22</p><img src="projects/fyp-files/week7_ieee39_simulink.jpg" alt="Target lines 21-16 and 21-22" style="max-width:100%; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Data Generation Area &mdash; Lines 21&ndash;16 &amp; 21&ndash;22</p><img src="projects/fyp-files/week10_target_lines.jpg" alt="Target lines 21-16 and 21-22" style="max-width:100%; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
 
     <p class="week-section-title">Fault Data Generation Begins</p>
     <p class="week-content-text">Fault data collection has started, sweeping fault type, location along the line, fault resistance and inception angle, exactly as on the radial network. <strong>450 samples generated so far.</strong></p>
- 
-    <p class="week-section-title">Hardware Secured for Phase 2: Jetson AGX</p>
-    <p class="week-content-text">I borrowed a <strong>Jetson AGX board</strong> from the Department of Electrical and Electronic Engineering, arranged through <strong>Dr. Tharindu Weerakoon</strong> with documentation cleared by the caretaker, <strong>Mr. Dhanushka</strong>. This is the board the trained model will be deployed on in Phase 2 to build the physical relay. To get familiar with the platform, I worked through two introductory videos on the Jetson AGX.</p>
-    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Jetson AGX Board &mdash; Borrowed from the EEE Department</p><img src="projects/fyp-files/week10_jetson_agx.jpg" alt="Jetson AGX board" style="max-width:100%; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+    <p class="file-note">File for the fault injection model, in the Google Drive folder:</p>
+    <div class="file-row">
+      <a href="https://drive.google.com/file/d/1XmBfiZ2c8EQrbqkcOvGoNCYpBp48ZTX6/view?usp=drive_link" target="_blank" rel="noopener" class="file-card">Fault Injection Model, v1 &mdash; Two Buses Faulted (Simulink) <span class="fc-label">DRIVE</span></a>
+    </div>
 
-    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#9654;&#65039; NVIDIA Jetson AGX Xavier Developer Kit Unboxing and Demonstration</p><div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; background:#000;"><iframe src="https://www.youtube.com/embed/l5vOD1FenN8" style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;" allowfullscreen loading="lazy"></iframe></div></div>
-    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#9654;&#65039; NVIDIA Jetson AGX Xavier Developer Kit — Introduction (NVIDIA Official Release)</p><div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; background:#000;"><iframe src="https://www.youtube.com/embed/XoWW5HiGHsg" style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;" allowfullscreen loading="lazy"></iframe></div></div>
+    <p class="week-section-title">Hardware Received: Jetson AGX Xavier</p>
+    <p class="week-content-text">The <strong>Jetson AGX Xavier</strong> I requested by official mail in Week 8 was received this week from the Department of Electrical and Electronic Engineering, arranged through <strong>Dr. Tharindu Weerakoon</strong>, with the documentation cleared by the caretaker, <strong>Mr. Dhanushka</strong>. This is the board the trained model gets deployed on in Phase 2 to build the physical relay. To get familiar with the platform I worked through two introductory videos.</p>
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Jetson AGX Xavier &mdash; Received from the EEE Department</p><img src="projects/fyp-files/week10_jetson_agx.jpg" alt="Jetson AGX Xavier board" style="max-width:100%; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#9654;&#65039; NVIDIA Jetson AGX Xavier Developer Kit &mdash; Unboxing and Demonstration</p><div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; background:#000;"><iframe src="https://www.youtube.com/embed/l5vOD1FenN8" style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;" allowfullscreen loading="lazy"></iframe></div></div>
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#9654;&#65039; NVIDIA Jetson AGX Xavier Developer Kit &mdash; Introduction (NVIDIA Official Release)</p><div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; background:#000;"><iframe src="https://www.youtube.com/embed/XoWW5HiGHsg" style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;" allowfullscreen loading="lazy"></iframe></div></div>
 
     <p class="week-section-title">&#128218; References &amp; Resources</p>
     <ol class="ref-list">
-      <li>NVIDIA &mdash; Getting Started with Jetson AGX Xavier Developer Kit <a href="https://developer.nvidia.com/embedded/downloads#?search=Jetson%20AGX%20Xavier%20Developer%20Kit%20Carrier%20Board%20Specification" target="_blank" rel="noopener" class="ref-doi">&#128279; Link</a></li>
+      <li>NVIDIA &mdash; Jetson AGX Xavier Developer Kit, Carrier Board Specification <a href="https://developer.nvidia.com/embedded/downloads" target="_blank" rel="noopener" class="ref-doi">&#128279; Link</a></li>
     </ol>
 
+    <p class="week-section-title">Key Learning Outcomes</p>
+    <p class="week-content-text">Scaling from a 2-bus feeder to a 39-bus meshed system multiplies every cost, so simulation time, crash exposure and file management all grow together. Data generation at this scale is an engineering problem in its own right, then it has to be treated as one.</p>
+
     <p class="week-section-title">Challenges &amp; Solutions</p>
-    <div class="challenge-block">Data generation is the bottleneck. Each simulation of the full 39-bus system takes a long time and the simulation crashes partway through long runs. So, a failed run can lose hours of work. 450 samples is well short of what the model needs. The fix has to be structural rather than rerunning and hoping shorter simulation batches so a crash costs one batch instead of an entire run and saving each result to disk the moment it completes so nothing is lost when the process dies. Solving this is the first task of next week.</div>
+    <div class="challenge-block">Data generation is the bottleneck. Each simulation of the full 39-bus system takes a long time, then the simulation crashes partway through long runs, so a failed run can lose hours of work. 450 samples is well short of what the model needs. The fix has to be structural rather than rerunning and hoping. Shorter simulation batches, so a crash costs one batch instead of an entire run. Saving each result to disk the moment it completes, so nothing is lost when the process dies. Solving this is the first task of next week.</div>
   `;
 
   var weekData = [
@@ -876,6 +1074,7 @@
       week: 1,
       title: "Literature Review & Power System Faults Survey",
       status: "completed",
+      ilo: "ILO1 &middot; Scientific Principles &nbsp;&nbsp; ILO3 &middot; Technical Reporting",
       deliverables: "Literature Survey Notes",
       activities: [
         "Conducted a comprehensive survey on standard power system faults, analysing short-circuit fault types, system protection behaviours, and calculation of voltage and reactive power under fault conditions.",
@@ -896,6 +1095,7 @@
       week: 2,
       title: "Research Gap Analysis & Deep Learning Foundations",
       status: "completed",
+      ilo: "ILO1 &middot; Scientific Principles &nbsp;&nbsp; ILO2 &middot; Execution &amp; Planning",
       deliverables: "14-Week Project Timeline, DL Survey Notes",
       activities: [
         "Finalised the comprehensive 14-week project plan, dividing workload across network modelling, fault injection, data preprocessing, and model training for the three group members.",
@@ -919,6 +1119,7 @@
       week: 3,
       title: "Methodology Design & CNN-LSTM Architecture",
       status: "completed",
+      ilo: "ILO1 &middot; Scientific Principles &nbsp;&nbsp; ILO2 &middot; Execution &amp; Planning",
       deliverables: "Finalised Methodology, Simulation Strategy",
       activities: [
         "Held a methodology discussion with research assistants at the Smart Grid Lab to validate the simulation approach and data extraction pipeline design.",
@@ -938,6 +1139,7 @@
       week: 4,
       title: "Literature Review Finalization & Simulink Onboarding",
       status: "completed",
+      ilo: "ILO3 &middot; Technical Reporting &nbsp;&nbsp; ILO2 &middot; Execution &amp; Planning",
       deliverables: "Individual Literature Review Document, Simulink Onramp Completion",
       activities: [
         "Finalized and compiled the individual literature review document (E21327_Literature_Review.pdf) covering 5 key research papers on deep learning-based fault classification in power distribution networks.",
@@ -958,6 +1160,7 @@
       week: 5,
       title: "IEEE 9-Bus Model Exploration & Library Compatibility Issue",
       status: "completed",
+      ilo: "ILO1 &middot; Scientific Principles &nbsp;&nbsp; ILO2 &middot; Execution &amp; Planning",
       deliverables: "IEEE 9-Bus Model Exploration, Compatibility Issue Identified",
       activities: [
         "Downloaded the standard IEEE 9-bus power system model from the official MathWorks File Exchange, originally created for MATLAB/Simulink circa 2014.",
@@ -981,7 +1184,15 @@
       week: 6,
       title: "Custom Test Feeder Build & CNN-LSTM Model Implementation",
       status: "completed",
+      ilo: "ILO1 &middot; Scientific Principles &nbsp;&nbsp; ILO2 &middot; Execution &amp; Planning",
       deliverables: "Simulink Test Feeder V1, CNN-LSTM Trained Model V2, V2 Results",
+      files: [
+        { title: "Network Model 1 - Simulink Model (.slx, R2026a)", url: "https://drive.google.com/file/d/1_foreljKDBE4R2fwOndYw6DxMViardNu/view?usp=sharing" },
+        { title: "Network Model 1 - MATLAB Code", url: "https://drive.google.com/file/d/1iHVzPliuZ7zdBK0IeyFV2LInKq8MLE4o/view?usp=sharing" },
+        { title: "6,000 Fault Dataset - generated & shared with the group", url: "https://drive.google.com/drive/folders/1AvfG11u4Vg05dhR5Yrp_jLht1XrqaucU?usp=sharing" },
+        { title: "DL Colab Code - 82% Accuracy", url: "https://colab.research.google.com/drive/1WWo3T3Fktg-qPoIdDPF7X1YDIlesJLe0?usp=sharing", tag: "COLAB" },
+        { title: "Full Week 6 Folder", url: "https://drive.google.com/drive/folders/1CIGQO-mCE87C29kIGqVvHKRbdmJ5eQFR?usp=drive_link" }
+      ],
       activities: [
         "Abandoned the legacy IEEE 9-bus model due to MATLAB 2026a library incompatibilities. Built a custom distribution test feeder (E21327_FYP_Test_Feeder_v1) from scratch in MATLAB Simulink 2026a using fully compatible Simscape Electrical components.",
         "Instrumented the model with three-phase voltages and current measurement blocks at the relay measurement points with dedicated fault blocks (Fault LYNX, Fault WASP) controlled by step triggers for programmatic fault injection.",
@@ -1009,40 +1220,25 @@
     },
     {
       week: 7,
-      title: "DL Model Optimization (82% to 99.59% Accuracy) & Code Pipeline Flow Chart",
+      title: "Model Optimization (82% to 99.59%), Full Architecture, Parameters & Pipeline Flow Chart",
       status: "completed",
-      deliverables: "8,600 Sample Dataset, Optimized CNN-BiLSTM-Attention Model, Documented Code Pipeline Flow Chart",
-      activities: [
-        "Generated a significantly larger and more comprehensive dataset of 8,600 fault samples to feed the neural network, replacing the previous 6,000 sample dataset.",
-        "Evaluated the previous model on the new dataset, achieving an initial 85.59% accuracy. Conducted a bottleneck analysis and identified that symmetrical 3-phase faults ('abc' and 'abcg') were confusing the classifier, and 'negative transfer' was occurring between the multi-task dense layers.",
-        "Engineered a massive deep learning architecture upgrade: swapped linear convolutions for a multi-scale 'Inception' architecture (k=5 and k=21 kernels) to capture both high-frequency transients and full 50 Hz power cycles simultaneously.",
-        "Integrated a 4-head Multi-Head Attention mechanism to explicitly force the network to focus on fault inception moments, and separated the output branches to completely isolate Classification from Distance/Resistance Regression.",
-        "Retrained using the AdamW optimizer with asymmetric loss weighting, driving classification accuracy up step-by-step to a final 99.59%, while dropping location Mean Absolute Error (MAE) from 262m to just 116m.",
-        "Documented the complete end-to-end code pipeline as a flow chart, from raw Simulink output through preprocessing and feature engineering into the two model heads. Putting it on one page exposed exactly where the data shape changes and which stages must be repeated identically whenever the model moves to a new network. This flow chart is now the reference for every dataset generated from here on."
-      ],
-      media: [
-        { type: "image", title: "Full Code Pipeline \u2014 Flow Chart", url: "projects/fyp-files/week7_flowchart_code_pipeline.png" },
-        { type: "image", title: "Fault Location Regression \u2014 116.2m MAE", url: "projects/fyp-files/week7_location_regression.png" },
-        { type: "image", title: "Final Optimized Model \u2014 Training Curves & Loss", url: "projects/fyp-files/week7_training_curves.png" },
-        { type: "image", title: "Final Optimized Model \u2014 99.59% Confusion Matrix", url: "projects/fyp-files/week7_confusion_matrix.png" }
-      ],
-      challenges: "Overcoming 'negative transfer' in the multi-task neural network was the primary challenge this week. Because predicting a categorical fault type requires different mathematical features than predicting a continuous distance, sharing dense layers degraded both tasks simultaneously. Isolating the branches and switching to AdamW fixed this entirely. The 99.59% figure looked like a finish line, but it is not: a high score on a simple radial feeder says more about the test system than about the model. The next question is whether it survives a harder, meshed network \u2014 and that question sets the direction for the coming weeks."
+      html: week7Html
     },
     {
       week: 8,
-      title: "Survey of Standard IEEE Test Systems & Mid Semester Evaluation",
+      title: "IEEE Test System Survey, Conventional Relay Survey & Phase 2 Hardware Request",
       status: "completed",
       html: week8Html
     },
     {
       week: 9,
-      title: "IEEE 39-Bus Selection & Conventional Relay Survey",
+      title: "Mid-Project Evaluation & IEEE 39-Bus New England System Selection",
       status: "completed",
       html: week9Html
     },
     {
       week: 10,
-      title: "39-Bus Build Complete, Fault Data Generation & Jetson AGX Secured",
+      title: "39-Bus Build Complete, Fault Data Generation & Jetson AGX Xavier Received",
       status: "completed",
       html: week10Html
     }
@@ -1075,6 +1271,10 @@
       } else if (w.status === 'upcoming' && !w.deliverables && (!w.activities || w.activities.length === 0)) {
         bodyHTML = '<p class="week-empty-msg">Content will be added when this week begins.</p>';
       } else {
+        if (w.ilo) {
+          bodyHTML += '<span class="ilo-line">' + w.ilo + '</span>';
+        }
+
         if (w.deliverables) {
           bodyHTML += '<p class="week-section-title">Deliverables</p><p class="week-content-text">' + escHtml(w.deliverables) + '</p>';
         }
@@ -1085,6 +1285,14 @@
             bodyHTML += '<li>' + escHtml(act) + '</li>';
           });
           bodyHTML += '</ul>';
+        }
+
+        if (w.files && w.files.length > 0) {
+          bodyHTML += '<p class="file-note">Files for this week, in the Google Drive folder:</p><div class="file-row">';
+          w.files.forEach(function(f) {
+            bodyHTML += '<a href="' + escHtml(f.url) + '" target="_blank" rel="noopener" class="file-card">' + escHtml(f.title) + ' <span class="fc-label">' + escHtml(f.tag || 'DRIVE') + '</span></a>';
+          });
+          bodyHTML += '</div>';
         }
 
         // --- MEDIA RENDERING LOGIC ---
@@ -1181,7 +1389,6 @@
     document.getElementById('progressFill').style.width = pct + '%';
     document.getElementById('progressLabel').textContent = 'Weeks Completed: ' + completed + ' / 14 (' + pct + '%)';
 
-    
   })();
   </script>
     
