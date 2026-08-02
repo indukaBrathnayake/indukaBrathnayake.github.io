@@ -440,7 +440,7 @@
                   <h3>Phase 1 &mdash; Week by Week</h3>
                   <p class="text-muted" style="font-size:0.9rem;">Click any week to expand.</p>
                   <div class="weeks-container" id="weeksContainer"></div>
-                  <p class="text-muted" style="font-size:0.85rem; margin-top:1rem; font-family:'Space Mono',monospace;">Weeks 11 &ndash; 14 will appear here as they begin.</p>
+                  <p class="text-muted" style="font-size:0.85rem; margin-top:1rem; font-family:'Space Mono',monospace;">Week 14 will appear here as it begins.</p>
                 </div>
               </div>
             </div>
@@ -1052,7 +1052,7 @@
     </div>
 
     <p class="week-section-title">Hardware Received: Jetson AGX Xavier</p>
-    <p class="week-content-text">The <strong>Jetson AGX Xavier</strong> I requested by official mail in Week 8 was received this week from the Department of Electrical and Electronic Engineering, arranged through <strong>Dr. Tharindu Weerakoon</strong>, with the documentation cleared by the caretaker, <strong>Mr. Dhanushka</strong>. This is the board the trained model gets deployed on in Phase 2 to build the physical relay. To get familiar with the platform I worked through two introductory videos.</p>
+    <p class="week-content-text">The <strong>Jetson AGX Xavier</strong> I requested by official mail in Week 8 was received this week from the Department of Electrical and Electronic Engineering, arranged through <strong>Dr. Tharindu Weerakoon</strong>, with the documentation cleared by the caretaker, <strong>Mr. Dhanushka</strong> and the officiel request letter made by <strong>E/21/143</strong> was handed over. This is the board the trained model gets deployed on in Phase 2 to build the physical relay. To get familiar with the platform I worked through two introductory videos.</p>
     <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Jetson AGX Xavier &mdash; Received from the EEE Department</p><img src="projects/fyp-files/week10_jetson_agx.jpg" alt="Jetson AGX Xavier board" style="max-width:100%; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
     <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#9654;&#65039; NVIDIA Jetson AGX Xavier Developer Kit &mdash; Unboxing and Demonstration</p><div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; background:#000;"><iframe src="https://www.youtube.com/embed/l5vOD1FenN8" style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;" allowfullscreen loading="lazy"></iframe></div></div>
     <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#9654;&#65039; NVIDIA Jetson AGX Xavier Developer Kit &mdash; Introduction (NVIDIA Official Release)</p><div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; background:#000;"><iframe src="https://www.youtube.com/embed/XoWW5HiGHsg" style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;" allowfullscreen loading="lazy"></iframe></div></div>
@@ -1067,6 +1067,138 @@
 
     <p class="week-section-title">Challenges &amp; Solutions</p>
     <div class="challenge-block">Data generation is the bottleneck. Each simulation of the full 39-bus system takes a long time, then the simulation crashes partway through long runs, so a failed run can lose hours of work. 450 samples is well short of what the model needs. The fix has to be structural rather than rerunning and hoping. Shorter simulation batches, so a crash costs one batch instead of an entire run. Saving each result to disk the moment it completes, so nothing is lost when the process dies. Solving this is the first task of next week.</div>
+  `;
+
+  // ---------- Week 11 ----------
+  var week11Html = `
+    <span class="ilo-line">ILO1 &middot; Scientific Principles &nbsp;&nbsp; ILO4 &middot; Communication</span>
+    <p class="week-section-title">Deliverables</p>
+    <p class="week-content-text">New Dataset Across 9 Relay Points on the IEEE 39-Bus System, Cross-System Evaluation Results (9-Bus &amp; 14-Bus), Supervisor Meeting Outcome, New 9600 Hz Data Collection Started</p>
+
+    <p class="week-section-title">What I Did This Week</p>
+    <p class="week-content-text">Up to Week 10 the 39-bus dataset only came from two lines, 21&ndash;16 and 21&ndash;22. This week fault injection was extended to <strong>9 lines across the network</strong>, so the model now sees relay points spread through the meshed core rather than one corner of it. To keep the comparison fair across the group, both collaborator systems were widened in parallel: E/21/143 extended the 9-bus system from 2 to 6 relay points, then E/21/145 did the same on the 14-bus system.</p>
+
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039;Fault Injection Model, v2 &mdash; 9 Lines Faulted (Simulink)</p><img src="projects/fyp-files/week11_39bus_9points_simulink.png" alt="39-Bus Simulink model with 9 relay points instrumented" style="max-width:640px; width:100%; display:block; margin:0 auto 4px; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+    <p class="file-note">Files for this section, in the Google Drive folder:</p>
+    <div class="file-row">
+
+      <a href="https://drive.google.com/file/d/1TFEskYVOcCE7CeLmHGVXlIb38dNsUPTo/view?usp=drive_link" target="_blank" rel="noopener" class="file-card"> E21327_IEEE39_Bus_System_9_relay_points (simulink file) <span class="fc-label">DRIVE</span></a>
+      <!https://drive.google.com/file/d/1TFEskYVOcCE7CeLmHGVXlIb38dNsUPTo/view?usp=drive_link>
+    </div>
+
+    <ul class="activity-list">
+      <li>Generated a new sample dataset at 1200 Hz across the 9 relay point on the 39-bus network.</li>
+      <li>Upgraded the deep learning model on this wider dataset. It scored <strong>94.44%</strong> on its own held-out test set.</li>
+      <li>Got two test sets from my projectmates.Borrowed the 9-bus dataset from E/21/143 and the 14-bus dataset from E/21/145 as external test set. Then ran the 39-bus model on both <strong>without retraining</strong>.</li>
+      <li>Cross-system result: <strong>99.5%</strong> on the 9-bus data, <strong>78.4%</strong> on the 14-bus data. A steep fall from 94.44%, so the model generalizes far worse than its own-system number suggests.</li>
+    </ul>
+
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Cross-System Evaluation &mdash; 94.44% Own System vs 47% and 29% Elsewhere</p><img src="projects/fyp-files/week11_cross_system_results.png" alt="Cross-system evaluation results on 9-bus and 14-bus data" style="max-width:640px; width:100%; display:block; margin:0 auto 4px; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+    <p class="file-note">Files for this section, in the Google Drive folder:</p>
+    <div class="file-row">
+      <a href="https://drive.google.com/drive/folders/19GISOJroidFl6zikunrHNTYOmIKTob_E?usp=drive_link" target="_blank" rel="noopener" class="file-card">Cross-System Evaluation Results (9-Bus &amp; 14-Bus) <span class="fc-label">DRIVE</span></a>
+      <!https://drive.google.com/drive/folders/19GISOJroidFl6zikunrHNTYOmIKTob_E?usp=drive_link>
+    </div>
+
+    <p class="week-section-title">Supervisor Meeting</p>
+    <p class="week-content-text">Discussed these findings with Prof. J.B.Ekanayake. His directive was clear. The priority now is a <strong>genuinely generalized deep learning model</strong>, not a higher own-system number. So, the next step was to get help from the co-supervisors on how to approach that. Following the meeting, a new dataset collection began from the simulation at a much higher sampling rate of <strong>9600 Hz</strong> thought as a universal reference I can build from.</p>
+
+    <p class="week-section-title">Challenges &amp; Solutions</p>
+    <div class="challenge-block">The 94.44% to 29% gap is not a bug, so it is the most important result of the week. A model that scores well on its own system and collapses on another has learned something about that one system rather than about faults in general, then that is exactly the failure the rest of Phase 1 now has to solve. Coordinating three separate student-built simulations to reach a comparable relay point count also took real back and forth, since each system's topology places relay points differently.</div>
+  `;
+
+  // ---------- Week 12 ----------
+  var week12Html = `
+    <span class="ilo-line">ILO1 &middot; Scientific Principles &nbsp;&nbsp; ILO2 &middot; Execution &amp; Planning</span>
+    <p class="week-section-title">Deliverables</p>
+    <p class="week-content-text">9600 Hz Master Dataset, Sampling Frequency Study, Window Length Study, Model Architecture Search (with HGB Finding), Jetson AGX Xavier Initial Setup Verified</p>
+
+    <p class="week-section-title">What I Did This Week</p>
+    <p class="week-content-text">The 9600 Hz dataset from Week 11's directive came through this week, so it was used as a master reference: 9600 Hz gives <strong>192 samples per 50 Hz cycle</strong>, fine enough resolution that every lower rate the group actually deploys at can be produced by <strong>decimating this one dataset</strong> rather than resimulating from scratch. That is the same simulate-once-then-decimate approach established in earlier weeks, now applied at the highest useful rate.</p>
+    <p class="file-note">Files for this section, in the Google Drive folder:</p>
+    <div class="file-row">
+      <a href="https://drive.google.com/drive/folders/1pw6iHWPU0SSAQVa_IH-7W4FuD3jOz-UE?usp=drive_link" target="_blank" rel="noopener" class="file-card">9600 Hz Master Dataset <span class="fc-label">DRIVE</span></a>
+      <!https://drive.google.com/drive/folders/1pw6iHWPU0SSAQVa_IH-7W4FuD3jOz-UE?usp=drive_link>
+    </div>
+
+    <p class="week-section-title">Findings from the High-Rate Dataset</p>
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Sampling Frequency Study &mdash; Accuracy vs Decimated Rate</p><img src="projects/fyp-files/week12_sampling_frequency_study.png" alt="Sampling frequency study, accuracy against decimated rate" style="max-width:640px; width:100%; display:block; margin:0 auto 4px; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+    <p class="week-content-text"><strong>Best sampling frequency was found as 2400 Hz</strong> by testing the same dl model with the same data set with different sampling frequencies.</p>
+
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Window Length Study &mdash; Accuracy vs Input Window Size</p><img src="projects/fyp-files/week12_window_length_study.png" alt="Window length study, accuracy against input window size" style="max-width:640px; width:100%; display:block; margin:0 auto 4px; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+    <p class="week-content-text">Retested the current model across several input window sizes on the new data to check whether the window length tuned on the dataset still holds. After doing Window length sensitivity, I found that <strong>1 Pre-event 2 Post-event window is more accurate than currenty using 0.5 Post-event 2 Pre-event window size.</strong> Also, <strong>2 Pre-event 4 Post-event window is the worst</strong></p>
+
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Ablation Study &mdash; Incremental Accuracy Contribution per Component</p><img src="projects/fyp-files/waterfall.png" alt="Waterfall chart, incremental accuracy contribution per component" style="max-width:640px; width:100%; display:block; margin:0 auto 4px; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+    <p class="week-content-text">Ran an <strong>ablation study</strong>, adding one component to the pipeline at a time: CNN alone scored <strong>89.5%</strong>, +BiLSTM added <strong>+1.0</strong>, +Attention added a further <strong>+1.9</strong>, then +MultiTask <strong>cost &minus;2.9</strong>, and +Domain (the full model) recovered <strong>+1.4</strong>. Attention is the strongest single addition; the multi-task head is the only component that hurts accuracy on its own.</p>
+
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Digged about Model architecture </p><img src="projects/fyp-files/week12_benchmark_summary.png" alt="Benchmark summary across candidate architectures" style="max-width:640px; width:100%; display:block; margin:0 auto 4px; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+    <p class="week-content-text">I also did a <strong>Model architecture search.</strong> Benchmarked a wide set of candidates against the same features and folds alongside classical baselines.</p>
+
+    <p class="week-content-text"><strong>Key finding.</strong> A classical <strong>HistGradientBoosting (HGB)</strong> baseline increased the train accuracy and beated most of the neural network candidates on the same feature set. That is a genuinely useful result to report honestly since a simpler, cheaper model doing as well as a deep network changes what "best model" means for an embedded relay.</p>
+
+    <p class="week-content-text">Also i did <strong>feature importance study, fault resistance study, fault distance study</strong>. All these results ffiles are attached below</p>
+    <p class="file-note">Files for this section, in the Google Drive folder:</p>
+    <div class="file-row">
+      <a href="https://drive.google.com/drive/folders/1gEaL_xO6d2ktvpesYixQieT73n6N9XEI?usp=drive_link" target="_blank" rel="noopener" class="file-card">Sampling Frequency &amp; Window Length Study Results <span class="fc-label">DRIVE</span></a>
+      <!https://drive.google.com/drive/folders/1gEaL_xO6d2ktvpesYixQieT73n6N9XEI?usp=drive_link>
+    </div>
+
+    <p class="week-section-title">Jetson AGX Xavier &mdash; Initial Setup</p>
+    <p class="week-content-text">Started the initial hardware setup for Phase 2. On opening the component box, a note was found with a contact number left by a senior student, <strong>Induwara Aiya</strong>, who had used the board before. Three setup and verification videos were watched to understand what state the board should be in.</p>
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Jetson AGX Xavier &mdash; Initial Setup and Verification</p><img src="projects/fyp-files/week12_jetson_agx_setup.jpg" alt="Jetson AGX Xavier initial setup and verification" style="max-width:640px; width:100%; display:block; margin:0 auto 4px; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#9654;&#65039; NVIDIA Jetson AGX Xavier &mdash; Setup Reference Video 1</p><div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; background:#000;"><iframe src="https://www.youtube.com/embed/-nX8eD7FusQ" style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;" allowfullscreen loading="lazy"></iframe></div></div>
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#9654;&#65039; NVIDIA Jetson AGX Xavier &mdash; Setup Reference Video 2</p><div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; background:#000;"><iframe src="https://www.youtube.com/embed/LUxyNyCl4ro" style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;" allowfullscreen loading="lazy"></iframe></div></div>
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#9654;&#65039; NVIDIA Jetson AGX Xavier &mdash; Setup Reference Video 3</p><div style="position:relative; padding-bottom:56.25%; height:0; overflow:hidden; border-radius:8px; background:#000;"><iframe src="https://www.youtube.com/embed/5_yK_QiNIaM" style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;" allowfullscreen loading="lazy"></iframe></div></div>
+    <p class="week-content-text">Checking the board against those videos confirmed that <strong>JetPack was already installed and configured</strong>, so the initial OS flashing step that the videos walk through was not needed. That is a real time saving, found by inspecting the board rather than assuming a fresh setup was required.</p>
+
+  `;
+
+  // ---------- Week 13 ----------
+  var week13Html = `
+    <span class="ilo-line">ILO1 &middot; Scientific Principles &nbsp;&nbsp; ILO3 &middot; Technical Reporting</span>
+    <p class="week-section-title">Deliverables</p>
+    <p class="week-content-text">Root Cause of the Cross-System Generalization Failure, New Randomized Simulink Model, Approximately 900-Sample Dataset (v3), 93% Cross-System Accuracy Result</p>
+
+    <p class="week-section-title">What I Did This Week</p>
+    <p class="week-content-text">This week's focus was building the data that a genuinely generalized model needs, not just a bigger version of what already existed.</p>
+
+    <p class="week-section-title">Root Cause Identified</p>
+    <div class="challenge-block">Found the actual cause of the 29% to 47% collapse from Week 11. <strong>All three simulations 39-bus, 9-bus and 14-bus were triggering their faults at the exact same fixed time instant.</strong> That single shared detail let the model learn fault-inception timing as a shortcut feature instead of learning the fault signature itself, so it looked accurate on its own system and fell apart everywhere else, because the three systems disagree on that one hidden cue. This is the central finding of the week.So, the generalization gap was not a modelling failure, it was a <strong>simulation design flaw common to all three datasets</strong>.</div>
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Trigger Time Comparison &mdash; The Same Fixed Inception Instant Across All Three Systems</p><img src="projects/fyp-files/week13_trigger_time_bug_comparison.png" alt="Trigger time comparison across the three simulations" style="max-width:640px; width:100%; display:block; margin:0 auto 4px; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+
+    <p class="week-section-title">Building a Genuinely Randomized Dataset</p>
+    <p class="week-content-text">Beyond fixing the trigger-time issue and normalizing the data across systems, a fuller checklist of what a generalized dataset actually needs to vary was worked out:</p>
+    <ul class="activity-list">
+      <li><strong>Operating point diversity:</strong> randomized generator outputs, voltage setpoints, slack generation, and reactive power dispatch, so the network is not always faulted from the same steady state.</li>
+      <li><strong>Fault inception angle diversity:</strong> faults triggered across a spread of angles rather than one fixed instant.</li>
+      <li><strong>Loading diversity:</strong> varying system loading conditions.</li>
+      <li><strong>Measurement diversity:</strong> data generated across SI units, per-unit, different scaling conventions, and different CT/PT ratios, so the model cannot key on a unit convention as a shortcut.</li>
+      <li><strong>Noise diversity:</strong> realistic measurement noise varied across samples.</li>
+      <li><strong>Generalized data harmonization:</strong> bringing all of the above together into one consistent generation pipeline rather than three separate ad hoc setups.</li>
+    </ul>
+
+    <p class="week-section-title">Result</p>
+    <p class="week-content-text">Built a new Simulink model incorporating all of these randomization axes and started generating data. <strong>Nearly 900 samples so far.</strong></p>
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; New Randomized Simulink Model &mdash; All Randomization Axes Incorporated</p><img src="projects/fyp-files/week13_randomized_simulink_model.png" alt="New randomized Simulink model" style="max-width:640px; width:100%; display:block; margin:0 auto 4px; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Dataset v3 &mdash; Approximately 900 Samples Generated</p><img src="projects/fyp-files/week13_dataset_900_samples.png" alt="Dataset v3 with approximately 900 samples" style="max-width:640px; width:100%; display:block; margin:0 auto 4px; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+    <p class="file-note">Files for this section, in the Google Drive folder:</p>
+    <div class="file-row">
+      <a href="https://drive.google.com/drive/folders/REPLACE_ME" target="_blank" rel="noopener" class="file-card">Randomized Fault Injection Model, v3 (Simulink) <span class="fc-label">DRIVE</span></a>
+      <!-- TODO: replace REPLACE_ME with the real Drive link for this file -->
+      <a href="https://drive.google.com/drive/folders/REPLACE_ME" target="_blank" rel="noopener" class="file-card">Randomized Dataset v3 &mdash; Approximately 900 Samples <span class="fc-label">DRIVE</span></a>
+      <!-- TODO: replace REPLACE_ME with the real Drive link for this file -->
+    </div>
+
+    <p class="week-content-text">Retrained the <strong>CNN-BiLSTM-Attention plus HGB fusion</strong> model on this new dataset, then evaluated it on a normalized test set from E/21/145's 14-bus system. Result: <strong>93% accuracy, up from 29%</strong> on the same kind of cross-system test three weeks ago. That is the first real evidence that the generalization problem is <strong>solvable, not just diagnosable</strong>.</p>
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Cross-System Result &mdash; 93% on the 14-Bus Test Set, Up From 29%</p><img src="projects/fyp-files/week13_93pct_result_summary.png" alt="93 percent cross-system result summary" style="max-width:640px; width:100%; display:block; margin:0 auto 4px; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+    <p class="file-note">Files for this section, in the Google Drive folder:</p>
+    <div class="file-row">
+      <a href="https://drive.google.com/drive/folders/REPLACE_ME" target="_blank" rel="noopener" class="file-card">93% Cross-System Accuracy Result <span class="fc-label">DRIVE</span></a>
+      <!-- TODO: replace REPLACE_ME with the real Drive link for this file -->
+    </div>
+
+    <p class="week-section-title">What's Next</p>
+    <p class="week-content-text">Scale data generation toward a target of <strong>100,000 samples</strong>, then train the final model on the <strong>Jetson AGX board</strong>, which should give the resources to converge on the final generalized deep learning model.</p>
   `;
 
   var weekData = [
@@ -1241,6 +1373,24 @@
       title: "39-Bus Build Complete, Fault Data Generation & Jetson AGX Xavier Received",
       status: "completed",
       html: week10Html
+    },
+    {
+      week: 11,
+      title: "Extending Fault Points to 9 Lines, First Cross-System Generalization Test",
+      status: "completed",
+      html: week11Html
+    },
+    {
+      week: 12,
+      title: "9600 Hz Dataset: Sampling Frequency, Window Length & Model Search; Jetson AGX Initial Setup",
+      status: "completed",
+      html: week12Html
+    },
+    {
+      week: 13,
+      title: "Generalization & First 93% Cross-System Result on a Randomized Dataset",
+      status: "completed",
+      html: week13Html
     }
   ];
 
@@ -1369,18 +1519,39 @@
       container.appendChild(card);
 
       // Quick Nav Setup
+      var isCurrent = w.status === 'current';
+      var navAccent = w.status === 'completed' ? '#2e7d32' : isCurrent ? '#e65100' : '#8a93a0';
+      var navBaseBg = isCurrent ? '#fff8e1' : 'transparent';
+      var navBaseColor = isCurrent ? '#e65100' : '#555';
+
       var navLink = document.createElement('a');
       navLink.href = '#week-' + w.week;
-      navLink.textContent = 'Week ' + w.week + ' — ' + w.title.substring(0, 28) + (w.title.length > 28 ? '…' : '');
-      navLink.style.cssText = 'font-size:0.78rem;color:#555;text-decoration:none;padding:4px 8px;border-radius:6px;transition:background 0.15s; display:block;';
-      
+      navLink.title = 'Week ' + w.week + ' — ' + w.title;
+      if (isCurrent) navLink.setAttribute('aria-current', 'true');
+      navLink.style.cssText =
+        'display:flex; align-items:flex-start; gap:9px;' +
+        'font-size:0.78rem; color:' + navBaseColor + '; text-decoration:none;' +
+        'padding:7px 9px 7px 7px; border-radius:7px;' +
+        'border-left:3px solid ' + navAccent + '; background:' + navBaseBg + ';' +
+        'transition:background 0.15s, color 0.15s;';
+
+      navLink.innerHTML =
+        '<span style="flex:none; min-width:20px; padding:1px 5px; border-radius:5px;' +
+          'background:' + navAccent + '; color:#fff; font-size:0.66rem; font-weight:700;' +
+          'font-family:\'Space Mono\',monospace; text-align:center; line-height:1.5;">' +
+          w.week + '</span>' +
+        '<span style="min-width:0; display:-webkit-box; -webkit-line-clamp:2;' +
+          '-webkit-box-orient:vertical; overflow:hidden; line-height:1.35;' +
+          (isCurrent ? 'font-weight:700;' : '') + '">' + escHtml(w.title) + '</span>';
+
       navLink.onmouseover = function(){ this.style.background='#e3f2fd'; this.style.color='#1976d2'; };
-      navLink.onmouseout  = function(){ this.style.background=''; this.style.color='#555'; };
+      navLink.onmouseout  = function(){ this.style.background=navBaseBg; this.style.color=navBaseColor; };
       navLink.onclick = function(e) {
           var targetCard = document.getElementById('week-' + w.week);
           if(targetCard && !targetCard.classList.contains('open')) {
               toggleWeek(targetCard.querySelector('.week-header'));
           }
+          if (typeof toggleQuickNavPanel === 'function') toggleQuickNavPanel(false);
       };
       quickNav.appendChild(navLink);
     });
