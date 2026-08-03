@@ -1157,7 +1157,7 @@
   var week13Html = `
     <span class="ilo-line">ILO1 &middot; Scientific Principles &nbsp;&nbsp; ILO3 &middot; Technical Reporting</span>
     <p class="week-section-title">Deliverables</p>
-    <p class="week-content-text">Root Cause of the Cross-System Generalization Failure, New Randomized Simulink Model, Approximately 900-Sample Dataset (v3), 93% Cross-System Accuracy Result</p>
+    <p class="week-content-text">Root Cause of the Cross-System Generalization Failure, New Randomized Simulink Model, Approximately 900-Sample Dataset (v3), Final CNN-BiLSTM-Attention + HGB Fusion Model (Trained &amp; Attached), Colour-Coded Architecture Flow Chart, 93% Cross-System Accuracy Result</p>
 
     <p class="week-section-title">What I Did This Week</p>
     <p class="week-content-text">This week's focus was building the data that a genuinely generalized model needs, not just a bigger version of what already existed.</p>
@@ -1177,25 +1177,20 @@
       <li><strong>Generalized data harmonization:</strong> bringing all of the above together into one consistent generation pipeline rather than three separate ad hoc setups.</li>
     </ul>
 
-    <p class="week-section-title">Result</p>
-    <p class="week-content-text">Built a new Simulink model incorporating all of these randomization axes and started generating data. <strong>Nearly 900 samples so far.</strong></p>
-    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; New Randomized Simulink Model &mdash; All Randomization Axes Incorporated</p><img src="projects/fyp-files/week13_randomized_simulink_model.png" alt="New randomized Simulink model" style="max-width:640px; width:100%; display:block; margin:0 auto 4px; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
-    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Dataset v3 &mdash; Approximately 900 Samples Generated</p><img src="projects/fyp-files/week13_dataset_900_samples.png" alt="Dataset v3 with approximately 900 samples" style="max-width:640px; width:100%; display:block; margin:0 auto 4px; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
-    <p class="file-note">Files for this section, in the Google Drive folder:</p>
+    <p class="week-section-title">Final Model &mdash; CNN-BiLSTM-Attention + HGB Fusion</p>
+    <p class="week-content-text">Built the final production model directly from what Week 11 and Week 12 established. From Week 11's directive: trained <strong>pooled across all three networks</strong> (ieee39 + ieee14 + ieee9), not on one system. From Week 12's ablation study and HGB finding: kept the <strong>CNN &rarr; BiLSTM &rarr; Attention</strong> trunk the ablation justified (Attention was the strongest single addition, MultiTask the only addition that hurt accuracy), and fused it with a <strong>HistGradientBoosting branch</strong> over the same 47 engineered scalars, since that classical baseline matched or beat the neural candidates on its own. The fused model gets the trunk's robustness and the HGB branch's accuracy together, rather than choosing one or the other.</p>
+
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#127912; Final Pipeline</p><img src="projects/fyp-files/week13_final_model_flowchart.png" alt="Flow chart of the final CNN-BiLSTM-Attention plus HGB fusion pipeline" style="max-width:640px; width:100%; display:block; margin:0 auto 4px; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+
+    <p class="file-note">Files for this section, attached directly in the repository:</p>
     <div class="file-row">
-      <a href="https://drive.google.com/drive/folders/REPLACE_ME" target="_blank" rel="noopener" class="file-card">Randomized Fault Injection Model, v3 (Simulink) <span class="fc-label">DRIVE</span></a>
-      <!-- TODO: replace REPLACE_ME with the real Drive link for this file -->
-      <a href="https://drive.google.com/drive/folders/REPLACE_ME" target="_blank" rel="noopener" class="file-card">Randomized Dataset v3 &mdash; Approximately 900 Samples <span class="fc-label">DRIVE</span></a>
-      <!-- TODO: replace REPLACE_ME with the real Drive link for this file -->
+      <a href="projects/fyp-files/week13_final_model_inference.py" target="_blank" rel="noopener" class="file-card">Final Model &mdash; Self-Contained Inference Script (Python) <span class="fc-label">FILE</span></a>
     </div>
 
-    <p class="week-content-text">Retrained the <strong>CNN-BiLSTM-Attention plus HGB fusion</strong> model on this new dataset, then evaluated it on a normalized test set from E/21/145's 14-bus system. Result: <strong>93% accuracy, up from 29%</strong> on the same kind of cross-system test three weeks ago. That is the first real evidence that the generalization problem is <strong>solvable, not just diagnosable</strong>.</p>
-    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Cross-System Result &mdash; 93% on the 14-Bus Test Set, Up From 29%</p><img src="projects/fyp-files/week13_93pct_result_summary.png" alt="93 percent cross-system result summary" style="max-width:640px; width:100%; display:block; margin:0 auto 4px; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
-    <p class="file-note">Files for this section, in the Google Drive folder:</p>
-    <div class="file-row">
-      <a href="https://drive.google.com/drive/folders/REPLACE_ME" target="_blank" rel="noopener" class="file-card">93% Cross-System Accuracy Result <span class="fc-label">DRIVE</span></a>
-      <!-- TODO: replace REPLACE_ME with the real Drive link for this file -->
-    </div>
+    <p class="week-section-title">Result</p>
+    <p class="week-content-text">Built a new Simulink model incorporating all of these randomization axes and started generating data. <strong>Nearly 900 samples so far.</strong></p>
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Cross-System Result &mdash; E/21/145 New 14-Bus System (genaralized) - 93% Accuracy</p><img src="projects/fyp-files/week13_shakya_new_evaluate.png" alt="Cross-system evaluation result on E/21/145's 14-bus system, 93 percent accuracy" style="max-width:640px; width:100%; display:block; margin:0 auto 4px; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Cross-System Result &mdash; E/21/143 Laxapana New Bus System - 84.3% Accuracy</p><img src="projects/fyp-files/week13_laxapana_evaluate.png" alt="Cross-system evaluation result on E/21/143 Laxapana 9-bus system" style="max-width:640px; width:100%; display:block; margin:0 auto 4px; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
 
     <p class="week-section-title">What's Next</p>
     <p class="week-content-text">Scale data generation toward a target of <strong>100,000 samples</strong>, then train the final model on the <strong>Jetson AGX board</strong>, which should give the resources to converge on the final generalized deep learning model.</p>
