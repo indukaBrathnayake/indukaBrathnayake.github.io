@@ -1093,7 +1093,7 @@
       <li>Cross-system result: <strong>99.5%</strong> on the 9-bus data, <strong>78.4%</strong> on the 14-bus data. A steep fall from 94.44%, so the model generalizes far worse than its own-system number suggests.</li>
     </ul>
 
-    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Cross-System Evaluation &mdash; 94.44% Own System vs 47% and 29% Elsewhere</p><img src="projects/fyp-files/week11_cross_system_results.png" alt="Cross-system evaluation results on 9-bus and 14-bus data" style="max-width:640px; width:100%; display:block; margin:0 auto 4px; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
+    <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Cross-System Evaluation</p><img src="projects/fyp-files/week11_cross_system_results.png" alt="Cross-system evaluation results on 9-bus and 14-bus data" style="max-width:640px; width:100%; display:block; margin:0 auto 4px; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
     <p class="file-note">Files for this section, in the Google Drive folder:</p>
     <div class="file-row">
       <a href="https://drive.google.com/drive/folders/19GISOJroidFl6zikunrHNTYOmIKTob_E?usp=drive_link" target="_blank" rel="noopener" class="file-card">Cross-System Evaluation Results (9-Bus &amp; 14-Bus) <span class="fc-label">DRIVE</span></a>
@@ -1163,7 +1163,7 @@
     <p class="week-content-text">This week's focus was building the data that a genuinely generalized model needs, not just a bigger version of what already existed.</p>
 
     <p class="week-section-title">Root Cause Identified</p>
-    <div class="challenge-block">Found the actual cause of the 29% to 47% collapse from Week 11. <strong>All three simulations 39-bus, 9-bus and 14-bus were triggering their faults at the exact same fixed time instant.</strong> That single shared detail let the model learn fault-inception timing as a shortcut feature instead of learning the fault signature itself, so it looked accurate on its own system and fell apart everywhere else, because the three systems disagree on that one hidden cue. This is the central finding of the week.So, the generalization gap was not a modelling failure, it was a <strong>simulation design flaw common to all three datasets</strong>.</div>
+    <div class="challenge-block">Found the actual cause of the collapse from Week 11. <strong>All three simulations 39-bus, 9-bus and 14-bus were triggering their faults at the exact same fixed time instant.</strong> That single shared detail let the model learn fault-inception timing as a shortcut feature instead of learning the fault signature itself, so it looked accurate on its own system and fell apart everywhere else, because the three systems disagree on that one hidden cue. This is the central finding of the week.So, the generalization gap was not a modelling failure, it was a <strong>simulation design flaw common to all three datasets</strong>.</div>
     <div style="margin-bottom:1.5rem;"><p class="week-section-title">&#128444;&#65039; Trigger Time Comparison &mdash; The Same Fixed Inception Instant Across All Three Systems</p><img src="projects/fyp-files/week13_trigger_time_bug_comparison.png" alt="Trigger time comparison across the three simulations" style="max-width:640px; width:100%; display:block; margin:0 auto 4px; border-radius:8px; border:1px solid #e0e0e0;" loading="lazy"></div>
 
     <p class="week-section-title">Building a Genuinely Randomized Dataset</p>
